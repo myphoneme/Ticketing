@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_ticketing"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_techsupportdashboard"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_company"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_tools" />
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_ticket_single"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="Ticket Single" />-->
+
+        <item
+            android:id="@+id/nav_user_list"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="User List" />
+        <!--        <item-->
+        <!--            android:id="@+id/nav_user_profile"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="@string/menu_user_profile" />-->
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_ticketing_edit"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="@string/menu_ticket_edit" />-->
+        <item
+            android:id="@+id/nav_project"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_project" />
+        <!--        <item-->
+        <!--            android:id="@+id/nav_project_edit"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="@string/menu_project_edit"-->
+        <!--            />-->
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_ticket_add"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="Ticket Add" />-->
+        <!--        <item-->
+        <!--            android:id="@+id/nav_project_add"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="Project Add" />-->
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_company_add"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="Company Create" />-->
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_user_add"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="User Create" />-->
+        <item
+            android:id="@+id/nav_infra_monitoring"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Infra monitoring"/>
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_company_edit"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="Company Edit" />-->
+        <!--        <item-->
+        <!--            android:id="@+id/nav_ticketing_view"-->
+        <!--            android:icon="@drawable/ic_menu_manage"-->
+        <!--            android:title="@string/menu_ticket_view"-->
+        <!--            />-->
+    </group>
+
+    <item android:title="User">
+        <menu>
+            <!--            <item-->
+            <!--                android:id="@+id/nav_share"-->
+            <!--                android:icon="@drawable/ic_menu_share"-->
+            <!--                android:title="@string/menu_share" />-->
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_send"
+
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+</menu>

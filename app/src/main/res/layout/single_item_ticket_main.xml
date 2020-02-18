@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/bg_dashboard"
+
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/serial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1" />
+
+            <LinearLayout
+                android:id="@+id/ticket_view_linearlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ticket_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1422"
+                    android:textColor="@color/colorPrimary" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/viewicon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/icons_view_64" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ticketing System FIXED" />
+
+            <TextView
+                android:id="@+id/ticket_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEO of NHP Portal" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Write rewrite rules for all the links of Old NHP Portal file to redirect them to the New NHP Portal links. The Redirects should be dynamic such that it should work after the migration of the whole site to a new domain (nhp.org.in to nhp.gov.in) or any other domain. Add the rules in the server's .htaccess file and prepare site for migration." />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opened" />
+
+            <TextView
+                android:id="@+id/priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium" />
+
+            <TextView
+                android:id="@+id/created_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Satyendra Dwivedi" />
+
+            <TextView
+                android:id="@+id/last_updated_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Updated by:" />
+            <TextView
+                android:id="@+id/download_filename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FileName" />
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/downloadicon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/download" />
+
+            <TextView
+                android:id="@+id/imagespdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="images"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_blue_bg"
+                android:padding="2dp"
+                android:text="Edit"
+                android:textColor="@color/text_white"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/downloadfilename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="filnamedefault"
+                android:visibility="gone"
+                android:background="@drawable/rounded_corner_blue_bg" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/downloadicon2"
+                android:visibility="gone"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/download" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/editicon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/edit_64" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/downloadicon1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/download"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Company"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/company_spinner"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/custom_spinner" />
+        />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/title_text"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="Title text"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edit_bg"
+            />
+        />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Description"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/description_text"
+            android:layout_width="200dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:text="Description text"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edit_bg"
+            />
+        />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <TextView
+            android:id="@+id/possible_allocated_users"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Allocated Users"
+            />
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:id="@+id/rootcheckbox"
+            android:layout_width="200dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+        <EditText
+            android:visibility="gone"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="Allocated users"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edit_bg"
+            />
+        />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Status"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_status"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/custom_spinner" />
+        /></RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/reset"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_white"
+            android:layout_margin="5dp"
+            android:text="Reset"/>
+        <Button
+            android:id="@+id/submit"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_white"
+            android:layout_margin="5dp"
+            android:text="Submit"/>
+    </LinearLayout>
+</LinearLayout>

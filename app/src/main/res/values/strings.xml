@@ -1,0 +1,77 @@
+<resources>
+
+
+
+    <string name="app_name">Ticketing</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Biru Singh</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Dashboard</string>
+    <string name="menu_gallery">Ticketing</string>
+    <string name="menu_slideshow">Tech Support dashboard</string>
+    <string name="menu_tools">Company</string>
+    <string name="menu_project">Project</string>
+    <string name="menu_project_edit">Project Modification</string>
+    <string name="menu_project_add">Project Add</string>
+    <string name="menu_single_ticket">Ticket</string>
+    <string name="menu_ticket_edit">Ticket Edit</string>
+    <string name="menu_ticket_view">Ticket View</string>
+    <string name="menu_user_list">User List</string>
+    <string name="menu_user_profile">User Profile</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_add_ticket">Add Ticket</string>
+    <string name="menu_create_company">Create Company</string>
+    <string name="menu_edit_company">Edit Company</string>
+    <string name="menu_user_productivity_detail">User Productivity</string>
+    <string name="menu_infra_monitoring">Infra Monitoring</string>
+    <string name="menu_create_user">Create User</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_project_detail_ticket_list">Tickets</string>
+
+
+    <string name="registration_name">Name:</string>
+    <string name="registration_sex">Gender:</string>
+    <string name="registration_mobile">Mobile:</string>
+    <string name="registration_blood_group">Blood Group:</string>
+    <string name="registration_weight">Weight*:(In Kg)</string>
+    <string name="registration_height">Height*:(In Cms)</string>
+    <string name="registration_foot"></string>
+    <string name="registration_inch">Inch</string>
+    <string name="registration_date_of_birth">Date Of Birth</string>
+    <string name="registration_btn">Register</string>
+
+    <string-array name="sex">
+        <item>"Male"</item>
+        <item>"Female"</item>
+    </string-array>
+
+    <string-array name="yesno">
+        <item>"Yes"</item>
+        <item>"No"</item>
+    </string-array>
+
+    <string-array name="blood_group">
+        <item>"O+"</item>
+        <item>"O-"</item>
+        <item>"A+"</item>
+        <item>"A-"</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>B+</item>
+        <item>B-</item>
+
+    </string-array>
+
+    <string-array name="dashboard_color">
+        <item>#EFB41D</item>
+        <item>#2BBAF2</item>
+        <item>#3ABD42</item>
+        <item>#ED544A</item>
+        <item>#ACB41D</item>
+    </string-array>
+</resources>

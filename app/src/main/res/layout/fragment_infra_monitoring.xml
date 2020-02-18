@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/progressbar" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:text="INFRA MONITORING"/>
+<!--    <ProgressBar-->
+<!--        android:id="@+id/simpleProgressBar"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp" />-->
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/command"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Enter command"
+        android:background="@drawable/edit_bg"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/submit"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/text_white"
+        android:text="Submit"/>
+    <TextView
+        android:visibility="gone"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:id="@+id/output"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Output"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_inframonitoring"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_margin="5dp"
+        />
+
+</LinearLayout>

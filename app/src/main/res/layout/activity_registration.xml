@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                >
+
+                <!--<ImageView-->
+                <!--android:id="@+id/Imageprev"-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_centerInParent="true"-->
+
+                <!--android:layout_marginTop="65dp"-->
+                <!--android:background="@drawable/new_border"-->
+                <!--android:scaleType="centerCrop"-->
+
+                <!--/>-->
+<!--below imageview commented by Napo-->
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:visibility="View.Gone"-->
+<!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                android:id="@+id/Imageprev1"-->
+<!--                android:layout_width="140dp"-->
+<!--                android:layout_height="140dp"-->
+<!--                android:layout_marginTop="?android:attr/actionBarSize"-->
+<!--                android:src="@drawable/img_baby"-->
+<!--                app:civ_border_width="2dp"-->
+<!--                app:civ_border_color="@color/colorPrimary"-->
+<!--                android:layout_centerHorizontal="true"/>-->
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/icon_skip"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icons8_skip_24"/>
+                <ImageView
+                    android:visibility="visible"
+                    android:id="@+id/Imageprev"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baby"
+                    android:layout_centerHorizontal="true"/>
+<!--                <ImageView-->
+<!--                    android:visibility="visible"-->
+<!--                    android:id="@+id/Imageprev"-->
+<!--                    android:layout_marginTop="?android:attr/actionBarSize"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:src="@drawable/baby"-->
+<!--                    android:layout_centerHorizontal="true"/>-->
+
+
+                <!--<TextView-->
+                <!--android:id="@+id/clickhere"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="65dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="Add Photo"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:textSize="25dp" />-->
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/Imageprev"
+                    android:gravity="center"
+
+
+                    android:text="@string/registration_name"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/edit_registration_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:maxLength="30"
+                    android:layout_below="@+id/textView4"
+                    android:digits="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyY zZ"
+
+
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:paddingRight="@dimen/activity_horizontal_margin" />
+                <TextView
+                    android:id="@+id/work_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/edit_registration_name"
+                    android:gravity="center"
+
+
+                    android:text="Work"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/edit_registration_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:maxLength="30"
+                    android:layout_below="@+id/work_textview"
+                    android:digits="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyY zZ"
+
+
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:paddingRight="@dimen/activity_horizontal_margin" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_registration_work"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/registration_sex"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+                <Spinner
+                    android:id="@+id/gender_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/textView5"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:entries="@array/sex"
+                    android:imeOptions="actionNext" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textView5"
+                    android:layout_alignStart="@+id/textView5"
+                    android:layout_below="@+id/gender_group"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/registration_mobile"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/edit_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+
+
+                    android:layout_below="@id/textView6"
+
+                    android:hint="10 digit Mobile Number 9xxxx"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10" />
+
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/edit_mobile"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/registration_blood_group"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <Spinner
+                    android:id="@+id/editText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView7"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                    android:layout_marginTop="10dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+
+                    android:maxLength="3" />
+
+                <TextView
+                    android:id="@+id/smoketext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/editText4"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="SMOKE"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <Spinner
+                    android:id="@+id/spinner_smoke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smoketext"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                    android:layout_marginTop="10dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+
+                    android:maxLength="3" />
+
+                <TextView
+                    android:id="@+id/drinktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/spinner_smoke"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="DRINK"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <Spinner
+                    android:id="@+id/spinner_drink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/drinktext"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                    android:layout_marginTop="10dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+
+                    android:maxLength="3" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_below="@+id/spinner_drink"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/registration_weight"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <EditText
+                    android:id="@+id/edit_registration_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/textView8"
+                    android:hint="30 or less"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textView8"
+                    android:layout_alignStart="@+id/textView8"
+                    android:layout_below="@+id/edit_registration_weight"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/registration_height"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/edit_registration_height"
+                    android:layout_centerHorizontal="true"
+                    android:layout_toRightOf="@+id/edit_registration_height"
+                    android:text="@string/registration_foot"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/edit_registration_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_below="@id/textView9"
+                    android:hint="180 or Less"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+
+                    android:maxLength="4"
+                    />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_below="@+id/edit_registration_height"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/registration_date_of_birth"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/edit_registration_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView12"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    />
+
+
+                <TextView
+                    android:id="@+id/labeltext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_registration_dob"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="25dp"
+
+
+                    android:text="*Height and weight of the baby at the time of birth. Height should be less than 180cm and Weight should be less than 30kg." />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labeltext"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    android:text="@string/registration_btn"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginBottom="?android:attr/actionBarSize"/>
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/button_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/button"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    android:text="Skip"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginBottom="?android:attr/actionBarSize"/>
+
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>

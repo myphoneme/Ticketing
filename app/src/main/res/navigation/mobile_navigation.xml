@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.phoneme.ticketing.ui.dashboard.fragments.DashboardFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/nav_dashboard_user_action"
+            app:destination="@id/nav_user_profile" >
+            <argument
+                android:name="user_id"
+                android:defaultValue="49"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_ticketing"
+        android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketListFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_ticket_list">
+        <action
+            android:id="@+id/nav_ticketing_action"
+            app:destination="@id/nav_ticketing_edit">
+            <argument
+                android:name="ticket_id"
+                android:defaultValue="303"
+                app:argType="string" />
+            <argument
+                android:name="user_id"
+                android:defaultValue="303"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/nav_ticketing_action_view"
+            app:destination="@id/nav_ticketing_view">
+            <argument
+                android:name="ticket_id"
+                android:defaultValue="136"
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_ticketing_edit"
+        android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketEditFragment"
+        android:label="@string/menu_ticket_edit"
+        tools:layout="@layout/fragment_ticket_list" />
+
+    <fragment
+        android:id="@+id/nav_techsupportdashboard"
+        android:name="com.phoneme.ticketing.ui.techsupportdashboard.fragments.TechSupportDashboardFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_techsupportdashboard" />
+
+    <fragment
+        android:id="@+id/nav_company"
+        android:name="com.phoneme.ticketing.ui.company.fragment.CompanyListFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_company" >
+        <action
+            android:id="@+id/nav_company_action_edit"
+            app:destination="@id/nav_company_edit">
+            <argument
+                android:name="company_id"
+                android:defaultValue="3"
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_project"
+        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectListFragment"
+        android:label="@string/menu_project"
+        tools:layout="@layout/fragment_project_list" >
+        <action
+            android:id="@+id/nav_project_action"
+            app:destination="@id/nav_project_edit">
+            <argument
+                android:name="project_id"
+                android:defaultValue="303"
+                app:argType="string" />
+        </action>
+
+        <action
+            android:id="@+id/nav_project_detail_ticket_list_action"
+            app:destination="@id/nav_project_detail_ticket_list">
+            <argument
+                android:name="project_id"
+                android:defaultValue="31"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_project_add"
+        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectAddFragment"
+        android:label="@string/menu_project_add"
+        tools:layout="@layout/fragment_project_add"/>
+    <fragment
+        android:id="@+id/nav_project_detail_ticket_list"
+        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectDetailTicketListFragment"
+        android:label="@string/menu_project_detail_ticket_list"
+        tools:layout="@layout/fragment_project_detial_ticket_list" >
+        <action
+            android:id="@+id/nav_project_detail_ticket_view_action"
+            app:destination="@id/nav_ticketing_view">
+            <argument
+                android:name="ticket_id"
+                android:defaultValue="136"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_ticketing_view"
+        android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketViewFragment"
+        android:label="@string/menu_ticket_view"
+        tools:layout="@layout/fragment_ticket_view"/>
+    <fragment
+        android:id="@+id/nav_project_edit"
+        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectEditFragment"
+        android:label="@string/menu_project_edit"
+        tools:layout="@layout/fragment_project_edit" />
+    <fragment
+        android:id="@+id/nav_ticket_single"
+        android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketSingleFragment"
+        android:label="@string/menu_single_ticket"
+        tools:layout="@layout/fragment_ticket_single" />
+
+    <fragment
+        android:id="@+id/nav_ticket_add"
+        android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketCreateFragment"
+        android:label="@string/menu_add_ticket"
+        tools:layout="@layout/fragment_ticket_add" />
+
+    <fragment
+        android:id="@+id/nav_company_add"
+        android:name="com.phoneme.ticketing.ui.company.fragment.CompanyCreateFragment"
+        android:label="@string/menu_create_company"
+        tools:layout="@layout/fragment_company_create" />
+
+    <fragment
+        android:id="@+id/nav_company_edit"
+        android:name="com.phoneme.ticketing.ui.company.fragment.CompanyEditFragment"
+        android:label="@string/menu_edit_company"
+        tools:layout="@layout/fragment_company_edit" />
+
+    <fragment
+        android:id="@+id/nav_techsupport_user_productivity_detail"
+        android:name="com.phoneme.ticketing.ui.techsupportdashboard.fragments.TechsupportUserProductivityDetailsFragment"
+        android:label="@string/menu_user_productivity_detail"
+        tools:layout="@layout/fragment_techsupport_user_productivity_detail" >
+        <action
+            android:id="@+id/nav_techsupport_user_productivity_detail"
+            app:destination="@id/nav_ticketing_view">
+            <argument
+                android:name="ticket_id"
+                android:defaultValue="136"
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_user_list"
+        android:name="com.phoneme.ticketing.ui.user.fragments.UserListFragment"
+        android:label="@string/menu_user_list"
+        tools:layout="@layout/fragment_user_list">
+        <action
+            android:id="@+id/detailclick"
+            app:destination="@id/nav_user_profile" >
+            <argument
+                android:name="user_id"
+                android:defaultValue="49"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_user_add"
+        android:name="com.phoneme.ticketing.ui.user.fragments.UserCreateFragment"
+        android:label="@string/menu_create_user"
+        tools:layout="@layout/fragment_user_create" />
+
+    <fragment
+        android:id="@+id/nav_infra_monitoring"
+        android:name="com.phoneme.ticketing.ui.inframonitoring.InfraMonitoringFragment"
+        android:label="@string/menu_infra_monitoring"
+        tools:layout="@layout/fragment_infra_monitoring" />
+    <fragment
+        android:id="@+id/nav_user_profile"
+        android:name="com.phoneme.ticketing.ui.user.fragments.UserProfileFragment"
+        android:label="@string/menu_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.phoneme.ticketing.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.phoneme.ticketing.ui.logout.LogoutFragment"
+        android:label="@string/menu_logout"
+ />
+</navigation>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_white"
+        android:padding="5dp"
+        android:textSize="25sp"
+        android:background="@color/ticket_background"
+        android:text="Respond"/>
+    <EditText
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edit_bg"
+        android:id="@+id/edit_respond"
+        android:layout_width="match_parent"
+        android:gravity="top"
+        android:layout_height="200dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+    <Button
+        android:layout_alignParentLeft="true"
+        android:id="@+id/respond"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/text_white"
+        android:layout_margin="5dp"
+        android:text="Respond Ticket"/>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/close_ticket"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/text_white"
+        android:layout_margin="5dp"
+        android:text="Close Ticket"/>
+    </RelativeLayout>
+</LinearLayout>

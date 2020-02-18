@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--    <TextView-->
+<!--        android:id="@+id/detailclick"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:gravity="right"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:text="Detail"-->
+<!--        />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/fragment_user_sn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:textStyle="bold"
+                    android:text="User SN"/>
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/fragment_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:textStyle="bold"
+                    android:text="User Name"/>
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/fragment_user_mobile_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:textStyle="bold"
+                    android:text="Mobile Number"/>
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/fragment_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:textStyle="bold"
+                    android:text="Email"/>
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/fragment_user_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:textStyle="bold"
+                    android:text="Status"/></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:id="@+id/fragment_user_create"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_white"
+                    android:background="@drawable/rounded_corner_blue_bg"
+                    android:text="Create User"/>
+
+        </LinearLayout>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/progressbar" />
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        />
+
+</LinearLayout>

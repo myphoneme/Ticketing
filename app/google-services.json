@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1041236772442",
+    "firebase_url": "https://ticketing-app-66518.firebaseio.com",
+    "project_id": "ticketing-app-66518",
+    "storage_bucket": "ticketing-app-66518.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041236772442:android:bd450b3a6b6c80d02b7a63",
+        "android_client_info": {
+          "package_name": "com.phoneme.ticketing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041236772442-r5qnij6frh3isrbedqokl868f9sb9jhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm4DoSdxnjsiEDZrY4tg-F-X7Plb5TMzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041236772442-r5qnij6frh3isrbedqokl868f9sb9jhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@drawable/edit_bg">
+    <EditText
+        android:id="@+id/command_edit"
+        android:hint="Enter command"
+        android:layout_width="match_parent"
+        android:background="@drawable/edit_bg"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/command_button"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="wrap_content"
+        android:text="Submit"
+        android:textColor="@color/text_white"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/command_output"
+        android:textSize="14sp"
+        android:text="outputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputraoutputra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativelayoutview">
+
+<!--    <ImageView-->
+<!--android:visibility="gone"-->
+<!--    android:layout_width="50dp"-->
+<!--    android:layout_height="50dp"-->
+<!--    android:id="@+id/immuneImage"-->
+<!--    android:src="@drawable/ic_pills_red_icon"-->
+<!--    android:padding="@dimen/dashboard_padding"-->
+<!--    android:layout_alignParentLeft="true"-->
+<!--    android:layout_alignParentStart="true" />-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/datetxt"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6sp"
+        android:gravity="center"
+        app:roundAsCircle="true"/>
+    <TextView
+        android:id="@+id/datetxt_1"
+        android:visibility="invisible"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:background="@color/LightBlue"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_centerVertical="true"
+        android:text="17"
+        android:layout_marginLeft="6sp"
+        android:gravity="center"
+        android:textColor="@color/White"
+        />
+
+    <TextView
+        android:id="@+id/monthtxt"
+        android:visibility="invisible"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:background="@color/Blue"
+        android:layout_marginTop="4dp"
+        android:layout_above="@id/datetxt"
+        android:text="Mar"
+        android:gravity="center"
+        android:layout_margin="0dp"
+        android:paddingBottom="2sp"
+        android:textColor="@color/White"
+        android:layout_alignLeft="@id/datetxt" />
+
+    <TextView
+        android:id="@+id/sectiontxt"
+        android:visibility="invisible"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:background="@color/Yellow"
+
+        android:layout_below="@id/datetxt"
+        android:text="At Birth"
+        android:gravity="center"
+
+        android:layout_margin="0dp"
+        android:textColor="@color/White"
+        android:layout_alignLeft="@id/datetxt" />
+
+    <TextView
+        android:id="@+id/immuneText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="01/01/2017"
+        android:paddingLeft="6sp"
+        android:textColor="#000"
+        android:layout_below="@+id/immuneText"
+        android:layout_toRightOf="@id/sectiontxt"
+        android:layout_centerVertical="@id/datetxt"
+        android:gravity="bottom"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hepatitis A"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000"
+        android:id="@+id/immuneText"
+        android:paddingLeft="6sp"
+        android:layout_toRightOf="@id/monthtxt"
+        android:layout_alignTop="@id/monthtxt"
+
+        />
+
+    <CheckBox
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/done_btn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_centerVertical="true"
+        android:focusable="false"
+        android:onClick="clickme"
+        android:text="Administered"
+
+        />
+</RelativeLayout>

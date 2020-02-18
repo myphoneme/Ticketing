@@ -29,7 +29,8 @@ import okhttp3.Response;*/
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/";
+    //private static final String BASE_URL = "http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/";
+    private static final String BASE_URL = "http://phoneme.in/";
     private static final String BASE_URL_INFRA_MONIORING="https://www.phoneme.in/anujitbhu/ticketing/";
     private static final String BASE_URL_INFRA_MONITORING_COMMAND="http://mh.nhp.org.in/";
     //private static final String BASE_URL = "http://phoneme.in/";

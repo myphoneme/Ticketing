@@ -105,6 +105,24 @@
             android:textColor="@color/text_white"
             android:background="@drawable/rounded_corner_blue_bg"
             android:text="Logout"/>
+
+        <TextView
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:id="@+id/fragment_my_ticket"
+            android:layout_width="wrap_content"
+            android:layout_height="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white"
+            android:background="@drawable/rounded_corner_blue_bg"
+            android:text="My Tickets"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
     </LinearLayout>
     <TextView
         android:id="@+id/text_gallery"

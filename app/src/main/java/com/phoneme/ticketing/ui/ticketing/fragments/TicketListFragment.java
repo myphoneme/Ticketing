@@ -70,7 +70,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     private TicketListAdapterNew adapter;
     private Boolean ticketNumbersort = true, ticketTitlesort = true, projectNamesort = true, ticketDescriptionsort = true, ticketStatussort = true;
     private Boolean ticketPrioritysort, ticketCreatedBysort = true,ticketImagesort=true,ticketImageTypesort=true;
-    private TextView ticketAdd,logOut;
+    private TextView ticketAdd,logOut,myTickets;
 
     private String pdfurl4="https://www.phoneme.in/anujitbhu/ticketing/assets/images/ticket/Netgear_Data_sheet_NAS_3312-4312.pdf";
     private String pdfurl2="https://www.gutenberg.org/files/1342/old/pandp12p2.pdf";
@@ -120,16 +120,17 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         ticketImage=(TextView)view.findViewById(R.id.fragment_ticket_image);
         ticketImageType=(TextView)view.findViewById(R.id.fragment_ticket_image_type);
         logOut=(TextView)view.findViewById(R.id.fragment_logout);
+        myTickets=(TextView)view.findViewById(R.id.fragment_my_ticket);
 
         progressbarlayout.setVisibility(View.VISIBLE);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserAuth userAuth1=new UserAuth(getContext());
-                userAuth1.clearData();
-                startLoginActivity();
-            }
-        });
+//        logOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                UserAuth userAuth1=new UserAuth(getContext());
+//                userAuth1.clearData();
+//                startLoginActivity();
+//            }
+//        });
         logOut.setVisibility(View.GONE);
 
         UserAuth userAuth = new UserAuth(getContext());
@@ -145,8 +146,10 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     navController.navigate(R.id.nav_ticket_add);
                 }
             });
+            myTickets.setVisibility(View.GONE);
         } else {
             ticketAdd.setVisibility(View.GONE);
+            //myTickets.setVisibility(View.GONE);
         }
         ticketNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,6 +298,12 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                 }
             }
         });
+        myTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMyTicketData();
+            }
+        });
         getTicketData();
     }
     private void startLoginActivity(){
@@ -312,6 +321,42 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         LinearLayoutManager linearVertical = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearVertical);
 
+    }
+
+    private void getMyTicketData() {
+        //GetDataService service= RetrofitClientInstance.getRetrofitInstance(getContext()).create(GetDataService.class);//getContext() means apply jwttoken in header
+        GetDataService service = RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+
+        Call<TicketResponse> call = service.getMyTickets();
+        UserAuth userAuth = new UserAuth(getContext());
+        Toast.makeText(getContext(), "getMyTicketData1=", Toast.LENGTH_LONG).show();
+        call.enqueue(new Callback<TicketResponse>() {
+            @Override
+            public void onResponse(Call<TicketResponse> call, Response<TicketResponse> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "getMyTicketData2=" , Toast.LENGTH_LONG).show();
+
+                    System.out.println("Response successfull ra\n" + response.body().getListOfTickets());
+                    ticketModelList.clear();
+                    ticketModelList = response.body().getListOfTickets();
+//                    setRecyclerView(response.body().getListOfTickets());
+                    progressbarlayout.setVisibility(View.GONE);
+                    setRecyclerView(ticketModelList);
+                    //adapter.notifyDataSetChanged();
+
+                }else{
+                    progressbarlayout.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TicketResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "onFailure" + t.getMessage(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"onFailure"+t.getCause().getMessage(),Toast.LENGTH_LONG).show();
+                System.out.println("ticketlistfragment onFailure " + t.getMessage());
+                progressbarlayout.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void getTicketData() {

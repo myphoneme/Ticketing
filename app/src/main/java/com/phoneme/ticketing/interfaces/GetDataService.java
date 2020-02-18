@@ -63,6 +63,9 @@ public interface GetDataService {
     @GET("/anujitbhu/napolean/ticketingapici/index.php/ticket/index")
     Call<TicketResponse> getTickets();
 
+    @GET("/anujitbhu/napolean/ticketingapici/index.php/ticket/index1")
+    Call<TicketResponse> getMyTickets();
+
     @GET("/anujitbhu/napolean/ticketingapici/index.php/company/")
     Call<List<CompanyModel>> getCompanies();
 

@@ -51,7 +51,7 @@ import retrofit2.Response;
 
 public class UserProfileFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
-    private EditText username, mobile;
+    private EditText username, mobile,designation;
     private TextView email;
     private SavedUserData userData;
     private SimpleDraweeView userimage;
@@ -87,6 +87,7 @@ public class UserProfileFragment extends Fragment implements
         userimage = (SimpleDraweeView) view.findViewById(R.id.user_image);
         submit = (Button) view.findViewById(R.id.submit);
         spin = (Spinner) view.findViewById(R.id.spinner);
+        designation=(EditText)view.findViewById(R.id.designation);
         getUserData(userid);
         username.setEnabled(false);
         mobile.setEnabled(false);
@@ -136,6 +137,7 @@ public class UserProfileFragment extends Fragment implements
                     Toast.makeText(getContext(), "Submitted", Toast.LENGTH_SHORT).show();
                     //  if(profileUserId.equals(userid)){
                     String name = username.getText().toString();
+                    String designation_title=designation.getText().toString();
                     String mobilenum = mobile.getText().toString();
                     String status_new = statustext;
                     String userid = userDataFromServer.getId();
@@ -144,6 +146,8 @@ public class UserProfileFragment extends Fragment implements
                     HashMap<String,RequestBody> map= new HashMap<>();
                     RequestBody fname=createPartFromString(name);
                     map.put("fname",fname);
+                    RequestBody designationbody=createPartFromString(designation_title);
+                    map.put("designation",designationbody);
                     RequestBody Mobile_no=createPartFromString(mobilenum);
                     map.put("Mobile_no",Mobile_no);
                     RequestBody status=createPartFromString(status_new);
@@ -176,6 +180,7 @@ public class UserProfileFragment extends Fragment implements
         username.setText(data.getName());
         email.setText(data.getEmail());
         mobile.setText(data.getMobile_no());
+        designation.setText(data.getDesignation());
         if (data.getStatus().equals("1")) {
             spin.setSelection(0);
         } else {

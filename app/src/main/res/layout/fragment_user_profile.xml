@@ -37,6 +37,28 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/designationtext"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Designation:" />
+
+        <EditText
+            android:layout_below="@+id/designationtext"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/edit_bg"
+            android:id="@+id/designation"
+            android:paddingLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

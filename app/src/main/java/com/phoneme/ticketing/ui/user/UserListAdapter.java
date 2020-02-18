@@ -34,7 +34,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         userAuth=new UserAuth(this.mcontext);
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView name,mobile_number,email,status;
+        private TextView name,mobile_number,email,status,designation;
         private UserModel userModel;
         private SimpleDraweeView usericonsimple;
         private CardView card;
@@ -48,6 +48,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             usericonsimple=(SimpleDraweeView)v.findViewById(R.id.user_icon_simpledrawee);
             card=(CardView)v.findViewById(R.id.cardcontainer);
             button=(Button)v.findViewById(R.id.edit_profile);
+            designation=(TextView)v.findViewById(R.id.designation);
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,6 +96,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             }else{
                 button.setText("View Profile");
             }
+
+            designation.setText(this.userModel.getDesignation());
         }
     }
 

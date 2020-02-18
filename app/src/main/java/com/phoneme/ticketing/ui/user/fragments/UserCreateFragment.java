@@ -45,7 +45,7 @@ import static com.phoneme.ticketing.ui.user.fragments.UserProfileFragment.MULTIP
 public class UserCreateFragment extends Fragment implements
         AdapterView.OnItemSelectedListener{
 
-    private EditText username, mobile,email;
+    private EditText username, mobile,email,designation;
 
     private SimpleDraweeView userimage;
     private Button submit;
@@ -78,6 +78,7 @@ public class UserCreateFragment extends Fragment implements
         userimage = (SimpleDraweeView) view.findViewById(R.id.user_image);
         submit = (Button) view.findViewById(R.id.submit);
         spin = (Spinner) view.findViewById(R.id.spinner);
+        designation=(EditText)view.findViewById(R.id.designation);
         userimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +100,7 @@ public class UserCreateFragment extends Fragment implements
                 Toast.makeText(getContext(), "Submitted", Toast.LENGTH_SHORT).show();
                 //  if(profileUserId.equals(userid)){
                 String name = username.getText().toString();
+                String designation_title=designation.getText().toString();
                 String mobilenum = mobile.getText().toString();
                 String status_new = statustext;
                 //String userid = userDataFromServer.getId();
@@ -107,6 +109,9 @@ public class UserCreateFragment extends Fragment implements
                 HashMap<String,RequestBody> map= new HashMap<>();
                 RequestBody fname=createPartFromString(name);
                 map.put("fname",fname);
+
+                RequestBody designation_body=createPartFromString(designation_title);
+                map.put("designation",designation_body);
                 RequestBody Mobile_no=createPartFromString(mobilenum);
                 map.put("Mobile_no",Mobile_no);
                 RequestBody status=createPartFromString(status_new);

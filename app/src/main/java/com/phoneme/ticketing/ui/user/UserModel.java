@@ -33,6 +33,13 @@ public class UserModel {
     @SerializedName("role")
     private String role;
 
+    @SerializedName("designation")
+    private String designation;
+
+    public String getDesignation(){
+        return this.designation;
+    }
+
     public String getId(){
         return this.id;
     }

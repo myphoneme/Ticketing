@@ -14,10 +14,31 @@ android {
         vectorDrawables.useSupportLibrary = true //added late on feb 13 2020
     }
     buildTypes {
+        debug {
+
+            buildConfigField "String", "SERVER_URL", '"http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/"'
+            buildConfigField "String", "MIDDLE_URL", '"/ticketingapicidebug/"'
+            buildConfigField "String", "VERSION", '"DEBUG"'
+
+        }
+
+        prod.initWith(buildTypes.debug)
+        prod {
+
+            buildConfigField "String", "SERVER_URL", '"http://stage.this-is-so-fake.com"'
+            buildConfigField "String", "MIDDLE_URL", '"/ticketingapici/"'
+            buildConfigField "String", "VERSION", '"PRODUCTION"'
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField "String", "SERVER_URL", '"http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/"'
+//            buildConfigField "String", "MIDDLE_URL", '"/ticketingapici/"'
         }
+
+
     }
 }
 

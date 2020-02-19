@@ -31,6 +31,7 @@
     <string name="menu_infra_monitoring">Infra Monitoring</string>
     <string name="menu_create_user">Create User</string>
     <string name="menu_logout">Logout</string>
+    <string name="menu_version">Version</string>
     <string name="menu_project_detail_ticket_list">Tickets</string>
 
 

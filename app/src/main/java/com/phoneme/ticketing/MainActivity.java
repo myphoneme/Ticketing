@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView nav = (NavigationView)findViewById(R.id.nav_view);
 
         Menu menu = nav.getMenu();
+
         if(userAuth.getRole().equals("2")){
 
             menu.removeItem(R.id.nav_project_add);
@@ -328,7 +329,8 @@ public class MainActivity extends AppCompatActivity {
         TextView name=(TextView)hView.findViewById(R.id.username);
         TextView email=(TextView)hView.findViewById(R.id.email);
         ImageView userImage=(ImageView)hView.findViewById(R.id.imageView);
-
+        TextView appVersion=(TextView)hView.findViewById(R.id.app_version);
+        appVersion.setText("App Version:"+BuildConfig.VERSION);
         UserAuth userAuth=new UserAuth(this);
         final String userid=userAuth.getId();
         //String userName=userAuth.getName2();

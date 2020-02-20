@@ -25,7 +25,7 @@ android {
         prod.initWith(buildTypes.debug)
         prod {
 
-            buildConfigField "String", "SERVER_URL", '"http://stage.this-is-so-fake.com"'
+            buildConfigField "String", "SERVER_URL", '"http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/"'
             buildConfigField "String", "MIDDLE_URL", '"/ticketingapici/"'
             buildConfigField "String", "VERSION", '"PRODUCTION"'
 

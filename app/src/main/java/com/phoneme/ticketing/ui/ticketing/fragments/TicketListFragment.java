@@ -50,6 +50,7 @@ import com.phoneme.ticketing.ui.ticketing.sorting.TicketTitleCompare;
 import com.phoneme.ticketing.user.LoginActivity;
 //import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.UserAuth;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,20 +66,20 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     private TicketingViewModel galleryViewModel;
     private RecyclerView recyclerView;
     private List<TicketModel> ticketModelList = new ArrayList<>();
-    private TextView ticketNumber, ticketTitle, project, ticketDescription, ticketStatus, ticketPriority, ticketCreatedBy,ticketImage,ticketImageType;
+    private TextView ticketNumber, ticketTitle, project, ticketDescription, ticketStatus, ticketPriority, ticketCreatedBy, ticketImage, ticketImageType;
     //private TicketListAdapter adapter;
     private TicketListAdapterNew adapter;
     private Boolean ticketNumbersort = true, ticketTitlesort = true, projectNamesort = true, ticketDescriptionsort = true, ticketStatussort = true;
-    private Boolean ticketPrioritysort, ticketCreatedBysort = true,ticketImagesort=true,ticketImageTypesort=true;
-    private TextView ticketAdd,logOut,myTickets;
+    private Boolean ticketPrioritysort, ticketCreatedBysort = true, ticketImagesort = true, ticketImageTypesort = true;
+    private TextView ticketAdd, logOut, myTickets;
 
-    private String pdfurl4="https://www.phoneme.in/anujitbhu/ticketing/assets/images/ticket/Netgear_Data_sheet_NAS_3312-4312.pdf";
-    private String pdfurl2="https://www.gutenberg.org/files/1342/old/pandp12p2.pdf";
-    private String pdfurl="https://www.gutenberg.org/files/1342/old/pandp12p.pdf";
-    private String pdfurl3="http://www.professorio.com/livebook/chapters/undying-spirit/professorio-undying-spirit-001.jpg";
+    private String pdfurl4 = "https://www.phoneme.in/anujitbhu/ticketing/assets/images/ticket/Netgear_Data_sheet_NAS_3312-4312.pdf";
+    private String pdfurl2 = "https://www.gutenberg.org/files/1342/old/pandp12p2.pdf";
+    private String pdfurl = "https://www.gutenberg.org/files/1342/old/pandp12p.pdf";
+    private String pdfurl3 = "http://www.professorio.com/livebook/chapters/undying-spirit/professorio-undying-spirit-001.jpg";
     //private String foldername="phoneme/ticketing";
     //private String foldername="phoneme";
-    private String foldername="";
+    private String foldername = "";
     private ProgressDialog pDialog;
 
     public static final int progress_bar_type = 0;
@@ -105,7 +106,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_ticket_main);
-        progressbarlayout=(RelativeLayout)view.findViewById(R.id.progressbar_relativelayout);
+        progressbarlayout = (RelativeLayout) view.findViewById(R.id.progressbar_relativelayout);
 
         VerticalSpaceItemDecoration itemDecoration = new VerticalSpaceItemDecoration(10);
         recyclerView.addItemDecoration(itemDecoration);
@@ -117,10 +118,10 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         ticketPriority = (TextView) view.findViewById(R.id.fragment_ticket_priority);
         ticketCreatedBy = (TextView) view.findViewById(R.id.fragment_ticket_created_by);
         ticketAdd = (TextView) view.findViewById(R.id.fragment_ticket_add);
-        ticketImage=(TextView)view.findViewById(R.id.fragment_ticket_image);
-        ticketImageType=(TextView)view.findViewById(R.id.fragment_ticket_image_type);
-        logOut=(TextView)view.findViewById(R.id.fragment_logout);
-        myTickets=(TextView)view.findViewById(R.id.fragment_my_ticket);
+        ticketImage = (TextView) view.findViewById(R.id.fragment_ticket_image);
+        ticketImageType = (TextView) view.findViewById(R.id.fragment_ticket_image_type);
+        logOut = (TextView) view.findViewById(R.id.fragment_logout);
+        myTickets = (TextView) view.findViewById(R.id.fragment_my_ticket);
 
         progressbarlayout.setVisibility(View.VISIBLE);
 //        logOut.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +135,9 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         logOut.setVisibility(View.GONE);
 
         UserAuth userAuth = new UserAuth(getContext());
+        if (userAuth.getRole().equals("0")) {
+            myTickets.setVisibility(View.GONE);
+        }
 
         if (userAuth.getRole().equals("2")) { //Only role 2 can create tickets
             ticketAdd.setVisibility(View.VISIBLE);
@@ -271,30 +275,30 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         ticketImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TicketImageCompare ticketImageCompare=new TicketImageCompare();
-                if(ticketImagesort){
-                    Collections.sort(ticketModelList,ticketImageCompare);
+                TicketImageCompare ticketImageCompare = new TicketImageCompare();
+                if (ticketImagesort) {
+                    Collections.sort(ticketModelList, ticketImageCompare);
                     adapter.notifyDataSetChanged();
-                    ticketImagesort=false;
-                }else{
+                    ticketImagesort = false;
+                } else {
                     Collections.sort(ticketModelList, Collections.reverseOrder(ticketImageCompare));
                     adapter.notifyDataSetChanged();
-                    ticketImagesort=true;
+                    ticketImagesort = true;
                 }
             }
         });
         ticketImageType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TicketImageTypeCompare ticketImageTypeCompare=new TicketImageTypeCompare();
-                if(ticketImageTypesort){
-                    Collections.sort(ticketModelList,ticketImageTypeCompare);
+                TicketImageTypeCompare ticketImageTypeCompare = new TicketImageTypeCompare();
+                if (ticketImageTypesort) {
+                    Collections.sort(ticketModelList, ticketImageTypeCompare);
                     adapter.notifyDataSetChanged();
-                    ticketImageTypesort=false;
-                }else{
+                    ticketImageTypesort = false;
+                } else {
                     Collections.sort(ticketModelList, Collections.reverseOrder(ticketImageTypeCompare));
                     adapter.notifyDataSetChanged();
-                    ticketImageTypesort=true;
+                    ticketImageTypesort = true;
                 }
             }
         });
@@ -306,11 +310,13 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         });
         getTicketData();
     }
-    private void startLoginActivity(){
-        Intent intent=new Intent(getActivity(), LoginActivity.class);
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
+
     private void setRecyclerView(List<TicketModel> ticketModelList) {
 
 //        TicketListAdapter adapter=new TicketListAdapter(getContext(),ticketModelList,this);
@@ -329,10 +335,12 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 
         Call<TicketResponse> call = service.getMyTickets();
         UserAuth userAuth = new UserAuth(getContext());
+        System.out.println("jwttoken" + userAuth.getJwtToken());
         Toast.makeText(getContext(), "getMyTicketData1=", Toast.LENGTH_LONG).show();
         call.enqueue(new Callback<TicketResponse>() {
             @Override
             public void onResponse(Call<TicketResponse> call, Response<TicketResponse> response) {
+                Toast.makeText(getContext(), "getMyTicketData1a=" , Toast.LENGTH_LONG).show();
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "getMyTicketData2=" , Toast.LENGTH_LONG).show();
 
@@ -351,7 +359,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 
             @Override
             public void onFailure(Call<TicketResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "onFailure" + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "onFailure " + t.getMessage(), Toast.LENGTH_LONG).show();
                 //Toast.makeText(getContext(),"onFailure"+t.getCause().getMessage(),Toast.LENGTH_LONG).show();
                 System.out.println("ticketlistfragment onFailure " + t.getMessage());
                 progressbarlayout.setVisibility(View.GONE);
@@ -376,7 +384,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     progressbarlayout.setVisibility(View.GONE);
                     setRecyclerView(ticketModelList);
 
-                }else{
+                } else {
                     progressbarlayout.setVisibility(View.GONE);
                 }
             }
@@ -394,7 +402,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     public void onItemClick(int position) {
         //to be uncommented for post notification
         //Bundle args2 = TicketListFragmentDirections.navTicketingAction().getArguments();
-        Bundle args2=new Bundle();
+        Bundle args2 = new Bundle();
         args2.putString("ticket_id", ticketModelList.get(position).getId());
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_ticketing_action, args2);
@@ -403,17 +411,18 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     public void onTicketNumberClick(int position) {
         //to be uncommented for post notificaiotn
         //Bundle args2 = TicketListFragmentDirections.navTicketingAction().getArguments();
-        Bundle args2=new Bundle();
+        Bundle args2 = new Bundle();
         args2.putString("ticket_id", ticketModelList.get(position).getId());
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_ticketing_action_view, args2);
     }
-    public void onDownloadLinkClick(int position){
+
+    public void onDownloadLinkClick(int position) {
         //Toast.makeText(getContext(), "onDonwloadLinkClick" , Toast.LENGTH_LONG).show();
         //new DownloadFileFromURL().execute(pdfurl,pdfurl,pdfurl);
         //download(pdfurl3);
- //       new DownloadFileFromURL2().execute(pdfurl);
-        positionForDownload=position;
+        //       new DownloadFileFromURL2().execute(pdfurl);
+        positionForDownload = position;
         haveStoragePermission(position);
 //        download(ticketModelList.get(position).getImage());
         //if(haveStoragePermission(position)){
@@ -472,7 +481,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 //    }
 
 
-//    protected Dialog onCreateDialog(int id) {
+    //    protected Dialog onCreateDialog(int id) {
 //        switch (id) {
 //            case progress_bar_type: // we set this to 0
 //                pDialog = new ProgressDialog(getContext());
@@ -487,33 +496,34 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 //                return null;
 //        }
 //    }
-    public void download(String url)
-    {
+    public void download(String url) {
         //new DownloadFile().execute("http://maven.apache.org/maven-1.x/maven.pdf", "maven.pdf");
         //new DownloadFile().execute("http://www.professorio.com/inspirationalposters/inspiposters/do-what-makes-you-happy.jpg","maven.jpg");
-        String filename=url.substring(url.lastIndexOf('/'), url.length());//Create file name by picking download file name from URL
-        Toast.makeText(getActivity(), "Download of '"+filename.substring(1)+"' started" , Toast.LENGTH_LONG).show();
+        String filename = url.substring(url.lastIndexOf('/'), url.length());//Create file name by picking download file name from URL
+        Toast.makeText(getActivity(), "Download of '" + filename.substring(1) + "' started", Toast.LENGTH_LONG).show();
         new DownloadFile().execute(url, filename);
     }
+
     private class DownloadFile extends AsyncTask<String, Void, Void> {
         private String filenamera;
+
         @Override
         protected Void doInBackground(String... strings) {
 
             String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
             String fileName = strings[1];  // -> maven.pdf
-            this.filenamera=strings[1];
+            this.filenamera = strings[1];
             //String extStorageDirectory = Environment.getExternalStorageDirectory().toString();//saves in sdcard . not sure
-            String extStorageDirectory  = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();//saves in default download directory
+            String extStorageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();//saves in default download directory
             File folder = new File(extStorageDirectory, foldername);
             folder.mkdir();
 
             File pdfFile = new File(folder, fileName);
             //System.out.println("doinbackgroundra");
-            try{
+            try {
                 pdfFile.createNewFile();
                 //System.out.println("doinbackgroundra creating file");
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("doinbackgroundra file create exception");
             }
@@ -525,7 +535,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             System.out.println("doinbackgroundra complete");
-            Toast.makeText(getActivity(), "Download of '"+filenamera.substring(1)+"' is complete" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Download of '" + filenamera.substring(1) + "' is complete", Toast.LENGTH_LONG).show();
             //view(this.filenamera);
 
         }
@@ -625,40 +635,38 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 //
 //    }
 
-    public void view(String filename)
-    {
+    public void view(String filename) {
         System.out.println("doinbackground view just inside");
-        File pdfFile = new File(Environment.getExternalStorageDirectory() + "/"+foldername+"/" + filename);  // -> filename = maven.pdf
+        File pdfFile = new File(Environment.getExternalStorageDirectory() + "/" + foldername + "/" + filename);  // -> filename = maven.pdf
         Uri path = Uri.fromFile(pdfFile);
-        Intent pdfIntent = new Intent(Intent.ACTION_VIEW,path);
+        Intent pdfIntent = new Intent(Intent.ACTION_VIEW, path);
         //pdfIntent.setDataAndType(path, "application/pdf");
         pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         System.out.println("doinbackground view");
-        try{
+        try {
             System.out.println("doinbackground view startactivity");
             getActivity().startActivity(pdfIntent);
-        }catch(ActivityNotFoundException e){
+        } catch (ActivityNotFoundException e) {
             System.out.println("doinbackground ActivityNotFoundException");
         }
     }
 
 
-    public  boolean haveStoragePermission(int position) {
+    public boolean haveStoragePermission(int position) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (getContext().checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
-                Log.e("Permission error","You have permission");
+                Log.e("Permission error", "You have permission");
                 download(ticketModelList.get(position).getImage());
                 return true;
             } else {
 
-                Log.e("Permission error","You have asked for permission");
+                Log.e("Permission error", "You have asked for permission");
                 ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return false;
             }
-        }
-        else { //you dont need to worry about these stuff below api level 23
-            Log.e("Permission error","You already have the permission");
+        } else { //you dont need to worry about these stuff below api level 23
+            Log.e("Permission error", "You already have the permission");
             download(ticketModelList.get(position).getImage());
             return true;
         }
@@ -667,7 +675,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             download(ticketModelList.get(positionForDownload).getImage());
         }
     }

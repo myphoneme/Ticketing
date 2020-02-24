@@ -97,6 +97,10 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
                 System.out.println("imageurl=" + item.getImage());
                 Uri uri = Uri.parse(item.getImage());
                 projectLogo.setImageURI(uri);
+            }else{
+                System.out.println("no image imageurl=" + item.getImage());
+                Uri uri = Uri.parse("android.resource://com.phoneme.ticketing/drawable/icon1.png");
+                projectLogo.setImageURI(uri);
             }
         }
     }

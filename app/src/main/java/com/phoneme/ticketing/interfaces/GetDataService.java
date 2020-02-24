@@ -34,6 +34,7 @@ import com.phoneme.ticketing.user.network.FCMTokenUploadResponse;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 import com.phoneme.ticketing.user.network.PhonePostResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -126,6 +127,15 @@ public interface GetDataService {
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
     Call<ProjectAddPostResponse> postProjectAdd(@FieldMap Map<String, String> projectData, @Field("allocated_users[]") List<String> items);
 
+    //Added feb 20 2020 post biru changes
+
+    @Multipart
+    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
+    Call<ProjectAddPostResponse> postProjectAddWithOutImage(@PartMap() Map<String, RequestBody> partMap,@Query("allocated_users[]") List<String> user_id);
+
+    @Multipart
+    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
+    Call<ProjectAddPostResponse> postProjectAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Query("allocated_users[]") List<String> user_id);
 
 //    @FormUrlEncoded
 //    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/editpost")

@@ -2,6 +2,7 @@ package com.phoneme.ticketing.ui.project.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
 import com.phoneme.ticketing.ui.project.model.ProjectModel;
 
@@ -61,6 +63,7 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
         private TextView edit;
         private CardView cardView;
         private ImageView imageView;
+        private SimpleDraweeView projectLogo;
         private RelativeLayout relativeLayoutView;
 
         public ViewHolder(View v) {
@@ -69,6 +72,7 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
             company_name=(TextView)v.findViewById(R.id.company_name);
             imageView=(ImageView)v.findViewById(R.id.image);
             relativeLayoutView=(RelativeLayout)v.findViewById(R.id.relativelayoutview);
+            projectLogo=(SimpleDraweeView)v.findViewById(R.id.project_logo_image);
             relativeLayoutView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,6 +93,11 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
 //            this.cardView.setBackgroundColor(Color.parseColor(color));
             //this.relativeLayoutView.setBackgroundColor(Color.parseColor("#ffffff"));
             this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
+            if(item.getImage()!=null && item.getImage().length()>0) {
+                System.out.println("imageurl=" + item.getImage());
+                Uri uri = Uri.parse(item.getImage());
+                projectLogo.setImageURI(uri);
+            }
         }
     }
         @Override

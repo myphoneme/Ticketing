@@ -1,7 +1,11 @@
 package com.phoneme.ticketing.ui.project.fragments;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,33 +25,43 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.company.model.CompanyModel;
+import com.phoneme.ticketing.ui.project.model.MyObject;
 import com.phoneme.ticketing.ui.project.network.ProjectAddGetResponse;
 import com.phoneme.ticketing.ui.project.network.ProjectAddPostResponse;
 import com.phoneme.ticketing.ui.user.UserModel;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.phoneme.ticketing.ui.user.fragments.UserProfileFragment.MULTIPART_FORM_DATA;
+
 //AdapterView.OnItemSelectedListener
 public class ProjectAddFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    private SimpleDraweeView userimage;
     private EditText title, description;
     private LinearLayout checkboxRoot;
     private Spinner companySpinner, statusSpinner;
     private Button reset, submit;
-    private TextView possibleAllocatedUser;
+    private TextView possibleAllocatedUser,textAddImage;
     private int ACTIVE = 1;
     private int INACTIVE = 0;
     private List<UserModel> userModelList;
@@ -55,6 +69,9 @@ public class ProjectAddFragment extends Fragment implements AdapterView.OnItemSe
 
     private HashSet allocated_userd_ids = new HashSet();
     private HashMap<String, String> Company_name_company_id = new HashMap<>();
+
+    private String imagePath=new String();
+    private boolean imageSelected = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,6 +88,16 @@ public class ProjectAddFragment extends Fragment implements AdapterView.OnItemSe
         checkboxRoot = (LinearLayout) view.findViewById(R.id.rootcheckbox);
         companySpinner = (Spinner) view.findViewById(R.id.company_spinner);
         statusSpinner = (Spinner) view.findViewById(R.id.spinner_status);
+        textAddImage = (TextView)view.findViewById(R.id.upload_image_text);
+        userimage = (SimpleDraweeView) view.findViewById(R.id.user_image);
+        textAddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, 0);
+            }
+        });
         description.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,14 +124,67 @@ public class ProjectAddFragment extends Fragment implements AdapterView.OnItemSe
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getCurrentData();
+                //getCurrentData();
+                getCurrentDataWithImage();
             }
         });
         getData();
 
 
     }
+    private void getCurrentDataWithImage(){
+        String title_text = title.getText().toString();
+        String description_text = description.getText().toString();
+        int company_selected_index = companySpinner.getSelectedItemPosition();
+        int status_selected_index = statusSpinner.getSelectedItemPosition();
 
+        String company_id_value = Company_name_company_id.get(companyModelList.get(company_selected_index).getName());
+
+        String status_selected_value = new String();
+        if (status_selected_index == ACTIVE) {
+            status_selected_value = "1";
+
+        } else {
+            status_selected_value = "0";
+        }
+
+        HashMap<String, RequestBody> map= new HashMap<>();
+        RequestBody title_body=createPartFromString(title_text );
+        map.put("title",title_body);
+
+        RequestBody description_body=createPartFromString(description_text);
+        map.put("description",description_body);
+
+        RequestBody status_body=createPartFromString(status_selected_value);
+        map.put("status",status_body);
+
+        RequestBody company_id_body=createPartFromString(company_id_value);
+        map.put("company_id",company_id_body);
+
+        List<String> listofUserId = new ArrayList<String>();
+        List<MyObject> tags=new ArrayList<MyObject>();
+        int count = checkboxRoot.getChildCount();
+
+        for (int i = 0; i < count; i++) {
+            View v = checkboxRoot.getChildAt(i);
+            if (v instanceof CheckBox) {
+                if (((CheckBox) v).isChecked()) {
+                    int id = v.getId();
+                    String userid = Integer.toString(id);
+                    listofUserId.add(userid);
+                    /*MyObject word=new MyObject();
+                    word.setValue(userid);
+                    tags.add(word);*/
+                    Toast.makeText(getContext(), "useridadded=" + userid, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        //RequestBody listofusers_body=createPartFromString(tags);
+        //map.put("allocated_users",listofusers_body);
+
+        //map.put("allocated_users",)
+        postProjectAddWithImage(map,listofUserId);
+    }
     private void getCurrentData() {
 
         String title_text = title.getText().toString();
@@ -194,7 +274,43 @@ public class ProjectAddFragment extends Fragment implements AdapterView.OnItemSe
         }
 
     }
+    private void postProjectAddWithImage(HashMap<String,RequestBody> map,List<String> user_ids){
+        File file;
+        GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
 
+        if (imagePath != null && !imagePath.isEmpty()) {
+            //String newimagePath = compressImage(imagePath);
+            //file = new File(newimagePath);
+            file = new File(imagePath);//This one working
+
+        }else{
+            file = new File("");
+        }
+
+        final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("projectfile", file.getName(), requestBody);//these 3 lines extra
+        Call<ProjectAddPostResponse> call;
+        if(imageSelected ) {
+            call = service.postProjectAddWithImage(body,map,user_ids);
+        }else{
+            call= service.postProjectAddWithOutImage(map,user_ids);
+        }
+        call.enqueue(new Callback<ProjectAddPostResponse>() {
+            @Override
+            public void onResponse(Call<ProjectAddPostResponse> call, Response<ProjectAddPostResponse> response) {
+                Toast.makeText(getContext(), "success postProjectAdd" + response.body().getResponsesuccess(), Toast.LENGTH_SHORT).show();
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.popBackStack();
+            }
+
+            @Override
+            public void onFailure(Call<ProjectAddPostResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "failed postProjectAdd" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                System.out.println("failed to create project "+t.getMessage());
+
+            }
+        });
+    }
     private void postProjectAdd(HashMap<String, String> map, List<String> userids) {
         Toast.makeText(getContext(), "postProjectAdd", Toast.LENGTH_SHORT).show();
         GetDataService service = RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
@@ -309,6 +425,41 @@ public class ProjectAddFragment extends Fragment implements AdapterView.OnItemSe
         });
         alertDialog.show();
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            // When an Image is picked
+            if (requestCode == 0 && resultCode == getActivity().RESULT_OK && null != data) {
+                Uri selectedImage = data.getData();
+                userimage.setImageURI(selectedImage);
+                imageSelected = true;
+
+                imagePath=getRealPathFromURI(selectedImage);
+                //uploadFile(selectedImage, "My Image");
+            }
+        } catch (Exception e) {
+            //Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @NonNull
+    private RequestBody createPartFromString(String descriptionString) {
+        return RequestBody.create(
+                MediaType.parse(MULTIPART_FORM_DATA), descriptionString);
+    }
+
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(getContext(), contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 
 }

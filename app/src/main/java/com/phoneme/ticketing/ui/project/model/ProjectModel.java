@@ -33,6 +33,13 @@ public class ProjectModel {
     @SerializedName("company_id") //Added on jan 14th 2020
     private String company_id;
 
+    @SerializedName("images") //Added on jan 14th 2020
+    private String image;
+
+    public String getImage(){
+        return this.image;
+    }
+
     public String getCompany_id(){
         return this.company_id;
     }

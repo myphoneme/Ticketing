@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp">
     <RelativeLayout
@@ -20,7 +23,7 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/custom_spinner" />
+             />
         />
     </RelativeLayout>
 
@@ -123,9 +126,27 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/custom_spinner" />
+             />
         /></RelativeLayout>
-
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/upload_image_text"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload image" />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_alignParentRight="true"
+            fresco:placeholderImage="@drawable/logo1"
+            fresco:backgroundImage="@drawable/logo1"
+            android:id="@+id/user_image"
+            app:roundAsCircle="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

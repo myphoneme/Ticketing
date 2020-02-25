@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.ticketing.R;
+import com.phoneme.ticketing.UserAuth;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.project.adapter.ProjectListAdapterNew;
@@ -76,6 +77,13 @@ public class ProjectListFragment extends Fragment implements ProjectListAdapterN
         Status=(TextView)v.findViewById(R.id.status);
         projectCreate=(TextView)v.findViewById(R.id.fragment_project_add);
         item_color = getContext().getResources().getStringArray(R.array.dashboard_color);
+        UserAuth userAuth=new UserAuth(getContext());
+
+        if(userAuth.getRole().equalsIgnoreCase("0")){
+            projectCreate.setVisibility(View.VISIBLE);
+        }else{
+            projectCreate.setVisibility(View.GONE);
+        }
         //to be uncommented post notification
         projectCreate.setOnClickListener(new View.OnClickListener() {
             @Override

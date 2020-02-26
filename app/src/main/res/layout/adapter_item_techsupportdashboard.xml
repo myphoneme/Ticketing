@@ -35,7 +35,7 @@
             android:layout_below="@+id/user_image"
             android:text="Subheading"
             android:textColor="@color/text_white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/totalticketsassigned"
@@ -45,7 +45,7 @@
             android:layout_below="@+id/name"
             android:text="TICKETS"
             android:textColor="@color/text_white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/solvedtickets"
@@ -54,7 +54,7 @@
             android:layout_below="@+id/totalticketsassigned"
             android:text="2"
             android:textColor="@color/text_white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/todaysolvedtickets"
@@ -63,7 +63,7 @@
             android:layout_below="@+id/solvedtickets"
             android:text="5"
             android:textColor="@color/text_white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/left_bottom"
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="Open"
                 android:textColor="@color/text_white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:visibility="invisible" />
         </LinearLayout>
         <!--        <LinearLayout-->

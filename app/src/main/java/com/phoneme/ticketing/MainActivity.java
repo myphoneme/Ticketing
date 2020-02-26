@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
         if(userAuth.getRole().equals("2")){
 
             menu.removeItem(R.id.nav_project_add);
-            menu.removeItem(R.id.nav_project);
-            menu.removeItem(R.id.nav_techsupportdashboard);
-            menu.removeItem(R.id.nav_company);
+            //menu.removeItem(R.id.nav_project);
+            //menu.removeItem(R.id.nav_techsupportdashboard);
+            //menu.removeItem(R.id.nav_company);
         }
 
         FirebaseInstanceId.getInstance().getInstanceId()

@@ -51,7 +51,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView textView,name,opentickets,closetickets,heading,total,openticketts;
+        private TextView textView,name,opentickets,closetickets,heading,total,openticketts,closetickets_heading,opentickets_heading;
         private CardView cardView;
         private FrameLayout frameLayout;
         private ImageView icon;
@@ -68,6 +68,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
             total=(TextView)v.findViewById(R.id.num);
             opentickets=(TextView)v.findViewById(R.id.openticketscount);
             closetickets=(TextView)v.findViewById(R.id.closeticketscount) ;
+            opentickets_heading=(TextView)v.findViewById(R.id.opentickets);
+            closetickets_heading=(TextView)v.findViewById(R.id.closetickets);
             lowerRight=(LinearLayout)v.findViewById(R.id.right_bottom);
             lowerLeft=(LinearLayout)v.findViewById(R.id.left_bottom);
 //            cardView.setOnClickListener(this);
@@ -104,6 +106,15 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
                 lowerRight.setVisibility(View.VISIBLE);
                 opentickets.setText(this.dashboardMainModel.getDashboardSubheadingList().get(1).getSubheading_value());
                 closetickets.setText(this.dashboardMainModel.getDashboardSubheadingList().get(2).getSubheading_value());
+            }else if (this.dashboardMainModel.getType().equals("users")){
+                lowerLeft.setVisibility(View.VISIBLE);
+                lowerRight.setVisibility(View.VISIBLE);
+                opentickets.setText(this.dashboardMainModel.getDashboardSubheadingList().get(1).getSubheading_value());
+                closetickets.setText(this.dashboardMainModel.getDashboardSubheadingList().get(2).getSubheading_value());
+                opentickets_heading.setText(this.dashboardMainModel.getDashboardSubheadingList().get(1).getSubheading());
+                closetickets_heading.setText(this.dashboardMainModel.getDashboardSubheadingList().get(2).getSubheading());
+                //lowerLeft.setVisibility(View.GONE);
+                //lowerRight.setVisibility(View.GONE);
             }else{
                 lowerLeft.setVisibility(View.GONE);
                 lowerRight.setVisibility(View.GONE);

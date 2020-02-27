@@ -31,7 +31,7 @@ import okhttp3.Response;*/
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
     //private static final String BASE_URL = "http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/";
-    private static final String BASE_URL = "http://phoneme.in/";
+    private static final String BASE_URL = "https://phoneme.in/";//with http yash phone was giving error
 
     //private static final String BASE_URL=BuildConfig.SERVER_URL;
     private static final String BASE_URL_INFRA_MONIORING="https://www.phoneme.in/anujitbhu/ticketing/";

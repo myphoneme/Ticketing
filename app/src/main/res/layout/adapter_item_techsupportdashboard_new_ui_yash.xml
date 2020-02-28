@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/bg_text_header"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/user_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            app:roundAsCircle="true" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/user_image"
+            android:text="Subheading"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/text_white"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/id_designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/user_image"
+            android:layout_below="@id/name"
+            android:text="Subheading"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/text_white"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="5dp"
+        >
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tickets Assigned"
+            android:textColor="@color/grey"
+            android:textSize="13sp" />
+        <TextView
+            android:padding="3dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/totalticketsassigned"
+            android:background="@drawable/bg_text_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TICKETS"
+            android:textColor="@color/text_white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tickets Open"
+            android:textColor="@color/grey"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/tickets_open"
+            android:background="@drawable/bg_text_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TICKETS"
+            android:textColor="@color/text_white"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:background="@color/White"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tickets Solved"
+            android:textColor="@color/grey"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/solvedtickets"
+            android:background="@drawable/bg_text_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TICKETS"
+            android:textColor="@color/text_white"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tickets Solved Today"
+            android:textColor="@color/grey"
+            android:textSize="13sp" />
+        <TextView
+            android:background="@drawable/bg_text_light_blue"
+            android:layout_alignParentRight="true"
+            android:id="@+id/todaysolvedtickets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="'a0'"
+            android:textColor="@color/text_white"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</LinearLayout>
+</androidx.cardview.widget.CardView>

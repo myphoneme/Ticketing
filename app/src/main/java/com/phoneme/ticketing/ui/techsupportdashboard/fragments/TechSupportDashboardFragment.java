@@ -108,7 +108,7 @@ public class TechSupportDashboardFragment extends Fragment implements Techsuppor
     public void setLiveData(List<TechsupportUserDataDashboardModel> techsupportUserDataDashboardModelList){
         TechsupportDashboardAdapter adapter = new TechsupportDashboardAdapter(getContext(), techsupportUserDataDashboardModelList,this);
         recyclerView.setAdapter(adapter);
-        GridLayoutManager manager= new GridLayoutManager(getContext(),2, GridLayoutManager.VERTICAL,false);
+        GridLayoutManager manager= new GridLayoutManager(getContext(),1, GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
     }
 

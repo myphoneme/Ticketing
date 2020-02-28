@@ -52,6 +52,20 @@ public class TechsupportUserDataDashboardModel {
     @SerializedName("created_by")
     private String create_by;
 
+    @SerializedName("designation")
+    private String designation;
+
+    @SerializedName("totalopenticketsrightnow")
+    private String totalopenticketsrightnow;
+
+    public String getTotalopenticketsrightnow(){
+        return this.totalopenticketsrightnow;
+    }
+
+    public String getDesignation(){
+        return this.designation;
+    }
+
     public String getCreate_by(){
         return this.create_by;
     }

@@ -36,7 +36,7 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
         this.listener=listener;
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView textView,name,opentickets,closetickets,heading,total,todaysolvedtickets,totalticketsassigned,solvedtickets;
+        private TextView textView,name,opentickets,closetickets,heading,total,todaysolvedtickets,totalticketsassigned,solvedtickets,designation,tickets_open_right_now;
         private CardView cardView;
         private SimpleDraweeView userimage;
         //        DashboardModel1 dashboardModel1;
@@ -52,6 +52,8 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
             totalticketsassigned =(TextView)v.findViewById(R.id.totalticketsassigned);
             solvedtickets = (TextView)v.findViewById(R.id.solvedtickets);
             userimage = (SimpleDraweeView)v.findViewById(R.id.user_image);
+            designation=(TextView)v.findViewById(R.id.id_designation);
+            tickets_open_right_now=(TextView)v.findViewById(R.id.tickets_open);
             cardView.setOnClickListener(this);
         }
 
@@ -66,14 +68,15 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
         public void setData(TechsupportUserDataDashboardModel item){
             this.techsupportUserDataDashboardModel = item;
             
-            cardView.setCardBackgroundColor(Color.parseColor(this.techsupportUserDataDashboardModel.getColor()));
+            //cardView.setCardBackgroundColor(Color.parseColor(this.techsupportUserDataDashboardModel.getColor()));
             Uri uri= Uri.parse(this.techsupportUserDataDashboardModel.getImage());
             userimage.setImageURI(uri);
-
+            designation.setText(this.techsupportUserDataDashboardModel.getDesignation());
             name.setText(this.techsupportUserDataDashboardModel.getName());
-            todaysolvedtickets.setText("Today solved tickets:"+this.techsupportUserDataDashboardModel.getTotalavgcount());
-            totalticketsassigned.setText("Tickets assigned:"+this.techsupportUserDataDashboardModel.getTotalopenticketcount());
-            solvedtickets.setText("Solved tickets:"+this.techsupportUserDataDashboardModel.getTotalcloseticketcount());
+            totalticketsassigned.setText(""+this.techsupportUserDataDashboardModel.getTotalopenticketcount());
+            solvedtickets.setText(""+this.techsupportUserDataDashboardModel.getTotalcloseticketcount());
+            todaysolvedtickets.setText(""+this.techsupportUserDataDashboardModel.getTotalavgcount());
+            tickets_open_right_now.setText(""+this.techsupportUserDataDashboardModel.getTotalopenticketsrightnow());
         }
 
     }
@@ -81,10 +84,10 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
     @Override
     public TechsupportDashboardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent , int i){
 
-        View view = LayoutInflater.from(mcontext).inflate(R.layout.adapter_item_techsupportdashboard, parent, false);
+        View view = LayoutInflater.from(mcontext).inflate(R.layout.adapter_item_techsupportdashboard_new_ui_yash, parent, false);
         ViewGroup.LayoutParams p = view.getLayoutParams();
         //p.height=parent.getHeight()/2;
-        p.height=parent.getWidth()/2;
+        //p.height=parent.getWidth()/2;
         view.setLayoutParams(p);
         return new TechsupportDashboardAdapter.ViewHolder(view);
     }

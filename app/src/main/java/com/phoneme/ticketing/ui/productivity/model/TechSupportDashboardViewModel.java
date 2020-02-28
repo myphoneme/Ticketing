@@ -1,4 +1,4 @@
-package com.phoneme.ticketing.ui.techsupportdashboard.model;
+package com.phoneme.ticketing.ui.productivity.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

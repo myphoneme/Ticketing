@@ -1,4 +1,4 @@
-package com.phoneme.ticketing.ui.techsupportdashboard.fragments;
+package com.phoneme.ticketing.ui.productivity.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,10 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.phoneme.ticketing.R;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.interfaces.GetDataService;
-import com.phoneme.ticketing.ui.techsupportdashboard.adapter.TechsupportDashboardAdapter;
-import com.phoneme.ticketing.ui.techsupportdashboard.model.TechSupportDashboardViewModel;
-import com.phoneme.ticketing.ui.techsupportdashboard.model.TechsupportUserDataDashboardModel;
-import com.phoneme.ticketing.ui.techsupportdashboard.network.TechsupportDashboardResponse;
+import com.phoneme.ticketing.ui.productivity.adapter.TechsupportDashboardAdapter;
+import com.phoneme.ticketing.ui.productivity.model.TechSupportDashboardViewModel;
+import com.phoneme.ticketing.ui.productivity.model.TechsupportUserDataDashboardModel;
+import com.phoneme.ticketing.ui.productivity.network.TechsupportDashboardResponse;
 
 import java.util.List;
 

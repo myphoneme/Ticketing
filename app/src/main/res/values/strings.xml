@@ -5,14 +5,14 @@
     <string name="app_name">Ticketing</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Biru Singh</string>
+    <string name="nav_header_title">Biru menu_slideshowSingh</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Dashboard</string>
     <string name="menu_gallery">Ticketing</string>
-    <string name="menu_slideshow">Tech Support dashboard</string>
+    <string name="menu_slideshow">Productivity</string>
     <string name="menu_tools">Company</string>
     <string name="menu_project">Project</string>
     <string name="menu_project_edit">Project Modification</string>

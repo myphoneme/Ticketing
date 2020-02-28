@@ -1,8 +1,7 @@
-package com.phoneme.ticketing.ui.techsupportdashboard.adapter;
+package com.phoneme.ticketing.ui.productivity.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.ui.techsupportdashboard.model.TechsupportUserDataDashboardModel;
+import com.phoneme.ticketing.ui.productivity.model.TechsupportUserDataDashboardModel;
 
 import java.util.List;
 
@@ -76,7 +75,7 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
             totalticketsassigned.setText(""+this.techsupportUserDataDashboardModel.getTotalopenticketcount());
             solvedtickets.setText(""+this.techsupportUserDataDashboardModel.getTotalcloseticketcount());
             todaysolvedtickets.setText(""+this.techsupportUserDataDashboardModel.getTotalavgcount());
-            tickets_open_right_now.setText(""+this.techsupportUserDataDashboardModel.getTotalopenticketsrightnow());
+            tickets_open_right_now.setText(this.techsupportUserDataDashboardModel.getTotalopenticketsrightnow());
         }
 
     }

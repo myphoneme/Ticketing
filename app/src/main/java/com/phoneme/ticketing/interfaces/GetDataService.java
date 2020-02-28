@@ -16,8 +16,8 @@ import com.phoneme.ticketing.ui.project.network.ProjectAddPostResponse;
 import com.phoneme.ticketing.ui.project.network.ProjectEditGetResponse;
 import com.phoneme.ticketing.ui.project.network.ProjectEditPostResponse;
 import com.phoneme.ticketing.ui.project.network.ProjectListResponse;
-import com.phoneme.ticketing.ui.techsupportdashboard.network.TechsupportDashboardResponse;
-import com.phoneme.ticketing.ui.techsupportdashboard.network.TechsupportDashboardResponseList;
+import com.phoneme.ticketing.ui.productivity.network.TechsupportDashboardResponse;
+import com.phoneme.ticketing.ui.productivity.network.TechsupportDashboardResponseList;
 import com.phoneme.ticketing.ui.ticketing.network.TicketCreatGetResponse;
 import com.phoneme.ticketing.ui.ticketing.network.TicketCreatePostResponse;
 import com.phoneme.ticketing.ui.ticketing.network.TicketEditPostResponse;
@@ -34,7 +34,6 @@ import com.phoneme.ticketing.user.network.FCMTokenUploadResponse;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 import com.phoneme.ticketing.user.network.PhonePostResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

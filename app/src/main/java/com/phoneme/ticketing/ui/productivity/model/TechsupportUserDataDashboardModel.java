@@ -1,4 +1,4 @@
-package com.phoneme.ticketing.ui.techsupportdashboard.model;
+package com.phoneme.ticketing.ui.productivity.model;
 
 import com.google.gson.annotations.SerializedName;
 

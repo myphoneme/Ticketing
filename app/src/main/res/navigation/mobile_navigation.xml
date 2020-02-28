@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/nav_techsupportdashboard"
-        android:name="com.phoneme.ticketing.ui.techsupportdashboard.fragments.TechSupportDashboardFragment"
+        android:name="com.phoneme.ticketing.ui.productivity.fragments.TechSupportDashboardFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_techsupportdashboard" />
 
@@ -157,7 +157,7 @@
 
     <fragment
         android:id="@+id/nav_techsupport_user_productivity_detail"
-        android:name="com.phoneme.ticketing.ui.techsupportdashboard.fragments.TechsupportUserProductivityDetailsFragment"
+        android:name="com.phoneme.ticketing.ui.productivity.fragments.TechsupportUserProductivityDetailsFragment"
         android:label="@string/menu_user_productivity_detail"
         tools:layout="@layout/fragment_techsupport_user_productivity_detail" >
         <action

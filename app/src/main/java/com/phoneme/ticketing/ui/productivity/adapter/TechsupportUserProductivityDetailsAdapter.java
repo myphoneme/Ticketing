@@ -1,4 +1,4 @@
-package com.phoneme.ticketing.ui.techsupportdashboard.adapter;
+package com.phoneme.ticketing.ui.productivity.adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.ui.techsupportdashboard.model.TechsupportUserDataDashboardModel;
+import com.phoneme.ticketing.ui.productivity.model.TechsupportUserDataDashboardModel;
 import com.phoneme.ticketing.ui.ticketing.model.TicketModel;
 import com.phoneme.ticketing.ui.user.UserModel;
 

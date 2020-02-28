@@ -43,7 +43,7 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
     }
     @Override
     public TicketListAdapterNew.ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View view = LayoutInflater.from(mcontext).inflate(R.layout.single_item_ticket_main_new, parent, false);
+        View view = LayoutInflater.from(mcontext).inflate(R.layout.single_item_ticket_main_new_yash_design, parent, false);
         return new ViewHolder(view);
     }
     @Override

@@ -90,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationView nav = (NavigationView)findViewById(R.id.nav_view);
 
         Menu menu = nav.getMenu();
-
+        if(!userAuth.getRole().equals("0")){
+            menu.removeItem(R.id.nav_company);
+        }
         if(userAuth.getRole().equals("2")){
 
             menu.removeItem(R.id.nav_project_add);

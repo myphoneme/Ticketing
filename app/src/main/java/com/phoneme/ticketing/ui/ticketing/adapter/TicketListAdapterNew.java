@@ -2,6 +2,7 @@ package com.phoneme.ticketing.ui.ticketing.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,9 +60,9 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView ticketTitle, description, status, ticketNumber, priority, serialNumber, createdBy, lastupdatedby, projectName, edit,ticketImagePdf,downloadFileName;
+        public TextView ticketTitle, description, status, ticketNumber, priority, serialNumber, createdBy, lastupdatedby, projectName, edit,ticketImagePdf,downloadFileName,time;
         private CardView cardView;
-        private SimpleDraweeView downloadicon,editicon;
+        private SimpleDraweeView downloadicon,editicon,userImage;
         private LinearLayout ticketViewLinearlayout;
         TicketModel ticketModel;
         private RelativeLayout relativeLayoutView;
@@ -73,12 +74,15 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
             projectName=(TextView)v.findViewById(R.id.project_name);
             relativeLayoutView=(RelativeLayout)v.findViewById(R.id.relativelayoutview);
             edit=(TextView)v.findViewById(R.id.ticket_edit);
-            relativeLayoutView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onTicketNumberClick(getAdapterPosition());
-                }
-            });
+            ticketNumber=(TextView)v.findViewById(R.id.ticket_number);
+            time=(TextView)v.findViewById(R.id.time);
+            userImage=(SimpleDraweeView)v.findViewById(R.id.assigned_user_image);
+//            relativeLayoutView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    listener.onTicketNumberClick(getAdapterPosition());
+//                }
+//            });
 
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,7 +109,11 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
 
             projectName.setText(this.ticketModel.getProject_name());
             String color=backgroundcolor.get(position%4);
-            this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
+            ticketNumber.setText("#"+this.ticketModel.getTicket_no());
+            time.setText(""+this.ticketModel.getClosed_at());
+//            Uri uri= Uri.parse(this.ticketModel.getUser().getImage());
+//            userImage.setImageURI(uri);
+            //this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
         }
     }
     public interface OnItemClickListener {

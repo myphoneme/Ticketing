@@ -6,26 +6,66 @@
     android:layout_height="wrap_content"
     android:paddingRight="5dp"
     android:paddingLeft="5dp"
+    app:cardCornerRadius="5dp"
     >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/assigned_user_image"
+            />
     <RelativeLayout
         android:layout_alignParentTop="true"
         android:id="@+id/top_section"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/bg_green">yahoo</RelativeLayout>
+        android:layout_height="100dp"
+        android:padding="10dp"
+        android:background="@color/bg_green">
+<!--        <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="HOla"/>-->
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details about the know stress"
+            android:id="@+id/project_name"
+            android:textColor="@color/text_white"
+             />
+        <TextView
+            android:layout_below="@+id/project_name"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details about the know stress"
+            android:id="@+id/ticket_number"
+            android:textColor="@color/text_white"
+            />
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time"
+            android:id="@+id/time"
+            android:textColor="@color/text_white"
+            />
+    </RelativeLayout>
     <RelativeLayout
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/top_section"
 
-        android:background="@color/text_white"
         android:layout_width="match_parent"
         android:id="@+id/relativelayoutview"
-        android:layout_height="275dp">
+        android:layout_height="100dp">
 
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:id="@+id/dashboard_image_icone1"
@@ -35,18 +75,22 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLargeInverse"
             android:layout_marginTop="@dimen/dashboard_padding"
             android:text="Are You  Stressed?"
+            android:textSize="13sp"
+            android:textColor="@color/grey"
             android:id="@+id/ticket_title"
-            android:layout_toLeftOf="@+id/dashboard_arrow"
-            android:layout_toEndOf="@+id/dashboard_image_icone1"
-            android:layout_toRightOf="@+id/dashboard_image_icone1" />
+             />
 
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/dashboard_arrow"
@@ -55,16 +99,17 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Details about the know stress"
-            android:id="@+id/project_name"
-            android:layout_below="@+id/ticket_title"
-            android:layout_alignLeft="@+id/ticket_title"
-            android:layout_alignStart="@+id/ticket_title" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Details about the know stress"-->
+<!--            android:id="@+id/project_name"-->
+<!--            android:layout_below="@+id/ticket_title"-->
+<!--            android:layout_alignLeft="@+id/ticket_title"-->
+<!--            android:layout_alignStart="@+id/ticket_title" />-->
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/ticket_edit"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"

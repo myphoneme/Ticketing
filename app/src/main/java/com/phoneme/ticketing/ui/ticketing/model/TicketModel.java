@@ -65,6 +65,13 @@ public class TicketModel {
     @SerializedName("user")
     private UserModel user;
 
+    @SerializedName("user_assigned_image")
+    private String user_assigned_image;
+
+    public String getUser_assigned_image(){
+        return this.user_assigned_image;
+    }
+
     public UserModel getUser(){
         return this.user;
     }

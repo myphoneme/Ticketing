@@ -3,6 +3,7 @@ package com.phoneme.ticketing.ui.ticketing.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,11 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
 import com.phoneme.ticketing.ui.ticketing.model.TicketModel;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +90,12 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
 //                    listener.onTicketNumberClick(getAdapterPosition());
 //                }
 //            });
+            ticketNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onTicketNumberClick(getAdapterPosition());
+                }
+            });
 
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,6 +104,7 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
                     listener.onItemClick(position);
                 }
             });
+
         }
         @Override
         public void onClick(View v) {
@@ -110,11 +124,42 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
             projectName.setText(this.ticketModel.getProject_name());
             String color=backgroundcolor.get(position%4);
             ticketNumber.setText("#"+this.ticketModel.getTicket_no());
-            time.setText(""+this.ticketModel.getClosed_at());
-//            Uri uri= Uri.parse(this.ticketModel.getUser().getImage());
-//            userImage.setImageURI(uri);
+            if(this.ticketModel.getClosed_at()!=null){
+                time.setText("Closed at "+getTime_ago(this.ticketModel.getClosed_at()));
+            }else{
+                time.setText("Opened at "+getTime_ago(this.ticketModel.getCreated_at()));
+            }
+
+            if(this.ticketModel.getUser_assigned_image()!=null && this.ticketModel.getUser_assigned_image().length()>0){
+           Uri uri= Uri.parse(this.ticketModel.getUser_assigned_image());
+            userImage.setImageURI(uri);}else{
+                Uri uri=Uri.parse("https://i.stack.imgur.com/srHnc.png");
+                userImage.setImageURI(uri);
+            }
+            if(Build.VERSION.SDK_INT < 26) {
+                TooltipCompat.setTooltipText(ticketTitle, this.ticketModel.getDesc());
+            }else{
+                ticketTitle.setTooltipText(this.ticketModel.getDesc());
+            }
             //this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
         }
+    }
+
+    private String getTime_ago(String date){
+        //String sDate1="31/12/1998";
+        //"2019-12-04 12:18:45"
+        //HH:mm:ss
+        try {
+            Date date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date);
+            //Date currentDate=new Date();
+
+            PrettyTime p = new PrettyTime();
+            return p.format(date1);
+//            System.out.println(p.format(date1));
+        }catch(ParseException e){
+
+        }
+        return "";
     }
     public interface OnItemClickListener {
         void onItemClick(int position);

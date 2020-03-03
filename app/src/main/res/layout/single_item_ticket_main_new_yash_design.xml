@@ -11,18 +11,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/assigned_user_image"
-            />
+
     <RelativeLayout
         android:layout_alignParentTop="true"
         android:id="@+id/top_section"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:padding="10dp"
-        android:background="@color/bg_green">
+        android:background="@drawable/bg_text_header">
 <!--        <TextView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
@@ -61,7 +57,7 @@
 
         android:layout_width="match_parent"
         android:id="@+id/relativelayoutview"
-        android:layout_height="100dp">
+        android:layout_height="90dp">
 
 
         <ImageView
@@ -117,6 +113,13 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/assigned_user_image"
+            app:roundAsCircle="true"
+            />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -2,6 +2,9 @@ package com.phoneme.ticketing.ui.ticketing.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -71,6 +75,7 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
         private CardView cardView;
         private SimpleDraweeView downloadicon,editicon,userImage;
         private LinearLayout ticketViewLinearlayout;
+        private RelativeLayout colorIndicatorForTicketStatus;
         TicketModel ticketModel;
         private RelativeLayout relativeLayoutView;
 
@@ -84,6 +89,8 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
             ticketNumber=(TextView)v.findViewById(R.id.ticket_number);
             time=(TextView)v.findViewById(R.id.time);
             userImage=(SimpleDraweeView)v.findViewById(R.id.assigned_user_image);
+            //userImage.setBackgroundColor(Color.parseColor("#fff"));
+            colorIndicatorForTicketStatus=(RelativeLayout)v.findViewById(R.id.top_section);
 //            relativeLayoutView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
@@ -124,11 +131,11 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
             projectName.setText(this.ticketModel.getProject_name());
             String color=backgroundcolor.get(position%4);
             ticketNumber.setText("#"+this.ticketModel.getTicket_no());
-            if(this.ticketModel.getClosed_at()!=null){
-                time.setText("Closed at "+getTime_ago(this.ticketModel.getClosed_at()));
-            }else{
-                time.setText("Opened at "+getTime_ago(this.ticketModel.getCreated_at()));
-            }
+//            if(this.ticketModel.getClosed_at()!=null){
+//                time.setText("Closed at "+getTime_ago(this.ticketModel.getClosed_at()));
+//            }else{
+//                time.setText("Opened at "+getTime_ago(this.ticketModel.getCreated_at()));
+//            }
 
             if(this.ticketModel.getUser_assigned_image()!=null && this.ticketModel.getUser_assigned_image().length()>0){
            Uri uri= Uri.parse(this.ticketModel.getUser_assigned_image());
@@ -140,6 +147,18 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
                 TooltipCompat.setTooltipText(ticketTitle, this.ticketModel.getDesc());
             }else{
                 ticketTitle.setTooltipText(this.ticketModel.getDesc());
+            }
+            //colorIndicatorForTicketStatus.setBackgroundResource(R.drawable.bg_text_header);
+            if(this.ticketModel.getStatus().equalsIgnoreCase("0")) {
+                time.setText("Closed at "+getTime_ago(this.ticketModel.getClosed_at()));
+                colorIndicatorForTicketStatus.setBackgroundColor(Color.parseColor("#4caf50"));
+                //colorIndicatorForTicketStatus.getBackground().setColorFilter();
+            }else if(this.ticketModel.getStatus().equalsIgnoreCase("1")){
+                time.setText("Opened at "+getTime_ago(this.ticketModel.getCreated_at()));
+                colorIndicatorForTicketStatus.setBackgroundColor(Color.parseColor("#f44336"));
+            }else if(this.ticketModel.getStatus().equalsIgnoreCase("2")){
+                time.setText("Waiting for close "+getTime_ago(this.ticketModel.getCreated_at()));
+                colorIndicatorForTicketStatus.setBackgroundColor(Color.parseColor("#FF8800"));//earlier #ffeb3b
             }
             //this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));
         }

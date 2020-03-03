@@ -52,7 +52,7 @@ import retrofit2.Response;
 public class UserProfileFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
     private EditText username, mobile,designation;
-    private TextView email;
+    private TextView email,name_txtview,designation_txtview;
     private SavedUserData userData;
     private SimpleDraweeView userimage;
     private Button submit;
@@ -71,7 +71,7 @@ public class UserProfileFragment extends Fragment implements
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_user_profile, container, false);
+        View root = inflater.inflate(R.layout.fragment_user_profile_new_yash_design, container, false);
         userData = new SavedUserData();
         return root;
     }
@@ -88,6 +88,8 @@ public class UserProfileFragment extends Fragment implements
         submit = (Button) view.findViewById(R.id.submit);
         spin = (Spinner) view.findViewById(R.id.spinner);
         designation=(EditText)view.findViewById(R.id.designation);
+        name_txtview=(TextView)view.findViewById(R.id.name_text_view);
+        designation_txtview=(TextView)view.findViewById(R.id.designation_text_view);
         getUserData(userid);
         username.setEnabled(false);
         mobile.setEnabled(false);
@@ -181,6 +183,8 @@ public class UserProfileFragment extends Fragment implements
         email.setText(data.getEmail());
         mobile.setText(data.getMobile_no());
         designation.setText(data.getDesignation());
+        name_txtview.setText(data.getName());
+        designation_txtview.setText(data.getDesignation());
         if (data.getStatus().equals("1")) {
             spin.setSelection(0);
         } else {

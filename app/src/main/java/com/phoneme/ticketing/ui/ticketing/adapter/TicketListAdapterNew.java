@@ -157,7 +157,7 @@ public class TicketListAdapterNew extends RecyclerView.Adapter<TicketListAdapter
                 time.setText("Opened at "+getTime_ago(this.ticketModel.getCreated_at()));
                 colorIndicatorForTicketStatus.setBackgroundColor(Color.parseColor("#f44336"));
             }else if(this.ticketModel.getStatus().equalsIgnoreCase("2")){
-                time.setText("Waiting for close "+getTime_ago(this.ticketModel.getCreated_at()));
+                time.setText("Waiting for close "+getTime_ago(this.ticketModel.getClosed_at()));
                 colorIndicatorForTicketStatus.setBackgroundColor(Color.parseColor("#FF8800"));//earlier #ffeb3b
             }
             //this.relativeLayoutView.setBackgroundColor(Color.parseColor(color));

@@ -52,7 +52,7 @@ import retrofit2.Response;
 public class UserProfileFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
     private EditText username, mobile,designation;
-    private TextView email,name_txtview,designation_txtview,ticket_oepn,tickets_closed,tickets_assigned,mobile_number,email_value;
+    private TextView email,name_txtview,designation_txtview,ticket_oepn,tickets_closed,tickets_assigned,mobile_number,email_value,my_tickets;
     private SavedUserData userData;
     private SimpleDraweeView userimage;
     private Button submit;
@@ -78,7 +78,11 @@ public class UserProfileFragment extends Fragment implements
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        String userid = getArguments().getString("user_id");
+//        try {
+            userid = getArguments().getString("user_id");
+//        }catch(Exception e){
+//
+//        }
         //String id=savedInstanceState.getString("user_id");
         UserAuth userAuth = new UserAuth(getContext());
         username = (EditText) view.findViewById(R.id.name);
@@ -95,6 +99,7 @@ public class UserProfileFragment extends Fragment implements
         tickets_assigned = (TextView)view.findViewById(R.id.tickets_assigned);
         mobile_number=(TextView)view.findViewById(R.id.mobile_number_value);
         email_value=(TextView)view.findViewById(R.id.email_value);
+        my_tickets=(TextView)view.findViewById(R.id.my_tickets);
         getUserData(userid);
         username.setEnabled(false);
         mobile.setEnabled(false);
@@ -112,6 +117,15 @@ public class UserProfileFragment extends Fragment implements
             mobile.setEnabled(true);
             spin.setOnItemSelectedListener(this);
         }
+        my_tickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args2 = new Bundle();
+                args2.putString("user_id", userid);
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_ticketing,args2);
+            }
+        });
 
 
 

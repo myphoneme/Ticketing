@@ -86,6 +86,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 
     private RelativeLayout progressbarlayout;
     private int positionForDownload;
+    private String userid=null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -105,6 +106,12 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        try{
+            userid = getArguments().getString("user_id");
+        }catch(Exception e){
+            userid=null;
+        }
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_ticket_main);
         progressbarlayout = (RelativeLayout) view.findViewById(R.id.progressbar_relativelayout);
 
@@ -308,7 +315,11 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                 getMyTicketData();
             }
         });
-        getTicketData();
+        if(userid==null) {
+            getTicketData();
+        }else{
+            getMyTicketData();
+        }
     }
 
     private void startLoginActivity() {

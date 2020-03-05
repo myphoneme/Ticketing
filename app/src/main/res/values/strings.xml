@@ -11,6 +11,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Dashboard</string>
+    <string name="menu_my_tickets">My Tickets</string>
     <string name="menu_gallery">Ticketing</string>
     <string name="menu_slideshow">Productivity</string>
     <string name="menu_tools">Company</string>

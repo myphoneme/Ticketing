@@ -22,6 +22,34 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_my_ticketing"
+        android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketMyListFragment"
+        android:label="@string/menu_my_tickets"
+        tools:layout="@layout/fragment_ticket_list">
+        <action
+            android:id="@+id/nav_ticketing_action"
+            app:destination="@id/nav_ticketing_edit">
+            <argument
+                android:name="ticket_id"
+                android:defaultValue="303"
+                app:argType="string" />
+            <argument
+                android:name="user_id"
+                android:defaultValue="303"
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/nav_ticketing_action_view"
+            app:destination="@id/nav_ticketing_view">
+            <argument
+                android:name="ticket_id"
+                android:defaultValue="136"
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+    <fragment
         android:id="@+id/nav_ticketing"
         android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketListFragment"
         android:label="@string/menu_gallery"
@@ -121,6 +149,7 @@
         </action>
 
     </fragment>
+
     <fragment
         android:id="@+id/nav_ticketing_view"
         android:name="com.phoneme.ticketing.ui.ticketing.fragments.TicketViewFragment"

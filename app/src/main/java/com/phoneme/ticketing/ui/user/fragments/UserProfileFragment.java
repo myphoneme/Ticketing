@@ -52,7 +52,7 @@ import retrofit2.Response;
 public class UserProfileFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
     private EditText username, mobile,designation;
-    private TextView email;
+    private TextView email,name_txtview,designation_txtview,ticket_oepn,tickets_closed,tickets_assigned,mobile_number,email_value,my_tickets;
     private SavedUserData userData;
     private SimpleDraweeView userimage;
     private Button submit;
@@ -71,14 +71,18 @@ public class UserProfileFragment extends Fragment implements
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_user_profile, container, false);
+        View root = inflater.inflate(R.layout.fragment_user_profile_new_yash_design, container, false);
         userData = new SavedUserData();
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        String userid = getArguments().getString("user_id");
+//        try {
+            userid = getArguments().getString("user_id");
+//        }catch(Exception e){
+//
+//        }
         //String id=savedInstanceState.getString("user_id");
         UserAuth userAuth = new UserAuth(getContext());
         username = (EditText) view.findViewById(R.id.name);
@@ -88,6 +92,14 @@ public class UserProfileFragment extends Fragment implements
         submit = (Button) view.findViewById(R.id.submit);
         spin = (Spinner) view.findViewById(R.id.spinner);
         designation=(EditText)view.findViewById(R.id.designation);
+        name_txtview=(TextView)view.findViewById(R.id.name_text_view);
+        designation_txtview=(TextView)view.findViewById(R.id.designation_text_view);
+        ticket_oepn=(TextView)view.findViewById(R.id.tickets_open);
+        tickets_closed=(TextView)view.findViewById(R.id.tickets_closed);
+        tickets_assigned = (TextView)view.findViewById(R.id.tickets_assigned);
+        mobile_number=(TextView)view.findViewById(R.id.mobile_number_value);
+        email_value=(TextView)view.findViewById(R.id.email_value);
+        my_tickets=(TextView)view.findViewById(R.id.my_tickets);
         getUserData(userid);
         username.setEnabled(false);
         mobile.setEnabled(false);
@@ -105,6 +117,15 @@ public class UserProfileFragment extends Fragment implements
             mobile.setEnabled(true);
             spin.setOnItemSelectedListener(this);
         }
+        my_tickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args2 = new Bundle();
+                args2.putString("user_id", userid);
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_ticketing,args2);
+            }
+        });
 
 
 
@@ -181,6 +202,8 @@ public class UserProfileFragment extends Fragment implements
         email.setText(data.getEmail());
         mobile.setText(data.getMobile_no());
         designation.setText(data.getDesignation());
+        name_txtview.setText(data.getName());
+        designation_txtview.setText(data.getDesignation());
         if (data.getStatus().equals("1")) {
             spin.setSelection(0);
         } else {
@@ -188,6 +211,15 @@ public class UserProfileFragment extends Fragment implements
         }
         Uri uri = Uri.parse(data.getImage());//This need to change as user image is set from local data
         userimage.setImageURI(uri);
+        /*if(data.getTickets_status().getOpen()!=null){
+
+        }*/
+        ticket_oepn.setText(""+data.getTickets_status().getOpen());
+        tickets_closed.setText(""+data.getTickets_status().getClose());
+        int totalticketsassigned=data.getTickets_status().getOpen()+data.getTickets_status().getClose()+data.getTickets_status().getWaiting_for_close();
+        tickets_assigned.setText(""+totalticketsassigned);
+        mobile_number.setText(data.getMobile_no());
+        email_value.setText(data.getEmail());
     }
 
     private void postUpdateWithouImage(String name, String mobilenum, String status_new, String userid, String email) {

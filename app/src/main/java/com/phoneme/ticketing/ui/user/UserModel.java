@@ -2,6 +2,8 @@ package com.phoneme.ticketing.ui.user;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class UserModel {
     @SerializedName("id")
     private String id;
@@ -35,6 +37,13 @@ public class UserModel {
 
     @SerializedName("designation")
     private String designation;
+
+    @SerializedName("tickets_status")
+    private Ticket_Status_Model tickets_status;
+
+    public Ticket_Status_Model getTickets_status(){
+        return this.tickets_status;
+    }
 
     public String getDesignation(){
         return this.designation;

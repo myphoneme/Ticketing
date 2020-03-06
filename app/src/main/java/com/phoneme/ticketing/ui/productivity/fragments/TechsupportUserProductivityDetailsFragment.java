@@ -55,12 +55,42 @@ public class TechsupportUserProductivityDetailsFragment extends Fragment impleme
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_user_productivity_list);
         progressbarlayout=(RelativeLayout)view.findViewById(R.id.progressbar_relativelayout);
         progressbarlayout.setVisibility(View.VISIBLE);
-        String userid = getArguments().getString("user_id");
-
+        String userid = getArguments().getString("user_id",null);
+        String solved = getArguments().getString("solved",null);
         //getUserProductivityData(userid);
-        getUserProductivityDataList(userid);
+        if(userid!=null) {
+            Toast.makeText(getContext(), "userid!=null", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "solved="+solved, Toast.LENGTH_LONG).show();
+            //getUserProductivityDataList(userid);
+            getUserProductivityDataListWithStatus(userid,solved);
+        }
     }
+    private void getUserProductivityDataListWithStatus(String uid,String solved) {
+        GetDataService service = RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+        Call<TechsupportDashboardResponseList> call = service.getUserProductivityListWithStatus(uid,solved);
+        call.enqueue(new Callback<TechsupportDashboardResponseList>() {
+            @Override
+            public void onResponse(Call<TechsupportDashboardResponseList> call, Response<TechsupportDashboardResponseList> response) {
+                if (response != null && response.body() != null) {
+                    progressbarlayout.setVisibility(View.GONE);
+                    //Toast.makeText(getContext(), "size=" + response.body().getTicketModelListList().get(0).size(), Toast.LENGTH_LONG).show();
+                    if (response.body().getUsers() != null) {
+                        userModelList = response.body().getUsers();
+                    }
+                    if (response.body().getTechUsersData() != null) {
+                        techsupportUserDataDashboardModelList = response.body().getTechUsersData();
+                    }
+                    setAdapterList( userModelList,response.body().getTicketModelListList(),techsupportUserDataDashboardModelList);
+                }
+                progressbarlayout.setVisibility(View.GONE);
+            }
 
+            @Override
+            public void onFailure(Call<TechsupportDashboardResponseList> call, Throwable t) {
+                progressbarlayout.setVisibility(View.GONE);
+            }
+        });
+    }
 
     private void getUserProductivityDataList(String uid) {
         GetDataService service = RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);

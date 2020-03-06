@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,7 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView textView,name,opentickets,closetickets,heading,total,todaysolvedtickets,totalticketsassigned,solvedtickets,designation,tickets_open_right_now;
+        private RelativeLayout tickets_Open_layout,tickets_assigned_layout,tickets_closed_layout,tickets_closed_today_layout;
         private CardView cardView;
         private SimpleDraweeView userimage;
         //        DashboardModel1 dashboardModel1;
@@ -53,7 +56,19 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
             userimage = (SimpleDraweeView)v.findViewById(R.id.user_image);
             designation=(TextView)v.findViewById(R.id.id_designation);
             tickets_open_right_now=(TextView)v.findViewById(R.id.tickets_open);
-            cardView.setOnClickListener(this);
+            tickets_Open_layout=(RelativeLayout)v.findViewById(R.id.tickets_open_layout);
+            tickets_assigned_layout=(RelativeLayout)v.findViewById(R.id.tickets_assigned_layout);
+            tickets_closed_layout=(RelativeLayout)v.findViewById(R.id.tickets_closed_layout);
+            tickets_closed_today_layout=(RelativeLayout)v.findViewById(R.id.tickets_closed_today_layout);
+            //cardView.setOnClickListener(this);
+            totalticketsassigned.setOnClickListener(this);
+            solvedtickets.setOnClickListener(this);
+            todaysolvedtickets.setOnClickListener(this);
+            tickets_open_right_now.setOnClickListener(this);
+            tickets_Open_layout.setOnClickListener(this);
+            tickets_assigned_layout.setOnClickListener(this);
+            tickets_closed_layout.setOnClickListener(this);
+            tickets_closed_today_layout.setOnClickListener(this);
         }
 
         @Override
@@ -61,6 +76,27 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
             if(v==cardView){
                 int position=getAdapterPosition();
                 listener.onUserClicked(position);
+            }else if(v==totalticketsassigned){
+                int position=getAdapterPosition();
+                listener.onTicketAssignedClicked(position);
+            }else if(v==solvedtickets){
+                int position=getAdapterPosition();
+                listener.onTicketsSolvedClicked(position);
+            }else if(v==todaysolvedtickets){
+                int position=getAdapterPosition();
+                listener.onTicketsSolvedTodayClicked(position);
+            }else if(v==tickets_open_right_now || v==tickets_Open_layout){
+                int position=getAdapterPosition();
+                listener.onTicketsOpenClicked(position);
+            }else if(v== tickets_assigned_layout){
+                int position=getAdapterPosition();
+                listener.onUserClicked(position);
+            }else if(v==tickets_closed_layout){
+                int position=getAdapterPosition();
+                listener.onTicketsSolvedClicked(position);
+            }else if(v==tickets_closed_today_layout){
+                int position=getAdapterPosition();
+                listener.onTicketsSolvedTodayClicked(position);
             }
         }
 
@@ -108,5 +144,9 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
 
     public interface OnItemClickListener {
         void onUserClicked(int position);
+        void onTicketAssignedClicked(int position);
+        void onTicketsOpenClicked(int position);
+        void onTicketsSolvedClicked(int position);
+        void onTicketsSolvedTodayClicked(int position);
     }
 }

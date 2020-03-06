@@ -115,17 +115,56 @@ public class TechSupportDashboardFragment extends Fragment implements Techsuppor
     public void onUserClicked(int position){
         String userid=this.techsupportUserDataDashboardModelList.get(position).getId();
 
+        Bundle args = new Bundle();
 
-
-//        Bundle args2=TicketListFragmentDirections.navTicketingAction().getArguments();
-//        args2.putString("user_id",userid);
-//        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-//        navController.navigate(R.id.nav_techsupport_user_productivity_detail,args2);
-
+        args.putString("user_id",userid);
+        Toast.makeText(getContext(),"userid="+userid, Toast.LENGTH_SHORT).show();
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_techsupport_user_productivity_detail,args);//to be uncommented in post notification
+    }
+    public  void onTicketAssignedClicked(int position){
+        String userid=this.techsupportUserDataDashboardModelList.get(position).getId();
 
         Bundle args = new Bundle();
 
         args.putString("user_id",userid);
+        Toast.makeText(getContext(),"userid="+userid, Toast.LENGTH_SHORT).show();
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_techsupport_user_productivity_detail,args);//to be uncommented in post notification
+
+    }
+    public void onTicketsOpenClicked(int position){
+        String userid=this.techsupportUserDataDashboardModelList.get(position).getId();
+        Toast.makeText(getContext(),"tickets open clicked",Toast.LENGTH_SHORT).show();
+
+        Bundle args = new Bundle();
+
+        args.putString("user_id",userid);
+        args.putString("solved","1");
+        Toast.makeText(getContext(),"userid="+userid, Toast.LENGTH_SHORT).show();
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_techsupport_user_productivity_detail,args);//to be uncommented in post notification
+
+    }
+    public void onTicketsSolvedClicked(int position){
+        String userid=this.techsupportUserDataDashboardModelList.get(position).getId();
+
+        Bundle args = new Bundle();
+
+        args.putString("user_id",userid);
+        args.putString("solved","0");
+        Toast.makeText(getContext(),"userid="+userid, Toast.LENGTH_SHORT).show();
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController.navigate(R.id.nav_techsupport_user_productivity_detail,args);//to be uncommented in post notification
+
+    }
+    public void onTicketsSolvedTodayClicked(int position){
+        String userid=this.techsupportUserDataDashboardModelList.get(position).getId();
+
+        Bundle args = new Bundle();
+
+        args.putString("user_id",userid);
+        args.putString("solved","3");
         Toast.makeText(getContext(),"userid="+userid, Toast.LENGTH_SHORT).show();
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_techsupport_user_productivity_detail,args);//to be uncommented in post notification

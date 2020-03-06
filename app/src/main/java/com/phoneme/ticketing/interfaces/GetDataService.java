@@ -1,8 +1,5 @@
 package com.phoneme.ticketing.interfaces;
 
-//import com.phoneme.ticketing.model.DashboardApi;
-//import com.phoneme.ticketing.model.TicketResponse;
-
 import com.phoneme.ticketing.BuildConfig;
 import com.phoneme.ticketing.ui.company.model.CompanyModel;
 import com.phoneme.ticketing.ui.company.network.CompanyCreatePostResponse;
@@ -90,6 +87,9 @@ public interface GetDataService {
 
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/index2")//Befor biru changes it was /index or just /
     Call<TechsupportDashboardResponseList> getUserProductivityList(@Query("uid") String id);
+
+    @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/index3")//Befor biru changes it was /index or just /
+    Call<TechsupportDashboardResponseList> getUserProductivityListWithStatus(@Query("uid") String id,@Query("solved") String status);
 
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/")
     Call<UserListResponse> getUserList();

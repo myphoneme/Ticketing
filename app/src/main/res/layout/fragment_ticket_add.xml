@@ -103,6 +103,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/clicktochoosefile"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Choose File"
+            android:layout_alignParentLeft="true"
+            />
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/upload_icon"
             android:layout_alignParentRight="true"

@@ -38,6 +38,7 @@ import com.phoneme.ticketing.ui.ticketing.network.TicketCreatePostResponse;
 import com.phoneme.ticketing.ui.user.UserModel;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,10 +57,12 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
     private SimpleDraweeView iconUpload;
     private Uri outputUri;
     //private TextView ;
-    private Button Submit;
+    private Button Submit,clicktochooseFile;
     private EditText ticketDescription,ticketTitle;
     private LinearLayout scrollView;
     private RadioGroup radioGroupUserAllocate;
+    private Intent intent;
+    File file;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View root = inflater.inflate(R.layout.fragment_ticket_add,container,false);
         return root;
@@ -79,12 +82,14 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 
         ticket_priority_spinner=(Spinner)view.findViewById(R.id.ticket_priority_spinner);
         Submit =(Button)view.findViewById(R.id.submit);
+        clicktochooseFile=(Button)view.findViewById(R.id.clicktochoosefile);
         ticketTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFullAlertDialog(view);
             }
         });
+
 
         ticketDescription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +130,14 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
             }
         });
 
+        clicktochooseFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, 7);
+            }
+        });
 //        ArrayAdapter priorityAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,priorityList);
 //        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        ticket_priority_spinner.setAdapter(priorityAdapter);
@@ -317,13 +330,31 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         //System.out.println("datasan0 resultCode="+resultCode+" outputuri="+outputUri+" extra"+result.getExtras().get("data"));
 
 
-        if (requestCode == 1) {
+        /*if (requestCode == 1) {
             System.out.println("datasan1"+result);
             if  (resultCode == RESULT_OK){
                 System.out.println("datasan2"+result.getData());
             }
-        }
+        }*/
         //super.onActivityResult( requestCode,  resultCode,  result);
+
+        switch(requestCode){
+
+            case 7:
+
+                if(resultCode==RESULT_OK){
+
+                    String PathHolder = result.getData().getPath();
+
+
+                    Toast.makeText(getContext(), "pappu"+PathHolder , Toast.LENGTH_LONG).show();
+                    file=new File(result.getData().getPath().toString());
+                    Toast.makeText(getContext(), "filename="+file.getName() , Toast.LENGTH_LONG).show();
+
+                }
+                break;
+
+        }
     }
 
     private void showFullAlertDialog(final View view){

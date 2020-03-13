@@ -184,12 +184,12 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
             }
         }
     }
-    private ArrayList<String> getAllocatedUsersForTicketRadio(){
-         ArrayList<String> userid=new ArrayList<String>();
+    private ArrayList<Integer> getAllocatedUsersForTicketRadio(){
+         ArrayList<Integer> userid=new ArrayList<Integer>();
          int id=radioGroupUserAllocate.getCheckedRadioButtonId();
          RadioButton radioButton=getView().findViewById(id);
 
-         userid.add(radioButton.getTag().toString());
+         userid.add(Integer.parseInt(radioButton.getTag().toString()));
          return userid;
     }
     private List<String> getAllocatedUsersForTicket(){
@@ -283,9 +283,11 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 
 
         //List<String> allocateduserids=getAllocatedUsersForTicket();
-        ArrayList<String> allocateduserids=new ArrayList<String>();
-         allocateduserids=getAllocatedUsersForTicketRadio();
-        //allocateduserids.add("55");
+//        ArrayList<String> allocateduserids=new ArrayList<String>();
+//         allocateduserids=getAllocatedUsersForTicketRadio();
+        ArrayList<Integer> allocateduserids=new ArrayList<Integer>();
+        allocateduserids=getAllocatedUsersForTicketRadio();
+        //allocateduserids.add(54);
         if(allocateduserids==null || allocateduserids.isEmpty() || allocateduserids.size()==0){
             Toast.makeText(getContext(),"You must allocate atleast one user", Toast.LENGTH_LONG).show();
             return;
@@ -315,7 +317,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         }
 
     }
-    private void postTicketAddWithImage(HashMap<String,RequestBody> map,ArrayList<String> allocateduserids){
+    private void postTicketAddWithImage(HashMap<String,RequestBody> map,ArrayList<Integer> allocateduserids){
         final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         //Below code 'userfile' need to change//changed
         MultipartBody.Part body = MultipartBody.Part.createFormData("ticketfile", file.getName(), requestBody);//these 3 lines extra

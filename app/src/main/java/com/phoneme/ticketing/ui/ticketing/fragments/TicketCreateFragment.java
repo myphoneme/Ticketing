@@ -1,9 +1,17 @@
 package com.phoneme.ticketing.ui.ticketing.fragments;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +31,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -31,6 +41,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
 import com.phoneme.ticketing.UserAuth;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
+import com.phoneme.ticketing.helper.RealPathUtil;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.project.model.ProjectModel;
 import com.phoneme.ticketing.ui.ticketing.network.TicketCreatGetResponse;
@@ -138,9 +149,11 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         clicktochooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
-                startActivityForResult(intent, 7);
+                haveStoragePermission(65);
+                //chooseFile();
+//                intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("*/*");
+//                startActivityForResult(intent, 7);
             }
         });
 //        ArrayAdapter priorityAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,priorityList);
@@ -149,6 +162,11 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 //        ticket_priority_spinner.setSelection(getIndex(ticket_priority_spinner, priorityList.get(0)));
     }
 
+    private void chooseFile(){
+        intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, 7);
+    }
     private void setSpinnerData(){
         ArrayAdapter priorityAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,priorityList);
         priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -327,18 +345,18 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         call.enqueue(new Callback<TicketCreatePostResponse>() {
             @Override
             public void onResponse(Call<TicketCreatePostResponse> call, Response<TicketCreatePostResponse> response) {
-                response.isSuccessful();
+                //response.isSuccessful();
                 Toast.makeText(getContext(),"Ticket response message="+response.body().getMessage(),Toast.LENGTH_LONG).show();
-                response.body();
-                response.body().isAllowed();
-                response.body().getSuccess();
-//                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
-//                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
-//                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-//                    navController.popBackStack();
-//                }else{
-//                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
-//                }
+//                response.body();
+//                response.body().isAllowed();
+//                response.body().getSuccess();
+                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
+                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.popBackStack();
+                }else{
+                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -398,11 +416,14 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 
                 if(resultCode==RESULT_OK){
 
-                    String PathHolder = result.getData().getPath();
-
+                    //String PathHolder = result.getData().getPath();//This one working on Napo mobile
+                    //String PathHolder = getRealPathFromURI(result.getData());
+                    //String PathHolder = getRealPathFromURI_API19(getContext(),result.getData());
+                    String PathHolder = RealPathUtil.getRealPath(getContext(),result.getData());
 
                     Toast.makeText(getContext(), "pappu"+PathHolder , Toast.LENGTH_LONG).show();
-                    file=new File(result.getData().getPath().toString());
+                    //file=new File(result.getData().getPath().toString());
+                    file=new File(PathHolder);
                     imageSelected = true;
                     Toast.makeText(getContext(), "filename="+file.getName() , Toast.LENGTH_LONG).show();
 
@@ -459,4 +480,72 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         return RequestBody.create(
                 MediaType.parse(MULTIPART_FORM_DATA), descriptionString);
     }
+
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(getContext(), contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
+    }
+
+    public static String getRealPathFromURI_API19(Context context, Uri uri){
+        String filePath = "";
+        String wholeID = DocumentsContract.getDocumentId(uri);
+
+        // Split at colon, use second item in the array
+        String id = wholeID.split(":")[1];
+
+        String[] column = { MediaStore.Images.Media.DATA };
+
+        // where id is equal to
+        String sel = MediaStore.Images.Media._ID + "=?";
+
+        Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                column, sel, new String[]{ id }, null);
+
+        int columnIndex = cursor.getColumnIndex(column[0]);
+
+        if (cursor.moveToFirst()) {
+            filePath = cursor.getString(columnIndex);
+        }
+        cursor.close();
+        return filePath;
+    }
+
+
+    public boolean haveStoragePermission(int position) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (getContext().checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.e("Permission error", "You have permission");
+                //download(ticketModelList.get(position).getImage());
+                chooseFile();
+                return true;
+            } else {
+
+                Log.e("Permission error", "You have asked for permission");
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else { //you dont need to worry about these stuff below api level 23
+            Log.e("Permission error", "You already have the permission");
+            //download(ticketModelList.get(position).getImage());
+            chooseFile();
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //download(ticketModelList.get(positionForDownload).getImage());
+            chooseFile();
+        }
+    }
+
 }

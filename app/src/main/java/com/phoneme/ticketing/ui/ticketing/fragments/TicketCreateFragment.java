@@ -43,11 +43,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static com.phoneme.ticketing.ui.user.fragments.UserProfileFragment.MULTIPART_FORM_DATA;
 
 public class TicketCreateFragment extends Fragment implements AdapterView.OnItemSelectedListener{
     private List<String> priorityList=new ArrayList<>();
@@ -63,6 +67,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
     private RadioGroup radioGroupUserAllocate;
     private Intent intent;
     File file;
+    private boolean imageSelected = false;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View root = inflater.inflate(R.layout.fragment_ticket_add,container,false);
         return root;
@@ -179,8 +184,8 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
             }
         }
     }
-    private List<String> getAllocatedUsersForTicketRadio(){
-         List<String> userid=new ArrayList<String>();
+    private ArrayList<String> getAllocatedUsersForTicketRadio(){
+         ArrayList<String> userid=new ArrayList<String>();
          int id=radioGroupUserAllocate.getCheckedRadioButtonId();
          RadioButton radioButton=getView().findViewById(id);
 
@@ -275,23 +280,70 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         map.put("project_id",project_id);
         map.put("priority",priority);
 
+
+
         //List<String> allocateduserids=getAllocatedUsersForTicket();
-        List<String> allocateduserids=getAllocatedUsersForTicketRadio();
+        ArrayList<String> allocateduserids=new ArrayList<String>();
+         allocateduserids=getAllocatedUsersForTicketRadio();
+        //allocateduserids.add("55");
         if(allocateduserids==null || allocateduserids.isEmpty() || allocateduserids.size()==0){
             Toast.makeText(getContext(),"You must allocate atleast one user", Toast.LENGTH_LONG).show();
             return;
         }
         UserAuth userAuth=new UserAuth(getContext());
+
+
+        HashMap<String, RequestBody> map2= new HashMap<>();
+        RequestBody ticket_title_body=createPartFromString(title);
+        map2.put("ticket_title",ticket_title_body);
+
+        RequestBody ticket_desc_body=createPartFromString(description);
+        map2.put("ticket_desc",ticket_desc_body);
+
+        RequestBody project_id_body=createPartFromString(project_id);
+        map2.put("project_id",project_id_body);
+
+        RequestBody priority_body=createPartFromString(priority);
+        map2.put("priority",priority_body);
+
         if(userAuth.getRole().equals("2")){
-            postTicketAdd(map,allocateduserids);
+            //postTicketAdd(map,allocateduserids);
+            Toast.makeText(getContext(),"allocated users size="+allocateduserids, Toast.LENGTH_LONG).show();
+            postTicketAddWithImage( map2,allocateduserids);
         }else{
             Toast.makeText(getContext(),"You are not allowed to create Ticket", Toast.LENGTH_LONG).show();
         }
 
     }
-    private void postTicketAddWithImage(HashMap<String, String> map){
+    private void postTicketAddWithImage(HashMap<String,RequestBody> map,ArrayList<String> allocateduserids){
+        final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        //Below code 'userfile' need to change//changed
+        MultipartBody.Part body = MultipartBody.Part.createFormData("ticketfile", file.getName(), requestBody);//these 3 lines extra
+
         GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
-        Call<TicketCreatePostResponse> call=service.postTicketAddWithImage(map);
+        Call<TicketCreatePostResponse> call=service.postTicketAddWithImage(body,map,allocateduserids);
+        call.enqueue(new Callback<TicketCreatePostResponse>() {
+            @Override
+            public void onResponse(Call<TicketCreatePostResponse> call, Response<TicketCreatePostResponse> response) {
+                response.isSuccessful();
+                Toast.makeText(getContext(),"Ticket response message="+response.body().getMessage(),Toast.LENGTH_LONG).show();
+                response.body();
+                response.body().isAllowed();
+                response.body().getSuccess();
+//                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
+//                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
+//                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+//                    navController.popBackStack();
+//                }else{
+//                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
+//                }
+            }
+
+            @Override
+            public void onFailure(Call<TicketCreatePostResponse> call, Throwable t) {
+
+            }
+        });
 
 
     }
@@ -349,6 +401,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 
                     Toast.makeText(getContext(), "pappu"+PathHolder , Toast.LENGTH_LONG).show();
                     file=new File(result.getData().getPath().toString());
+                    imageSelected = true;
                     Toast.makeText(getContext(), "filename="+file.getName() , Toast.LENGTH_LONG).show();
 
                 }
@@ -397,5 +450,11 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         });
         alertDialog.show();
 
+    }
+
+    @NonNull
+    private RequestBody createPartFromString(String descriptionString) {
+        return RequestBody.create(
+                MediaType.parse(MULTIPART_FORM_DATA), descriptionString);
     }
 }

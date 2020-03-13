@@ -31,6 +31,7 @@ import com.phoneme.ticketing.user.network.FCMTokenUploadResponse;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 import com.phoneme.ticketing.user.network.PhonePostResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -170,9 +171,20 @@ public interface GetDataService {
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
     Call<TicketCreatePostResponse> postTicketAddWithUser(@FieldMap Map<String, String> ticketData,@Field("check_user[]") List<String> chkusrs);
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+//    Call<TicketCreatePostResponse> postTicketAddWithImage(@FieldMap Map<String, String> ticketData);
+
+//    @Multipart
+//    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+//    Call<TicketCreatePostResponse> postTicketAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Query("check_user[]") ArrayList<String> user_id);
+
+
+    @Multipart
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
-    Call<TicketCreatePostResponse> postTicketAddWithImage(@FieldMap Map<String, String> ticketData);
+    Call<TicketCreatePostResponse> postTicketAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Part("check_user[]") ArrayList<String> user_id);
+
+
 
     @FormUrlEncoded
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/otpverification")

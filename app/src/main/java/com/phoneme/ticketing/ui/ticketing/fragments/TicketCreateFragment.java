@@ -160,7 +160,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         clicktochooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                haveStoragePermission(65);//65 random
+                haveStoragePermission();//65 random
                 //chooseFile();
 //                intent = new Intent(Intent.ACTION_GET_CONTENT);
 //                intent.setType("*/*");
@@ -261,7 +261,6 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         return index;
     }
     private void getBasicData(){
-//        GetDataService service= RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
         Call<TicketCreatGetResponse> call=service.getTicketCreate();//Might have to pass userid in future
         Toast.makeText(getContext(),"getBasicData=", Toast.LENGTH_LONG).show();
@@ -388,6 +387,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 
 
     }
+    //Not to be used after ticket file upload
     private void postTicketAdd(HashMap<String, String> map,List<String> usrs){
         //GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
@@ -502,7 +502,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         return RequestBody.create(
                 MediaType.parse(MULTIPART_FORM_DATA), descriptionString);
     }
-
+/*
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getContext(), contentUri, proj, null, null, null);
@@ -512,9 +512,9 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         String result = cursor.getString(column_index);
         cursor.close();
         return result;
-    }
+    }*/
 
-    public static String getRealPathFromURI_API19(Context context, Uri uri){
+/*    public static String getRealPathFromURI_API19(Context context, Uri uri){
         String filePath = "";
         String wholeID = DocumentsContract.getDocumentId(uri);
 
@@ -536,10 +536,10 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         }
         cursor.close();
         return filePath;
-    }
+    }*/
 
 
-    public boolean haveStoragePermission(int position) {
+    public boolean haveStoragePermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (getContext().checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {

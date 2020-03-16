@@ -26,6 +26,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -72,11 +73,12 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
     private SimpleDraweeView iconUpload;
     private Uri outputUri;
     //private TextView ;
-    private Button Submit,clicktochooseFile;
+    private Button Submit,clicktochooseFile,unselectFile;
     private EditText ticketDescription,ticketTitle;
     private LinearLayout scrollView;
     private RadioGroup radioGroupUserAllocate;
     private Intent intent;
+    private TextView chosenFileName;
     File file;
     private boolean imageSelected = false;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -99,6 +101,15 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         ticket_priority_spinner=(Spinner)view.findViewById(R.id.ticket_priority_spinner);
         Submit =(Button)view.findViewById(R.id.submit);
         clicktochooseFile=(Button)view.findViewById(R.id.clicktochoosefile);
+        chosenFileName=(TextView)view.findViewById(R.id.chosenfilename);
+        unselectFile=(Button)view.findViewById(R.id.unselectfile);
+        unselectFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageSelected=false;
+                chosenFileName.setText("");
+            }
+        });
         ticketTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,7 +140,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
                 }
             });
         }
-
+        iconUpload.setVisibility(View.GONE);//To be completely removed in future
         iconUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -435,6 +446,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
                     //file=new File(result.getData().getPath().toString());
                     file=new File(PathHolder);
                     imageSelected = true;
+                    chosenFileName.setText(file.getName());
                     Toast.makeText(getContext(), "filename="+file.getName() , Toast.LENGTH_LONG).show();
 
                 }

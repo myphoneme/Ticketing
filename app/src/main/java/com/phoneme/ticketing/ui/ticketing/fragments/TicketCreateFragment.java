@@ -149,7 +149,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         clicktochooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                haveStoragePermission(65);
+                haveStoragePermission(65);//65 random
                 //chooseFile();
 //                intent = new Intent(Intent.ACTION_GET_CONTENT);
 //                intent.setType("*/*");
@@ -335,13 +335,23 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         }
 
     }
-    private void postTicketAddWithImage(HashMap<String,RequestBody> map,ArrayList<Integer> allocateduserids){
-        final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+    private void postTicketAddWithImage(HashMap<String,RequestBody> map,ArrayList<Integer> allocateduserids) {
+        //final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         //Below code 'userfile' need to change//changed
-        MultipartBody.Part body = MultipartBody.Part.createFormData("ticketfile", file.getName(), requestBody);//these 3 lines extra
+        //MultipartBody.Part body = MultipartBody.Part.createFormData("ticketfile", file.getName(), requestBody);//these 3 lines extra
 
-        GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
-        Call<TicketCreatePostResponse> call=service.postTicketAddWithImage(body,map,allocateduserids);
+        GetDataService service = RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+        Call<TicketCreatePostResponse> call;
+        if (imageSelected){
+            final RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            //Below code 'userfile' need to change//changed
+            MultipartBody.Part body = MultipartBody.Part.createFormData("ticketfile", file.getName(), requestBody);//these 3 lines extra
+
+            call = service.postTicketAddWithImage(body, map, allocateduserids);
+        }
+        else{
+            call = service.postTicketAddWithOutImage(map,allocateduserids);
+        }
         call.enqueue(new Callback<TicketCreatePostResponse>() {
             @Override
             public void onResponse(Call<TicketCreatePostResponse> call, Response<TicketCreatePostResponse> response) {
@@ -350,13 +360,13 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 //                response.body();
 //                response.body().isAllowed();
 //                response.body().getSuccess();
-                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
-                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                    navController.popBackStack();
-                }else{
-                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
-                }
+//                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
+//                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
+//                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+//                    navController.popBackStack();
+//                }else{
+//                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
+//                }
             }
 
             @Override

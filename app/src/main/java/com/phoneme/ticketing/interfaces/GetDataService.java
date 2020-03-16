@@ -179,6 +179,9 @@ public interface GetDataService {
 //    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
 //    Call<TicketCreatePostResponse> postTicketAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Query("check_user[]") ArrayList<String> user_id);
 
+    @Multipart
+    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+    Call<TicketCreatePostResponse> postTicketAddWithOutImage(@PartMap() Map<String, RequestBody> partMap,@Part("check_user[]") ArrayList<Integer> user_id);
 
     @Multipart
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")

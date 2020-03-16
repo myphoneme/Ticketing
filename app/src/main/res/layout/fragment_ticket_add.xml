@@ -104,11 +104,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:background="@drawable/button_bg_rounded_corners"
             android:id="@+id/clicktochoosefile"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="Choose File"
             android:layout_alignParentLeft="true"
+            android:textColor="@color/text_white"
             />
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/upload_icon"

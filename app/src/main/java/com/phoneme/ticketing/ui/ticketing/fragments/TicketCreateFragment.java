@@ -371,13 +371,13 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
 //                response.body();
 //                response.body().isAllowed();
 //                response.body().getSuccess();
-//                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
-//                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
-//                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-//                    navController.popBackStack();
-//                }else{
-//                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
-//                }
+                if(response.isSuccessful() && response.body()!=null && response.body().isAllowed() && response.body().getSuccess()){
+                    //Toast.makeText(getContext(),"Ticket created.Ticket number is "+response.body().getTicket_number(),Toast.LENGTH_LONG).show();
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.popBackStack();
+                }else{
+                    Toast.makeText(getContext(),"Ticket couldn't be created", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

@@ -3,6 +3,7 @@ package com.phoneme.ticketing.ui.user.fragments;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -330,6 +331,34 @@ public class UserProfileFragment extends Fragment implements
             if (requestCode == 0 && resultCode == getActivity().RESULT_OK && null != data) {
                 System.out.println("imageselectedra1");
                 Uri selectedImage = data.getData();
+
+                /*BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                //BitmapFactory.decodeFile(new File(selectedImage.getPath()).getAbsolutePath(), options);
+                BitmapFactory.decodeFile(new File(selectedImage.getPath()).getAbsolutePath(), options);
+
+//                BitmapFactory.decodeFile(selectedImage.getPath().getA, options);
+//                String path = selectedImage.getPath().getAbsolutePath();
+
+
+                int imageHeight = options.outHeight;
+                int imageWidth = options.outWidth;
+                Toast.makeText(getContext(), "Please select equal height "+imageHeight+" "+imageWidth, Toast.LENGTH_SHORT).show();
+                if(imageHeight==imageWidth){
+                    Toast.makeText(getContext(), "Please select equal height ra", Toast.LENGTH_SHORT).show();
+                    //return;
+                }*/
+                BitmapFactory.Options options2 = new BitmapFactory.Options();
+                options2.inJustDecodeBounds = true;
+                BitmapFactory.decodeStream(
+                        getContext().getContentResolver().openInputStream(selectedImage),
+                        null,
+                        options2);
+                //Bitmap image = BitmapFactory.decodeStream(this.getContext().getContentResolver().openInputStream(new File(selectedImage.getPath()).getAbsolutePath()), null, null);
+                int imageHeight2 = options2.outHeight;
+                int imageWidth2 = options2.outWidth;
+                Toast.makeText(getContext(), "Please select equal height222 "+imageHeight2+" "+imageWidth2, Toast.LENGTH_SHORT).show();
+
                 System.out.println("imageselectedra2");
 
                 ImageRequest request = ImageRequestBuilder.newBuilderWithSource(selectedImage)

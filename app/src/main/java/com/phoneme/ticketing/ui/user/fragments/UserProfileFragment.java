@@ -1,6 +1,10 @@
 package com.phoneme.ticketing.ui.user.fragments;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +43,8 @@ import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.user.UserModel;
 import com.phoneme.ticketing.ui.user.network.UserEditGetResponse;
 import com.phoneme.ticketing.ui.user.network.UserEditResponse;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 import java.io.File;
@@ -50,6 +57,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+
 public class UserProfileFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
     private EditText username, mobile,designation;
@@ -61,6 +70,8 @@ public class UserProfileFragment extends Fragment implements
     private String statustext;
     private Spinner spin;
     private UserModel userDataFromServer;
+    ImageButton imageButton;
+    private Uri mCropImageUri;
 
     Bitmap bitmap;
     private static final int REQUEST_CODE_READ_EXTERNAL_PERMISSION = 2;
@@ -101,16 +112,29 @@ public class UserProfileFragment extends Fragment implements
         mobile_number=(TextView)view.findViewById(R.id.mobile_number_value);
         email_value=(TextView)view.findViewById(R.id.email_value);
         my_tickets=(TextView)view.findViewById(R.id.my_tickets);
+        imageButton = (ImageButton) view.findViewById(R.id.quick_start_cropped_image);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSelectImageClick(v);
+            }
+        });
         getUserData(userid);
         username.setEnabled(false);
         mobile.setEnabled(false);
         if (userid.equals(userAuth.getId())||userAuth.getRole().equalsIgnoreCase("0")) {
+//            userimage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+//                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    startActivityForResult(galleryIntent, 0);
+//                }
+//            });
             userimage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(galleryIntent, 0);
+                    onSelectImageClick(view);
                 }
             });
 
@@ -216,6 +240,9 @@ public class UserProfileFragment extends Fragment implements
                 MediaType.parse(MULTIPART_FORM_DATA), descriptionString);
     }
 
+    public void onSelectImageClick(View view) {
+        CropImage.startPickImageActivity(getActivity());
+    }
     private void setData(UserModel data) {
         Toast.makeText(getContext(), "setData" + data.getName(), Toast.LENGTH_SHORT).show();
         username.setText(data.getName());
@@ -322,8 +349,8 @@ public class UserProfileFragment extends Fragment implements
         // TODO Auto-generated method stub
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //@Override
+    public void onActivityResult____1(int requestCode, int resultCode, Intent data) {
 
         System.out.println("imageselectedra0");
         try {
@@ -359,6 +386,11 @@ public class UserProfileFragment extends Fragment implements
                 int imageWidth2 = options2.outWidth;
                 Toast.makeText(getContext(), "Please select equal height222 "+imageHeight2+" "+imageWidth2, Toast.LENGTH_SHORT).show();
 
+                Uri imageUri = CropImage.getPickImageResultUri(getContext(), data);
+                startCropImageActivity(imageUri);
+
+
+
                 System.out.println("imageselectedra2");
 
                 ImageRequest request = ImageRequestBuilder.newBuilderWithSource(selectedImage)
@@ -378,12 +410,69 @@ public class UserProfileFragment extends Fragment implements
                 System.out.println("imageselectedra5");
                 //uploadFile(selectedImage, "My Image");
             }
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
+                    ((ImageButton) getView().findViewById(R.id.quick_start_cropped_image)).setImageURI(result.getUri());
+                    Toast.makeText(getContext(), "Cropping successful, Sample: " + result.getSampleSize(), Toast.LENGTH_LONG).show();
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    Toast.makeText(getContext(), "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+                }
+            }
         } catch (Exception e) {
             //Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+
+    @Override
+    //@SuppressLint("NewApi")
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // handle result of pick image chooser
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Uri imageUri = CropImage.getPickImageResultUri(getContext(), data);
+
+            // For API >= 23 we need to check specifically that we have permissions to read external storage.
+            if (CropImage.isReadExternalStoragePermissionsRequired(getContext(), imageUri)) {
+                // request permissions and handle the result in onRequestPermissionsResult()
+                mCropImageUri = imageUri;
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            } else {
+                // no permissions required or already grunted, can start crop image activity
+                startCropImageActivity(imageUri);
+            }
+        }
+
+        // handle result of CropImageActivity
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                //((ImageButton) findViewById(R.id.quick_start_cropped_image)).setImageURI(result.getUri());
+                userimage.setImageURI(result.getUri());
+                Toast.makeText(getContext(), "Cropping successful, Sample: " + result.getSampleSize(), Toast.LENGTH_LONG).show();
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Toast.makeText(getContext(), "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    private void startCropImageActivity(Uri imageUri) {
+        CropImage.activity(imageUri)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setMultiTouchEnabled(true)
+                .setAspectRatio(1,1)
+                .start(getActivity());
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (mCropImageUri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // required permissions granted, start crop image activity
+            startCropImageActivity(mCropImageUri);
+        } else {
+            Toast.makeText(getContext(), "Cancelling, required permissions are not granted", Toast.LENGTH_LONG).show();
+        }
+    }
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getContext(), contentUri, proj, null, null, null);

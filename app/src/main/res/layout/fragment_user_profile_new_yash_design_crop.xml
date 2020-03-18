@@ -25,6 +25,7 @@
                 android:orientation="vertical">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:layout_alignParentRight="true"
+                    android:background="@color/grey"
                     android:id="@+id/user_image"
                     app:roundAsCircle="true"
                     android:layout_width="150dp"

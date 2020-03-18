@@ -38,6 +38,8 @@ import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.user.UserModel;
 import com.phoneme.ticketing.ui.user.network.UserEditGetResponse;
 import com.phoneme.ticketing.ui.user.network.UserEditResponse;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 import java.io.File;
@@ -416,5 +418,13 @@ public class UserProfileFragment extends Fragment implements
         });
     }
 
+    private void startCropImageActivity(Uri imageUri) {
+        CropImage.activity(imageUri)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setMultiTouchEnabled(true)
+                .setAspectRatio(1,1)
+                //.start(getActivity());
+                .start(getContext(),this);
+    }
 }
 

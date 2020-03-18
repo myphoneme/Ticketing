@@ -351,7 +351,7 @@ public class UserProfileFragment extends Fragment implements
     }
 
     //@Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult_1(int requestCode, int resultCode, Intent data) {
         Toast.makeText(getContext(), "onActivityResult0", Toast.LENGTH_LONG).show();
         System.out.println("imageselectedra0");
         try {
@@ -427,9 +427,9 @@ public class UserProfileFragment extends Fragment implements
     }
 
 
-    //@Override
+    @Override
     //@SuppressLint("NewApi")
-    public void onActivityResult_1(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Toast.makeText(getContext(), "onActivityResult1", Toast.LENGTH_LONG).show();
         // handle result of pick image chooser
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
@@ -466,7 +466,7 @@ public class UserProfileFragment extends Fragment implements
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setMultiTouchEnabled(true)
                 .setAspectRatio(1,1)
-                .start(getActivity());
+                .start(getContext(),this);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {

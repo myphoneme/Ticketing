@@ -241,6 +241,7 @@ public class UserProfileFragment extends Fragment implements
     }
 
     public void onSelectImageClick(View view) {
+        Toast.makeText(getContext(), "onSelectImageClick", Toast.LENGTH_LONG).show();
         CropImage.startPickImageActivity(getActivity());
     }
     private void setData(UserModel data) {
@@ -350,8 +351,8 @@ public class UserProfileFragment extends Fragment implements
     }
 
     //@Override
-    public void onActivityResult____1(int requestCode, int resultCode, Intent data) {
-
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(getContext(), "onActivityResult0", Toast.LENGTH_LONG).show();
         System.out.println("imageselectedra0");
         try {
             // When an Image is picked
@@ -426,21 +427,23 @@ public class UserProfileFragment extends Fragment implements
     }
 
 
-    @Override
+    //@Override
     //@SuppressLint("NewApi")
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+    public void onActivityResult_1(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(getContext(), "onActivityResult1", Toast.LENGTH_LONG).show();
         // handle result of pick image chooser
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Uri imageUri = CropImage.getPickImageResultUri(getContext(), data);
-
+            Toast.makeText(getContext(), "PICK_IMAGE_CHOOSER_REQUEST_CODE", Toast.LENGTH_LONG).show();
             // For API >= 23 we need to check specifically that we have permissions to read external storage.
             if (CropImage.isReadExternalStoragePermissionsRequired(getContext(), imageUri)) {
                 // request permissions and handle the result in onRequestPermissionsResult()
+                Toast.makeText(getContext(), "PICK_IMAGE_CHOOSER_REQUEST_CODE", Toast.LENGTH_LONG).show();
                 mCropImageUri = imageUri;
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
             } else {
                 // no permissions required or already grunted, can start crop image activity
+                Toast.makeText(getContext(), "PICK_IMAGE_CHOOSER_REQUEST_CODE", Toast.LENGTH_LONG).show();
                 startCropImageActivity(imageUri);
             }
         }
@@ -448,6 +451,7 @@ public class UserProfileFragment extends Fragment implements
         // handle result of CropImageActivity
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            Toast.makeText(getContext(), "CROP_IMAGE_ACTIVITY_REQUEST_CODE", Toast.LENGTH_LONG).show();
             if (resultCode == RESULT_OK) {
                 //((ImageButton) findViewById(R.id.quick_start_cropped_image)).setImageURI(result.getUri());
                 userimage.setImageURI(result.getUri());
@@ -466,6 +470,7 @@ public class UserProfileFragment extends Fragment implements
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        Toast.makeText(getContext(), "onRequestPermissionsResult", Toast.LENGTH_LONG).show();
         if (mCropImageUri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             // required permissions granted, start crop image activity
             startCropImageActivity(mCropImageUri);

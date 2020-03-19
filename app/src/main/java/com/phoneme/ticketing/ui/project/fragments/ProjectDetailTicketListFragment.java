@@ -1,9 +1,11 @@
 package com.phoneme.ticketing.ui.project.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.interfaces.GetDataService;
@@ -38,6 +41,7 @@ public class ProjectDetailTicketListFragment extends Fragment implements Project
     private RecyclerView recyclerView;
     private List<TicketModel> ticketModelList;
     private ProjectDetailTicketListAdapter adapter;
+    private SimpleDraweeView projecticon;
     private TextView projectTitle,projectDescription,projectDate,projectCompany;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class ProjectDetailTicketListFragment extends Fragment implements Project
         projectDescription=(TextView)v.findViewById(R.id.project_description);
         projectDate=(TextView)v.findViewById(R.id.project_date);
         projectCompany=(TextView)v.findViewById(R.id.project_company);
+        projecticon=(SimpleDraweeView) v.findViewById(R.id.child_image);
         getTicketsForAProject(projectid);
         getProjectDetails(projectid);
     }
@@ -83,7 +88,8 @@ public class ProjectDetailTicketListFragment extends Fragment implements Project
 
         projectTitle.setText(response.getName());
         projectDescription.setText(response.getDesc());
-
+        Uri uri= Uri.parse(response.getImages());
+        projecticon.setImageURI(uri);
         if(response.getCreated_at()!=null) {
             try {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

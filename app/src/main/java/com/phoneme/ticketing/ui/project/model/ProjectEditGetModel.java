@@ -39,6 +39,13 @@ public class ProjectEditGetModel {
     @SerializedName("companies")
     private List<CompanyModel> companyModelList;
 
+    @SerializedName("images")
+    private String images;
+
+    public String getImages(){
+        return this.images;
+    }
+
     public List<CompanyModel> getCompanyList(){
         return this.companyModelList;
     }

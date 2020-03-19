@@ -22,14 +22,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapterNew.ViewHolder> {
+public class ProjectListEngagementAdapter extends RecyclerView.Adapter<ProjectListEngagementAdapter.ViewHolder> {
     private Context mcontext;
     private List<ProjectModel> projectModelList;
     private Map<Integer, String> backgroundcolor=new HashMap<>();
     private Map<Integer, String> textcolor=new HashMap<>();
-    private ProjectListAdapterNew.OnItemClickListener listener;
+    private ProjectListEngagementAdapter.OnItemClickListener listener;
     private String[] fcolor;
-    public ProjectListAdapterNew(Context context, List<ProjectModel> projectModelList, OnItemClickListener listener){
+    public ProjectListEngagementAdapter(Context context, List<ProjectModel> projectModelList, OnItemClickListener listener){
         this.mcontext=context;
         this.projectModelList=projectModelList;
         this.listener=listener;
@@ -42,7 +42,7 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
         textcolor.put(2,"#1A531D");
         textcolor.put(3,"#642420");
     }
-    public ProjectListAdapterNew(Context context, List<ProjectModel> projectModelList, OnItemClickListener listener, String[] fcolor){
+    public ProjectListEngagementAdapter(Context context, List<ProjectModel> projectModelList, OnItemClickListener listener, String[] fcolor){
         this.mcontext=context;
         this.projectModelList=projectModelList;
         this.listener=listener;
@@ -105,7 +105,7 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
         }
     }
         @Override
-        public ProjectListAdapterNew.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+        public ProjectListEngagementAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
 //            View view= LayoutInflater.from(mcontext).inflate(R.layout.adapter_item_projectlist_newscreen,viewGroup,false);
 //            return new ViewHolder(view);
 
@@ -115,7 +115,7 @@ public class ProjectListAdapterNew extends RecyclerView.Adapter<ProjectListAdapt
             return new ViewHolder(view);
         }
 
-    public void onBindViewHolder(ProjectListAdapterNew.ViewHolder vh, int position){
+    public void onBindViewHolder(ProjectListEngagementAdapter.ViewHolder vh, int position){
         vh.setData(this.projectModelList.get(position),position);
 
 

@@ -108,9 +108,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_project"
-        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectListFragment"
-        android:label="@string/menu_project"
-        tools:layout="@layout/fragment_project_list" >
+        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectEngagementFragment"
+        android:label="@string/menu_project_engagement"
+        tools:layout="@layout/fragment_project_list_engagement" >
         <action
             android:id="@+id/nav_project_action"
             app:destination="@id/nav_project_edit">
@@ -128,6 +128,29 @@
                 android:defaultValue="31"
                 app:argType="string" />
         </action>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_project_engagement"
+        android:name="com.phoneme.ticketing.ui.project.fragments.ProjectListFragment"
+        android:label="@string/menu_project"
+        tools:layout="@layout/fragment_project_list_engagement" >
+<!--        <action-->
+<!--            android:id="@+id/nav_project_action"-->
+<!--            app:destination="@id/nav_project_edit">-->
+<!--            <argument-->
+<!--                android:name="project_id"-->
+<!--                android:defaultValue="303"-->
+<!--                app:argType="string" />-->
+<!--        </action>-->
+
+<!--        <action-->
+<!--            android:id="@+id/nav_project_detail_ticket_list_action"-->
+<!--            app:destination="@id/nav_project_detail_ticket_list">-->
+<!--            <argument-->
+<!--                android:name="project_id"-->
+<!--                android:defaultValue="31"-->
+<!--                app:argType="string" />-->
+<!--        </action>-->
     </fragment>
     <fragment
         android:id="@+id/nav_project_add"

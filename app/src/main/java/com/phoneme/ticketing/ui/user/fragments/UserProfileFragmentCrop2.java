@@ -4,13 +4,11 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,25 +17,26 @@ import androidx.fragment.app.Fragment;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.helper.SavedUserData;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import static android.app.Activity.RESULT_OK;
 
-public class UserProfileFragmentCrop extends Fragment {
+public class UserProfileFragmentCrop2 extends Fragment {
     private SimpleDraweeView userimage;
     private Uri mCropImageUri;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_user_profile_new_yash_design_crop, container, false);
-        Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "onCreateView2", Toast.LENGTH_LONG).show();
         //userData = new SavedUserData();//to be uncommented when all data
         return root;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        userimage = (SimpleDraweeView) view.findViewById(R.id.user_image);
+        super.onViewCreated(view, savedInstanceState);
+        userimage=(SimpleDraweeView) view.findViewById(R.id.user_image);
         userimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,15 +44,13 @@ public class UserProfileFragmentCrop extends Fragment {
             }
         });
     }
-
     public void onSelectImageClick(View view) {
         CropImage.startPickImageActivity(getActivity());
     }
-
     @Override
     @SuppressLint("NewApi")
-    public  void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode,resultCode,data);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(resultCode,resultCode,data);
         // handle result of pick image chooser
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == RESULT_OK) {
             Uri imageUri = CropImage.getPickImageResultUri(getContext(), data);
@@ -82,26 +79,11 @@ public class UserProfileFragmentCrop extends Fragment {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        if (mCropImageUri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // required permissions granted, start crop image activity
-            startCropImageActivity(mCropImageUri);
-        } else {
-            Toast.makeText(getContext(), "Cancelling, required permissions are not granted", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
-     * Start crop image activity for the given image.
-     */
     private void startCropImageActivity(Uri imageUri) {
         CropImage.activity(imageUri)
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setMultiTouchEnabled(true)
                 .setAspectRatio(1,1)
-                //.start(getActivity());
                 .start(getContext(),this);
     }
-
 }

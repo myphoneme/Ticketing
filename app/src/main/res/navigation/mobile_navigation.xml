@@ -232,8 +232,8 @@
         android:label="@string/menu_user_profile"
         tools:layout="@layout/fragment_user_profile" />
     <fragment
-        android:id="@+id/nav_user_profile_crop"
-        android:name="com.phoneme.ticketing.ui.user.fragments.UserProfileFragmentCrop"
+        android:id="@+id/nav_user_profile_crop2"
+        android:name="com.phoneme.ticketing.ui.user.fragments.UserProfileFragmentCrop2"
         android:label="@string/menu_user_profile"
         tools:layout="@layout/fragment_user_profile" />
     <fragment

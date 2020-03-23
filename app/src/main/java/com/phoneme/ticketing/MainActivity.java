@@ -38,14 +38,14 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.helper.SavedUserData;
 import com.phoneme.ticketing.interfaces.GetDataService;
-import com.squareup.picasso.Picasso;
+import com.phoneme.ticketing.UserAuth;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.phoneme.ticketing.UserAuth;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        userAuth=new com.phoneme.ticketing.UserAuth(getApplicationContext());
+        userAuth=new UserAuth(getApplicationContext());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_dashboard,R.id.nav_my_ticketing, R.id.nav_ticketing, R.id.nav_techsupportdashboard,
-                R.id.nav_company, R.id.nav_project,R.id.nav_project_engagement, R.id.nav_ticket_add, R.id.nav_project_add, R.id.nav_user_list, R.id.nav_company_add, R.id.nav_company_edit, R.id.nav_user_add, R.id.nav_infra_monitoring, R.id.nav_techsupport_user_productivity_detail, R.id.nav_user_profile, R.id.nav_share, R.id.nav_logout, R.id.nav_ticketing_view)
+                R.id.nav_company, R.id.nav_project_engagement,R.id.nav_project_list, R.id.nav_ticket_add, R.id.nav_project_add, R.id.nav_user_list, R.id.nav_company_add, R.id.nav_company_edit, R.id.nav_user_add, R.id.nav_infra_monitoring, R.id.nav_techsupport_user_productivity_detail, R.id.nav_user_profile, R.id.nav_share, R.id.nav_logout, R.id.nav_ticketing_view)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -100,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
             //menu.removeItem(R.id.nav_project);
             //menu.removeItem(R.id.nav_techsupportdashboard);
             //menu.removeItem(R.id.nav_company);
+        }
+        if(userAuth.getRole().equals("1")){
+            menu.removeItem(R.id.nav_project_engagement);
         }
 
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -236,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //if(res.equals("Call Sent")){
                     if(res.startsWith("Call Sent successful")){//This line needs to be modified
-                        UserAuth userAuth=new UserAuth(getApplicationContext());
+                        com.phoneme.ticketing.UserAuth userAuth=new com.phoneme.ticketing.UserAuth(getApplicationContext());
                         userAuth.setTokenUploaded(true);
                         String id=getId(res);
                         userAuth.setgcmmasterId(id);

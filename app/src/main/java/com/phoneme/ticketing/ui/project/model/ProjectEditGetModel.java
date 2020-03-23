@@ -41,6 +41,12 @@ public class ProjectEditGetModel {
 
     @SerializedName("images")
     private String images;
+    @SerializedName("team")
+    private String team;
+
+    public String getTeam(){
+        return team;
+    }
 
     public String getImages(){
         return this.images;

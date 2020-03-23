@@ -245,7 +245,7 @@ public class DashboardFragment extends Fragment implements DashboardAdapter.OnIt
             String role=userAuth.getRole();
             if(!role.equals("2")) {
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                navController.navigate(R.id.nav_project);
+                navController.navigate(R.id.nav_project_engagement);
             }else{
                 Toast.makeText(getContext(), "Not allowed for you", Toast.LENGTH_LONG).show();
 

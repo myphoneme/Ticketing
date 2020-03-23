@@ -47,11 +47,11 @@
         <!--            android:icon="@drawable/ic_menu_manage"-->
         <!--            android:title="@string/menu_ticket_edit" />-->
         <item
-            android:id="@+id/nav_project"
+            android:id="@+id/nav_project_engagement"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_project_engagement" />
         <item
-            android:id="@+id/nav_project_engagement"
+            android:id="@+id/nav_project_list"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_project" />
         <!--        <item-->

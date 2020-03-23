@@ -56,7 +56,8 @@ public class ProjectEngagementFragment extends Fragment implements ProjectListEn
         projectViewModel =
                 ViewModelProviders.of(this).get(ProjectViewModel.class);
         View root = inflater.inflate(R.layout.fragment_project_list_engagement, container, false);
-//        final TextView textView = root.findViewById(R.id.text_project);
+        //Below code commented before mar 20 2020//will be deleted
+        //        final TextView textView = root.findViewById(R.id.text_project);
 //        projectViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {

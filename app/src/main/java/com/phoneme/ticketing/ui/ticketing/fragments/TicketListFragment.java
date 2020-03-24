@@ -158,7 +158,31 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                 }
             });
             myTickets.setVisibility(View.GONE);
-        } else {
+        }else if(userAuth.getRole().equals("3")){
+            ticketAdd.setVisibility(View.VISIBLE);
+            //to be uncommented for post notification
+            ticketAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //nav_ticket_add
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.navigate(R.id.nav_ticket_add);
+                }
+            });
+        } else if(userAuth.getRole().equals("0")){
+            ticketAdd.setVisibility(View.VISIBLE);
+            //to be uncommented for post notification
+            ticketAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //nav_ticket_add
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.navigate(R.id.nav_ticket_add);
+                }
+            });
+        }
+
+        else {
             ticketAdd.setVisibility(View.GONE);
             //myTickets.setVisibility(View.GONE);
         }

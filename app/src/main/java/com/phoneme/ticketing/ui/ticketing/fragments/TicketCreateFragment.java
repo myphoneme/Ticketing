@@ -124,7 +124,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
                 showFullAlertDialog(view);
             }
         });
-        if(userAuth.getRole().equals("2")){
+        if(userAuth.getRole().equals("2")||userAuth.getRole().equals("3")||userAuth.getRole().equals("0")){
             getBasicData();
             Submit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -136,7 +136,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
             Submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(),"You are not allowed to create ticket", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"3You are not allowed to create ticket", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -276,7 +276,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
                         //setUserAllocationCheckboxes();
                         setUserAllocationRadioButton();
                     }else{
-                        Toast.makeText(getContext(),"You are not allowed to create Ticket", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"1You are not allowed to create Ticket"+response.message(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -336,7 +336,7 @@ public class TicketCreateFragment extends Fragment implements AdapterView.OnItem
         RequestBody priority_body=createPartFromString(priority);
         map2.put("priority",priority_body);
 
-        if(userAuth.getRole().equals("2")){
+        if(userAuth.getRole().equals("2")||userAuth.getRole().equals("0")||userAuth.getRole().equals("3")||userAuth.getRole().equals("1")){
             //postTicketAdd(map,allocateduserids);
             Toast.makeText(getContext(),"allocated users size="+allocateduserids, Toast.LENGTH_LONG).show();
             postTicketAddWithImage( map2,allocateduserids);

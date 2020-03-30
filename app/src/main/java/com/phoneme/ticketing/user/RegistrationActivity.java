@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.phoneme.ticketing.MainActivity;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

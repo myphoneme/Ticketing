@@ -38,7 +38,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.helper.SavedUserData;
 import com.phoneme.ticketing.interfaces.GetDataService;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 
 import java.util.HashMap;
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //if(res.equals("Call Sent")){
                     if(res.startsWith("Call Sent successful")){//This line needs to be modified
-                        com.phoneme.ticketing.UserAuth userAuth=new com.phoneme.ticketing.UserAuth(getApplicationContext());
+                        UserAuth userAuth=new UserAuth(getApplicationContext());
                         userAuth.setTokenUploaded(true);
                         String id=getId(res);
                         userAuth.setgcmmasterId(id);

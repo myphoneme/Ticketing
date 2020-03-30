@@ -34,7 +34,7 @@ import com.phoneme.ticketing.ui.ticketing.model.UserIdModel;
 import com.phoneme.ticketing.ui.ticketing.model.UserModelForTicket;
 import com.phoneme.ticketing.ui.ticketing.network.TicketEditPostResponse;
 import com.phoneme.ticketing.ui.ticketing.network.TicketEditResponse;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.ui.user.UserModel;
 
 import java.util.ArrayList;

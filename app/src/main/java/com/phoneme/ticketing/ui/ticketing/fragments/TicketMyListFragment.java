@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.helper.VerticalSpaceItemDecoration;
 import com.phoneme.ticketing.interfaces.GetDataService;

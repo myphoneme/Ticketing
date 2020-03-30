@@ -1,8 +1,9 @@
-package com.phoneme.ticketing;
+package com.phoneme.ticketing.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.phoneme.ticketing.user.UserTokenData;
 
@@ -110,6 +111,22 @@ public class UserAuth {
         //return null;
         return "";
     }
+
+    public String getDesignation(){
+        String token=getJwtToken();
+        String[] jwtParts = token.split("\\.");
+        byte[] payloadDecodeByte = Base64.decode(jwtParts[1], Base64.URL_SAFE);
+        UserTokenData utd = new UserTokenData();
+        try {
+            utd.setUserTokenData(new String(payloadDecodeByte, "UTF-8"));
+            //return utd.getUserid();
+            return ""+utd.getDesignation();
+        } catch (Exception e) {
+            Log.d("LOG_TAG", e.getMessage());
+        }
+        //return null;
+        return "";
+    }
     public String getImage(){
         String token=getJwtToken();
         String[] jwtParts = token.split("\\.");
@@ -129,6 +146,26 @@ public class UserAuth {
         SharedPreferences sharedpreferences= mcontext.getSharedPreferences(MYPREF, Context.MODE_PRIVATE);
         String appString=sharedpreferences.getString("appstring","");
         return appString;
+    }
+    public String getGCMMASTERId(){
+        Toast.makeText(mcontext,"getGCMMASTERId1abc", Toast.LENGTH_LONG).show();
+
+        String token=getJwtToken();
+        String[] jwtParts = token.split("\\.");
+        byte[] payloadDecodeByte = Base64.decode(jwtParts[1], Base64.URL_SAFE);
+        UserTokenData utd = new UserTokenData();
+        try {
+            utd.setUserTokenData(new String(payloadDecodeByte, "UTF-8"));
+            //return utd.getUserid();
+            Toast.makeText(mcontext,"getGCMMASTERId2abc "+utd.getGcmmasterid(), Toast.LENGTH_LONG).show();
+            //return ""+utd.getGcmmasterid();
+            return utd.getGcmmasterid();
+        } catch (Exception e) {
+            Log.d("LOG_TAG", e.getMessage());
+        }
+        //return null;
+        Toast.makeText(mcontext,"getGCMMASTERId3", Toast.LENGTH_LONG).show();
+        return "";
     }
 
     public Boolean isFcmTokenUploaded(){

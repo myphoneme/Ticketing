@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 
 import java.util.List;
 

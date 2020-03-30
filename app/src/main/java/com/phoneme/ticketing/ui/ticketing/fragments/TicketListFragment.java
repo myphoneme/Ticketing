@@ -49,7 +49,7 @@ import com.phoneme.ticketing.ui.ticketing.sorting.TicketStatusCompare;
 import com.phoneme.ticketing.ui.ticketing.sorting.TicketTitleCompare;
 import com.phoneme.ticketing.user.LoginActivity;
 //import com.phoneme.ticketing.user.UserAuth;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 
 import java.io.File;
 import java.io.IOException;

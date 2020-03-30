@@ -10,8 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.phoneme.ticketing.MainActivity;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
@@ -59,7 +60,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                 if(response.isSuccessful() && response.body()!=null) {
                     if( response.body().isOtpVerified() && response.body().getJwttoken()!=null && !response.body().getJwttoken().isEmpty() && response.body().getJwttoken().length()>0){
                         Toast.makeText(getApplicationContext(),"Otp matches.You're logged in", Toast.LENGTH_LONG).show();
-                        setDatainSharedPreferences(response.body().getJwttoken());
+                        setDatainSharedPreferences(response.body().getJwttoken());//commenting only temporrily on mar 30
                         ActivityStart();
                     }else{
                         Toast.makeText(getApplicationContext(),"OTP doesn't match", Toast.LENGTH_LONG).show();
@@ -74,12 +75,29 @@ public class OTPVerificationActivity extends AppCompatActivity {
         });
     }
     private void ActivityStart(){
-//        Intent intent=new Intent(this, MainActivity2.class);
-        Intent intent=new Intent(this, RegistrationActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
-        finish();
+        UserAuth auth = new UserAuth(this);
+        Toast.makeText(getApplicationContext(),"value1 of getgcmmaterid "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"value1 of designation "+auth.getDesignation(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"value1 of role "+auth.getRole(), Toast.LENGTH_LONG).show();
+
+        if(auth.getGCMMASTERId()==null ||auth.getGCMMASTERId().length()==0){
+            Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+        }
+//        if(auth.getGCMMASTERId()!=null && !auth.getGCMMASTERId().isEmpty()&& auth.getGCMMASTERId().length()>0){
+//            Toast.makeText(getApplicationContext(),"Inside if "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+//
+////            Intent intent=new Intent(this, MainActivity.class);
+////            startActivity(intent);
+////            finish();
+//        }else {
+//            Toast.makeText(getApplicationContext(),"Inside else "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+//
+////            Intent intent = new Intent(this, RegistrationActivity.class);
+////            startActivity(intent);
+////            finish();
+//        }
     }
 
     private void setDatainSharedPreferences(String token){

@@ -6,7 +6,7 @@ import android.util.Log;
 
 
 import com.phoneme.ticketing.BuildConfig;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.user.HeaderInterceptor;
 
 import java.io.File;

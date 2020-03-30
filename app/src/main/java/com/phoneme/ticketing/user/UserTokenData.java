@@ -5,7 +5,7 @@ import com.phoneme.ticketing.ui.user.UserModel;
 import org.json.JSONObject;
 
 public class UserTokenData {
-    private String firstName,name,id,mobile_no,created,status,email,password,image,created_by,role;
+    private String firstName,name,id,mobile_no,created,status,email,password,image,created_by,role,designation,gcmmasterid;
     private String userid;
     private int nbf,exp;
     private UserModel userModel;
@@ -29,6 +29,9 @@ public class UserTokenData {
             image= jsonData.getString("image");
             created_by= jsonData.getString("created_by");
             role= jsonData.getString("role");
+
+            designation=jsonData.getString("designation");
+            gcmmasterid=jsonData.getString("gcm_master_id");
             exp= jsonData.getInt("exp");
 
         }catch(Exception e){
@@ -77,4 +80,6 @@ public class UserTokenData {
     public String getName(){
         return this.name;
     }
+    public String getDesignation(){return this.designation;}
+    public String getGcmmasterid(){return this.gcmmasterid;}
 }

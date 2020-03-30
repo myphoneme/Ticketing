@@ -24,7 +24,7 @@ import androidx.navigation.Navigation;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.phoneme.ticketing.R;
-import com.phoneme.ticketing.UserAuth;
+import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.user.network.UserAddPostResponse;

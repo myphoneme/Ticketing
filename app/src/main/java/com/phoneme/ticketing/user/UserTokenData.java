@@ -19,20 +19,77 @@ public class UserTokenData {
             //JSONObject obj=(JSONObject) jsonObj.getJSONObject("data");
 
             JSONObject jsonData = new JSONObject(jsonObj.get("data").toString());
-            name= jsonData.getString("name");
-            id= jsonData.getString("id");
-            mobile_no= jsonData.getString("mobile_no");
-            created= jsonData.getString("created");
-            status= jsonData.getString("status");
-            email= jsonData.getString("email");
-            password= jsonData.getString("password");
-            image= jsonData.getString("image");
-            created_by= jsonData.getString("created_by");
-            role= jsonData.getString("role");
 
-            designation=jsonData.getString("designation");
-            gcmmasterid=jsonData.getString("gcm_master_id");
-            exp= jsonData.getInt("exp");
+            try{
+                name= jsonData.getString("name");
+            }catch(Exception e){
+
+            }
+            try{
+                mobile_no= jsonData.getString("mobile_no");
+
+            }catch(Exception e){
+
+            }
+            try{
+                created= jsonData.getString("created");
+            }catch(Exception e){
+
+            }
+            try{
+                status= jsonData.getString("status");
+            }catch(Exception e){
+
+            }
+            try{
+                email= jsonData.getString("email");
+            }catch(Exception e){
+
+            }
+            try{
+                password= jsonData.getString("password");
+            }catch(Exception e){
+
+            }
+            try{
+                image= jsonData.getString("image");
+            }catch(Exception e){
+
+            }
+            try{
+                created_by= jsonData.getString("created_by");
+            }catch(Exception e){
+
+            }
+            try{
+                role= jsonData.getString("role");
+            }catch(Exception e){
+
+            }
+            try{
+                id= jsonData.getString("id");
+            }catch(Exception e){
+
+            }
+
+            //exp assigned earlier
+//            try{
+//                exp= jsonData.getInt("exp");
+//            }catch(Exception e){
+//
+//            }
+            try{
+                designation=jsonData.getString("designation");
+            }catch(Exception e){
+
+            }
+            try{
+                gcmmasterid=jsonData.getString("gcm_master_id");
+            }catch(Exception e){
+
+            }
+
+
 
         }catch(Exception e){
 

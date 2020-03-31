@@ -77,10 +77,10 @@ public class OTPVerificationActivity extends AppCompatActivity {
     private void ActivityStart(){
         UserAuth auth = new UserAuth(this);
         Toast.makeText(getApplicationContext(),"value1 of getgcmmaterid "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(),"value1 of designation "+auth.getDesignation(), Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(),"value1 of role "+auth.getRole(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"value1 of designation "+auth.getDesignation(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"value1 of role "+auth.getRole(), Toast.LENGTH_LONG).show();
 
-        if(auth.getGCMMASTERId()==null ||auth.getGCMMASTERId().length()==0){
+        if(auth.getGCMMASTERId()==null || auth.getGCMMASTERId().length()==0 || auth.getGCMMASTERId().equalsIgnoreCase("0")|| auth.getGCMMASTERId().equalsIgnoreCase("null")){
             Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();

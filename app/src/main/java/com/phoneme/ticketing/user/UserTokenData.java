@@ -72,7 +72,7 @@ public class UserTokenData {
 
             }
 
-            //exp assigned earlier
+            //exp assigned earlier in the code
 //            try{
 //                exp= jsonData.getInt("exp");
 //            }catch(Exception e){

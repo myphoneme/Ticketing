@@ -159,7 +159,12 @@ public class UserAuth {
             //return utd.getUserid();
             Toast.makeText(mcontext,"getGCMMASTERId2abc "+utd.getGcmmasterid(), Toast.LENGTH_LONG).show();
             //return ""+utd.getGcmmasterid();
-            return utd.getGcmmasterid();
+            if(utd.getGcmmasterid()==null){
+                Toast.makeText(mcontext,"getGCMMASTERId2zzzz null ", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(mcontext,"getGCMMASTERId2zzzz NOT null ", Toast.LENGTH_LONG).show();
+            }
+            return ""+utd.getGcmmasterid();
         } catch (Exception e) {
             Log.d("LOG_TAG", e.getMessage());
         }

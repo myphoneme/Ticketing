@@ -85,6 +85,12 @@ public class OTPVerificationActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegistrationActivity.class);
             startActivity(intent);
             finish();
+        }else if(!isNumeric(auth.getGCMMASTERId())){
+            Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, RegistrationActivity.class);
+            startActivity(intent);
+            finish();
+
         }else{
             Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
             Intent intent=new Intent(this, MainActivity.class);
@@ -115,6 +121,18 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
         UserAuth userAuth=new UserAuth(this);
         userAuth.setJwtToken(token);
+    }
+
+    public boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
 }

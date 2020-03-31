@@ -82,8 +82,15 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
         if(auth.getGCMMASTERId()==null || auth.getGCMMASTERId().length()==0 || auth.getGCMMASTERId().equalsIgnoreCase("0")|| auth.getGCMMASTERId().equalsIgnoreCase("null")){
             Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, RegistrationActivity.class);
+            startActivity(intent);
+            finish();
         }else{
             Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
         }
 //        if(auth.getGCMMASTERId()!=null && !auth.getGCMMASTERId().isEmpty()&& auth.getGCMMASTERId().length()>0){
 //            Toast.makeText(getApplicationContext(),"Inside if "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();

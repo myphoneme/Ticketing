@@ -39,6 +39,7 @@ import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.helper.SavedUserData;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.user.UserAuth;
+import com.phoneme.ticketing.user.network.GCMMASTERADDEDResponse;
 
 import java.util.HashMap;
 
@@ -236,16 +237,20 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && response.body()!=null ){
                     String res=response.body().toString();//Call Sent successful
-
+                    //String res=response.body().getAdded_id();
                     //if(res.equals("Call Sent")){
                     if(res.startsWith("Call Sent successful")){//This line needs to be modified
+                       //if(true){
                         UserAuth userAuth=new UserAuth(getApplicationContext());
                         userAuth.setTokenUploaded(true);
+
                         String id=getId(res);
+                        Log.d("gcmid","id="+id);
                         userAuth.setgcmmasterId(id);
-                            Toast.makeText(MainActivity.this,"afteruploading="+res, Toast.LENGTH_SHORT).show();
-                            Toast.makeText(MainActivity.this,"afteruploading="+map.get("token"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,"afteruploading id="+res, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this,"afteruploading="+map.get("token"), Toast.LENGTH_SHORT).show();
                         Log.d("fcmtoken",map.get("token"));
+                        updateUserDetailsTable(id);
                     }else{
                         UserAuth userAuth=new UserAuth(getApplicationContext());
                         userAuth.setTokenUploaded(false);
@@ -279,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
     private String getId(String text){
         int index=text.indexOf('=');
         String id=text.substring(index+1);
-        return "";
+        return id;
     }
 //    private void uploadFcmToken(final String token){
 //
@@ -432,6 +437,22 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.READ_PHONE_STATE        }, MY_PERMISSIONS_REQUEST_CODE);
     }
 
+    private void updateUserDetailsTable(String gcmtableid){
+        GetDataService service= RetrofitClientInstance.APISetupScalars(this).create(GetDataService.class);//This one to get String response
+        HashMap<String, String> map=new HashMap<>();
+        map.put("gcm_master_id",gcmtableid);
+        Call<String> call=service.postUpdateUserDataTable(map);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(getApplicationContext(), "updateUserDetailsTable success", Toast.LENGTH_LONG).show();
+            }
 
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "updateUserDetailsTable failed"+t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 }

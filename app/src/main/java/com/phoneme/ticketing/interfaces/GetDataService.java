@@ -28,6 +28,7 @@ import com.phoneme.ticketing.ui.user.network.UserEditGetResponse;
 import com.phoneme.ticketing.ui.user.network.UserEditResponse;
 import com.phoneme.ticketing.ui.user.network.UserListResponse;
 import com.phoneme.ticketing.user.network.FCMTokenUploadResponse;
+import com.phoneme.ticketing.user.network.GCMMASTERADDEDResponse;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 import com.phoneme.ticketing.user.network.PhonePostResponse;
 
@@ -205,6 +206,10 @@ public interface GetDataService {
     @FormUrlEncoded
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/financeGCM")
     Call<String> postCompletUserData(@FieldMap Map<String, String> userData);
+
+    @FormUrlEncoded
+    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/postUpdateUserDataTable")
+    Call<String> postUpdateUserDataTable(@FieldMap Map<String, String> userData);
 
     //commented on dec 26 2019
 //    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/editpost")

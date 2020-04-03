@@ -29,6 +29,7 @@ import com.phoneme.ticketing.ui.user.network.UserEditResponse;
 import com.phoneme.ticketing.ui.user.network.UserListResponse;
 import com.phoneme.ticketing.user.network.FCMTokenUploadResponse;
 import com.phoneme.ticketing.user.network.GCMMASTERADDEDResponse;
+import com.phoneme.ticketing.user.network.GCM_Master_Data_Response;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 import com.phoneme.ticketing.user.network.PhonePostResponse;
 
@@ -95,6 +96,9 @@ public interface GetDataService {
 
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/")
     Call<UserListResponse> getUserList();
+
+    @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/getGCMData")
+    Call<String> getGCMMasterDataForaUser(@Query("gcm_master_id") String id);
 
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/edit")
     Call<UserEditGetResponse> getUserData(@Query("id") String id);
@@ -210,6 +214,10 @@ public interface GetDataService {
     @FormUrlEncoded
     @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/postUpdateUserDataTable")
     Call<String> postUpdateUserDataTable(@FieldMap Map<String, String> userData);
+
+    @FormUrlEncoded
+    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/updateGCMMasterTable")
+    Call<String> postUpdateGCMTable(@FieldMap Map<String, String> userData);
 
     //commented on dec 26 2019
 //    @POST("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/editpost")

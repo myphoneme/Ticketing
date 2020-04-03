@@ -40,6 +40,7 @@ import com.phoneme.ticketing.helper.SavedUserData;
 import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.user.network.GCMMASTERADDEDResponse;
+import com.phoneme.ticketing.user.network.GCM_Master_Data_Response;
 
 import java.util.HashMap;
 
@@ -124,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this,"fcmtokenra="+token, Toast.LENGTH_SHORT).show();
 
                         Boolean registration_done=getIntent().getBooleanExtra("registration",false);
-                        if(!userAuth.isFcmTokenUploaded()){
+                        //if(!userAuth.isFcmTokenUploaded()){
+                        if( userAuth.getGCMMASTERId()==null || userAuth.getGCMMASTERId().length()==0 || userAuth.getGCMMASTERId().equalsIgnoreCase("0")|| userAuth.getGCMMASTERId().equalsIgnoreCase("null")){
                             Toast.makeText(MainActivity.this,"uploading="+token, Toast.LENGTH_SHORT).show();
                             //uploadFcmToken(token);
                             if (checkPermissions()) {
@@ -146,6 +148,12 @@ public class MainActivity extends AppCompatActivity {
 
                             //checkPermissions();
 
+                        }else if(!userAuth.isGCNTokenUpdated()){
+                            HashMap<String, String> map=setData(token);
+                            //updateUserDetailsTable(map);
+                            map.put("gcm_master_id",userAuth.getGCMMASTERId());
+                            getGCMMASTERData(userAuth.getGCMMASTERId());
+                            //updateGCMMASTERTable(map);
                         }else{
                             Toast.makeText(MainActivity.this,"uploadedalreadyfcmtokenra="+token, Toast.LENGTH_LONG).show();
                             Log.d("fcmtoken",token);
@@ -437,10 +445,10 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.READ_PHONE_STATE        }, MY_PERMISSIONS_REQUEST_CODE);
     }
 
-    private void updateUserDetailsTable(String gcmtableid){
+    private void updateUserDetailsTable(String gcmid){
         GetDataService service= RetrofitClientInstance.APISetupScalars(this).create(GetDataService.class);//This one to get String response
         HashMap<String, String> map=new HashMap<>();
-        map.put("gcm_master_id",gcmtableid);
+        map.put("gcm_master_id",gcmid);
         Call<String> call=service.postUpdateUserDataTable(map);
         call.enqueue(new Callback<String>() {
             @Override
@@ -451,6 +459,44 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "updateUserDetailsTable failed"+t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void updateGCMMASTERTable(HashMap<String, String> map){
+        GetDataService service= RetrofitClientInstance.APISetupScalars(this).create(GetDataService.class);//This one to get String response
+        Call<String> call=service.postUpdateGCMTable(map);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.d("updateGCMMASTERTable=","success");
+                userAuth.setGCMUpdated(true);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("updateGCMMASTERTable=","failed");
+            }
+        });
+    }
+    private void getGCMMASTERData(String id){
+        GetDataService service= RetrofitClientInstance.APISetupScalars(this).create(GetDataService.class);//This one to get String response
+        Call<String> call=service.getGCMMasterDataForaUser(id);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    userAuth.setAppString(response.body().toString());
+                    HashMap<String, String> map=setData(token);
+                    //updateUserDetailsTable(map);
+                    map.put("gcm_master_id",userAuth.getGCMMASTERId());
+                    updateGCMMASTERTable(map);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
             }
         });
     }

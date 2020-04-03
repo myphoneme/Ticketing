@@ -92,8 +92,10 @@ public class OTPVerificationActivity extends AppCompatActivity {
             finish();
 
         }else{
+            //Here gcm_master table to be updated
             Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
             Intent intent=new Intent(this, MainActivity.class);
+            auth.setGCMUpdated(false);
             startActivity(intent);
             finish();
 

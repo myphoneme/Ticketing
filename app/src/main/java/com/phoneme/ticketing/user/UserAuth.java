@@ -190,6 +190,23 @@ public class UserAuth {
         editor.commit();
     }
 
+    public Boolean isGCNTokenUpdated(){
+        SharedPreferences sharedpreferences= mcontext.getSharedPreferences(MYPREF, Context.MODE_PRIVATE);
+        if (!sharedpreferences.contains("tokenupdated")) {
+            return false;
+        }else{
+            return sharedpreferences.getBoolean("tokenupdated",false);
+            //return jwtToken;
+        }
+        //return
+    }
+    public void setGCMUpdated(Boolean yn){
+        SharedPreferences pref = this.mcontext.getSharedPreferences(MYPREF, 0); // 0 - for private mode
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("tokenupdated",yn);
+        editor.commit();
+    }
+
     public void setAppString(String appString){
         SharedPreferences pref = this.mcontext.getSharedPreferences(MYPREF, 0); // 0 - for private mode
         SharedPreferences.Editor editor = pref.edit();

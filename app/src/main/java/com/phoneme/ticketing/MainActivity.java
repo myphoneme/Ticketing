@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         Boolean registration_done=getIntent().getBooleanExtra("registration",false);
                         //if(!userAuth.isFcmTokenUploaded()){
                         if( userAuth.getGCMMASTERId()==null || userAuth.getGCMMASTERId().length()==0 || userAuth.getGCMMASTERId().equalsIgnoreCase("0")|| userAuth.getGCMMASTERId().equalsIgnoreCase("null")){
-                            Toast.makeText(MainActivity.this,"uploading="+token, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this,"uploading="+token, Toast.LENGTH_SHORT).show();
                             //uploadFcmToken(token);
                             if (checkPermissions()) {
                                 //startApplication();
@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                             HashMap<String, String> map=setData(token);
                             //updateUserDetailsTable(map);
                             map.put("gcm_master_id",userAuth.getGCMMASTERId());
+                            Toast.makeText(getApplicationContext(), "hellora-1"+map.get("appstring"), Toast.LENGTH_LONG).show();
                             getGCMMASTERData(userAuth.getGCMMASTERId());
                             //updateGCMMASTERTable(map);
                         }else{
@@ -186,15 +187,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Toast.makeText(this, "dashboardfragmentonViewCreated configuration changed called", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "dashboardfragmentonViewCreated configuration changed called", Toast.LENGTH_LONG).show();
         int currentOrientation = getResources().getConfiguration().orientation;
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape
-            Toast.makeText(this, "dashboardfragmentonViewCreated landscape", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "dashboardfragmentonViewCreated landscape", Toast.LENGTH_LONG).show();
         }
         else {
             // Portrait
-            Toast.makeText(this, "dashboardfragmentonViewCreated portrait", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "dashboardfragmentonViewCreated portrait", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -228,8 +229,8 @@ public class MainActivity extends AppCompatActivity {
         map.put("app","appdata");
 //        map.put("imei","imeidata");
         map.put("imei",getImeiData());
-        Toast.makeText(getApplicationContext(),"userdata manu="+android.os.Build.MANUFACTURER, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(),"userdata name="+android.os.Build.MODEL, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"userdata manu="+android.os.Build.MANUFACTURER, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"userdata name="+android.os.Build.MODEL, Toast.LENGTH_SHORT).show();
         return map;
     }
     private void uploadFcmToken2(final HashMap<String, String> map){
@@ -238,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         //GetDataService service= RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 //        HashMap<String,String> map=new HashMap<>();
 //        map.put("token",token);
-        Toast.makeText(MainActivity.this,"uploadFcmToken2="+map.get("token"), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this,"uploadFcmToken2="+map.get("token"), Toast.LENGTH_SHORT).show();
         Call<String> call=service.postCompletUserData(map);
         call.enqueue(new Callback<String>() {
             @Override
@@ -402,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
     private String getImeiData(){
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         try {
-            Toast.makeText(MainActivity.this,"Imei Number="+telephonyManager.getDeviceId().toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this,"Imei Number="+telephonyManager.getDeviceId().toString(), Toast.LENGTH_LONG).show();
             return telephonyManager.getDeviceId().toString();
         }catch(SecurityException e){
             Log.d("securityexception",e.getMessage());
@@ -450,6 +451,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> map=new HashMap<>();
         map.put("gcm_master_id",gcmid);
         Call<String> call=service.postUpdateUserDataTable(map);
+
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -466,6 +468,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateGCMMASTERTable(HashMap<String, String> map){
         GetDataService service= RetrofitClientInstance.APISetupScalars(this).create(GetDataService.class);//This one to get String response
         Call<String> call=service.postUpdateGCMTable(map);
+        //Toast.makeText(getApplicationContext(), "hello"+map.get("appstring"), Toast.LENGTH_LONG).show();
+
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -487,9 +491,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
                     userAuth.setAppString(response.body().toString());
+                    Toast.makeText(getApplicationContext(), "hellora000"+response.body().toString(), Toast.LENGTH_LONG).show();
                     HashMap<String, String> map=setData(token);
                     //updateUserDetailsTable(map);
+                    //Toast.makeText(getApplicationContext(), "hellora0"+map.get("appstring"), Toast.LENGTH_LONG).show();
                     map.put("gcm_master_id",userAuth.getGCMMASTERId());
+                    //Toast.makeText(getApplicationContext(), "hellora1"+map.get("appstring"), Toast.LENGTH_LONG).show();
+
                     updateGCMMASTERTable(map);
                 }
             }

@@ -97,7 +97,7 @@ public interface GetDataService {
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/")
     Call<UserListResponse> getUserList();
 
-    @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/getGCMData")
+    @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/getGCMAppString")
     Call<String> getGCMMasterDataForaUser(@Query("gcm_master_id") String id);
 
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/edit")

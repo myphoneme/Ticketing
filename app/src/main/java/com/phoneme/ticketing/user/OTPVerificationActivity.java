@@ -47,19 +47,19 @@ public class OTPVerificationActivity extends AppCompatActivity {
         });
     }
     private void postOtp(String otp, String phone){
-        Toast.makeText(getApplicationContext(),"postOTP", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"postOTP", Toast.LENGTH_LONG).show();
         HashMap<String, String> map=new HashMap<>();
         map.put("otp",otp);
         map.put("phone",phone);
         GetDataService service= RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<OTPVerifactionResponse> call=service.postOTP(map);
-        Toast.makeText(getApplicationContext(),"postOTP2", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"postOTP2", Toast.LENGTH_LONG).show();
         call.enqueue(new Callback<OTPVerifactionResponse>() {
             @Override
             public void onResponse(Call<OTPVerifactionResponse> call, Response<OTPVerifactionResponse> response) {
                 if(response.isSuccessful() && response.body()!=null) {
                     if( response.body().isOtpVerified() && response.body().getJwttoken()!=null && !response.body().getJwttoken().isEmpty() && response.body().getJwttoken().length()>0){
-                        Toast.makeText(getApplicationContext(),"Otp matches.You're logged in", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"Otp matches.You're logged in", Toast.LENGTH_LONG).show();
                         setDatainSharedPreferences(response.body().getJwttoken());//commenting only temporrily on mar 30
                         ActivityStart();
                     }else{
@@ -76,24 +76,24 @@ public class OTPVerificationActivity extends AppCompatActivity {
     }
     private void ActivityStart(){
         UserAuth auth = new UserAuth(this);
-        Toast.makeText(getApplicationContext(),"value1 of getgcmmaterid "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"value1 of getgcmmaterid "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),"value1 of designation "+auth.getDesignation(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),"value1 of role "+auth.getRole(), Toast.LENGTH_LONG).show();
 
         if(auth.getGCMMASTERId()==null || auth.getGCMMASTERId().length()==0 || auth.getGCMMASTERId().equalsIgnoreCase("0")|| auth.getGCMMASTERId().equalsIgnoreCase("null")){
-            Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, RegistrationActivity.class);
             startActivity(intent);
             finish();
         }else if(!isNumeric(auth.getGCMMASTERId())){
-            Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+            ///Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid !=nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, RegistrationActivity.class);
             startActivity(intent);
             finish();
 
         }else{
             //Here gcm_master table to be updated
-            Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"value2 of getgcmmaterid =nullra "+auth.getGCMMASTERId(), Toast.LENGTH_LONG).show();
             Intent intent=new Intent(this, MainActivity.class);
             auth.setGCMUpdated(false);
             startActivity(intent);

@@ -51,7 +51,7 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface GetDataService {
-
+    // https://phoneme.in/anujitbhu/napolean
     @GET("/anujitbhu/napolean"+ BuildConfig.MIDDLE_URL +"index.php/dashboard/index1")
     Call<DashboardApi> getDashboardData();
 

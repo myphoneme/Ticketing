@@ -41,6 +41,9 @@ public class UserModel {
     @SerializedName("tickets_status")
     private Ticket_Status_Model tickets_status;
 
+    @SerializedName("id_gcm_master")
+    private String id_gcm_master;
+
     public Ticket_Status_Model getTickets_status(){
         return this.tickets_status;
     }
@@ -87,6 +90,10 @@ public class UserModel {
 
     public String getRole(){
         return this.role;
+    }
+
+    public String getId_gcm_master(){
+        return this.id_gcm_master;
     }
 
 

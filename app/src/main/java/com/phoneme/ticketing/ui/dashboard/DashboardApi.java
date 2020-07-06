@@ -7,6 +7,7 @@ public class DashboardApi {
     @SerializedName("dashboard")
     public DashdataModel dashdata;
 
+
     public DashdataModel getDashdata(){
         return this.dashdata;
     }

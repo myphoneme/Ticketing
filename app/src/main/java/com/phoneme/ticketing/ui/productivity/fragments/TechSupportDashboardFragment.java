@@ -23,6 +23,8 @@ import com.phoneme.ticketing.ui.productivity.adapter.TechsupportDashboardAdapter
 import com.phoneme.ticketing.ui.productivity.model.TechSupportDashboardViewModel;
 import com.phoneme.ticketing.ui.productivity.model.TechsupportUserDataDashboardModel;
 import com.phoneme.ticketing.ui.productivity.network.TechsupportDashboardResponse;
+import com.phoneme.ticketing.ui.productivity.network.TechsupportDashboardResponse2;
+import com.phoneme.ticketing.ui.productivity.network.TechsupportDashboardResponseCheck;
 
 import java.util.List;
 
@@ -63,10 +65,31 @@ public class TechSupportDashboardFragment extends Fragment implements Techsuppor
 //        GridLayoutManager manager= new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
 //        recyclerView.setLayoutManager(manager);
     }
+    public void getCheckingDashboardController(){
+        GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+        Call<TechsupportDashboardResponseCheck> call = service.getProductivityCheck();
+        System.out.println("getCheckingDashboardController1");
+        call.enqueue(new Callback<TechsupportDashboardResponseCheck>() {
+            @Override
+            public void onResponse(Call<TechsupportDashboardResponseCheck> call, Response<TechsupportDashboardResponseCheck> response) {
+                Toast.makeText(getContext(),"check data"+response.body(), Toast.LENGTH_SHORT).show();
+                System.out.println("getCheckingDashboardController2");
+
+            }
+
+            @Override
+            public void onFailure(Call<TechsupportDashboardResponseCheck> call, Throwable t) {
+                System.out.println("getCheckingDashboardController3");
+
+            }
+        });
+    }
     public void getTotalDashboardDaata(){
         System.out.println("getTotalDashboardDaata");
+        //getCheckingDashboardController();
         //GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+        //Call<TechsupportDashboardResponse> call = service.getProductivity();
         Call<TechsupportDashboardResponse> call = service.getProductivity();
         //Call<DashboardApi> call2 = service.getDashboardData();
         System.out.println("getTotalDashboardDaata2");
@@ -100,7 +123,7 @@ public class TechSupportDashboardFragment extends Fragment implements Techsuppor
 
             @Override
             public void onFailure(Call<TechsupportDashboardResponse> call, Throwable t) {
-                System.out.println("getTotalDashboardDaata failure"+call.toString()+" "+t.getMessage());
+                System.out.println("getTotalDashboardDaata failure "+call.toString()+" "+t.getMessage());
                 progressbarlayout.setVisibility(View.GONE);
             }
         });

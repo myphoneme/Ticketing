@@ -65,25 +65,27 @@ public class TechSupportDashboardFragment extends Fragment implements Techsuppor
 //        GridLayoutManager manager= new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
 //        recyclerView.setLayoutManager(manager);
     }
-    public void getCheckingDashboardController(){
-        GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
-        Call<TechsupportDashboardResponseCheck> call = service.getProductivityCheck();
-        System.out.println("getCheckingDashboardController1");
-        call.enqueue(new Callback<TechsupportDashboardResponseCheck>() {
-            @Override
-            public void onResponse(Call<TechsupportDashboardResponseCheck> call, Response<TechsupportDashboardResponseCheck> response) {
-                Toast.makeText(getContext(),"check data"+response.body(), Toast.LENGTH_SHORT).show();
-                System.out.println("getCheckingDashboardController2");
 
-            }
-
-            @Override
-            public void onFailure(Call<TechsupportDashboardResponseCheck> call, Throwable t) {
-                System.out.println("getCheckingDashboardController3");
-
-            }
-        });
-    }
+    //Below function just to check. It was added on 6th july 2020
+//    public void getCheckingDashboardController(){
+//        GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+//        Call<TechsupportDashboardResponseCheck> call = service.getProductivityCheck();
+//        System.out.println("getCheckingDashboardController1");
+//        call.enqueue(new Callback<TechsupportDashboardResponseCheck>() {
+//            @Override
+//            public void onResponse(Call<TechsupportDashboardResponseCheck> call, Response<TechsupportDashboardResponseCheck> response) {
+//                Toast.makeText(getContext(),"check data"+response.body(), Toast.LENGTH_SHORT).show();
+//                System.out.println("getCheckingDashboardController2");
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TechsupportDashboardResponseCheck> call, Throwable t) {
+//                System.out.println("getCheckingDashboardController3");
+//
+//            }
+//        });
+//    }
     public void getTotalDashboardDaata(){
         System.out.println("getTotalDashboardDaata");
         //getCheckingDashboardController();

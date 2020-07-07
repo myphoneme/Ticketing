@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.phoneme.ticketing.user.LoginActivity;
+import com.phoneme.ticketing.user.LoginEmailActivity;
 import com.phoneme.ticketing.user.UserAuth;
 
 public class LogoutFragment extends Fragment {
@@ -33,7 +34,7 @@ public class LogoutFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UserAuth userAuth=new UserAuth(getContext());
         userAuth.clearData();
-        Intent intent=new Intent(getActivity(), LoginActivity.class);
+        Intent intent=new Intent(getActivity(), LoginEmailActivity.class);
         startActivity(intent);
         getActivity().finish();
     }

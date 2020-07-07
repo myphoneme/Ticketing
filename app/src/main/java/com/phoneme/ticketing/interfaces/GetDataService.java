@@ -202,6 +202,10 @@ public interface GetDataService {
     Call<OTPVerifactionResponse> postOTP(@FieldMap Map<String, String> otpData);
 
     @FormUrlEncoded
+    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/login/index")
+    Call<OTPVerifactionResponse> postLoginPassword(@FieldMap Map<String, String> otpData);
+
+    @FormUrlEncoded
     @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/postphoneforlogin")
     Call<PhonePostResponse> postPhone(@FieldMap Map<String, String> phone);
 

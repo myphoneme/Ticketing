@@ -22,7 +22,7 @@
             android:id="@+id/id_email"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:hint="Enter email"
+            android:hint="Email"
             android:textColorHint="@color/colorPrimary"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorPrimary"

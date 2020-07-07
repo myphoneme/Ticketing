@@ -119,7 +119,7 @@ public class TechsupportDashboardAdapter extends RecyclerView.Adapter<Techsuppor
     @Override
     public TechsupportDashboardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent , int i){
 
-        View view = LayoutInflater.from(mcontext).inflate(R.layout.adapter_item_techsupportdashboard_new_ui_yash, parent, false);
+        View view = LayoutInflater.from(mcontext).inflate(R.layout.adapter_item_techsupportdashboard_new_ui_sir, parent, false);
         ViewGroup.LayoutParams p = view.getLayoutParams();
         //p.height=parent.getHeight()/2;
         //p.height=parent.getWidth()/2;

@@ -11,6 +11,7 @@ import com.phoneme.ticketing.user.HeaderInterceptor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -100,6 +101,9 @@ public class RetrofitClientInstance {
 
         try {
             mOkBuilder = new OkHttpClient.Builder();
+            mOkBuilder.connectTimeout(10, TimeUnit.SECONDS)
+                    .writeTimeout(10, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS);
             mCache = new Cache(new File(activity.getCacheDir(), CACHE_DIR), CACHE_SIZE);
             mOkBuilder.cache(mCache);
             mLogInterceptor = new HttpLoggingInterceptor();

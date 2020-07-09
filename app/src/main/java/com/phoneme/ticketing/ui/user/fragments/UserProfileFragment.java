@@ -30,6 +30,7 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.phoneme.ticketing.R;
+import com.phoneme.ticketing.ui.user.network.UserPasswordChangeResponse;
 import com.phoneme.ticketing.user.UserAuth;
 import com.phoneme.ticketing.config.RetrofitClientInstance;
 import com.phoneme.ticketing.helper.SavedUserData;
@@ -37,6 +38,7 @@ import com.phoneme.ticketing.interfaces.GetDataService;
 import com.phoneme.ticketing.ui.user.UserModel;
 import com.phoneme.ticketing.ui.user.network.UserEditGetResponse;
 import com.phoneme.ticketing.ui.user.network.UserEditResponse;
+import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 
 
 import java.io.File;
@@ -51,11 +53,11 @@ import retrofit2.Response;
 
 public class UserProfileFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
-    private EditText username, mobile,designation;
+    private EditText username, mobile,designation,oldpwd,newpwd,confirmpwd;
     private TextView email,name_txtview,designation_txtview,ticket_oepn,tickets_closed,tickets_assigned,mobile_number,email_value,my_tickets;
     private SavedUserData userData;
     private SimpleDraweeView userimage;
-    private Button submit;
+    private Button submit,changePassword;
     private String[] status = {"Active", "Inactive"};
     private String statustext;
     private Spinner spin;
@@ -90,6 +92,7 @@ public class UserProfileFragment extends Fragment implements
         mobile = (EditText) view.findViewById(R.id.mobile_number);
         userimage = (SimpleDraweeView) view.findViewById(R.id.user_image);
         submit = (Button) view.findViewById(R.id.submit);
+        changePassword=(Button)view.findViewById(R.id.change_password);
         spin = (Spinner) view.findViewById(R.id.spinner);
         designation=(EditText)view.findViewById(R.id.designation);
         name_txtview=(TextView)view.findViewById(R.id.name_text_view);
@@ -100,6 +103,9 @@ public class UserProfileFragment extends Fragment implements
         mobile_number=(TextView)view.findViewById(R.id.mobile_number_value);
         email_value=(TextView)view.findViewById(R.id.email_value);
         my_tickets=(TextView)view.findViewById(R.id.my_tickets);
+        confirmpwd=(EditText)view.findViewById(R.id.confirm_password);
+        newpwd=(EditText)view.findViewById(R.id.new_password);
+        oldpwd=(EditText)view.findViewById(R.id.current_password);
         getUserData(userid);
         username.setEnabled(false);
         mobile.setEnabled(false);
@@ -149,7 +155,34 @@ public class UserProfileFragment extends Fragment implements
             }
         });
 
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String oldpasswordString=oldpwd.getText().toString();
+                String newpasswordString=newpwd.getText().toString();
+                String confirmpasswordString=confirmpwd.getText().toString();
+                if(oldpasswordString!=null && !oldpasswordString.isEmpty() && oldpasswordString.length()>0){
+                    if(newpasswordString!=null && !newpasswordString.isEmpty() && newpasswordString.length()>0){
+                        if(confirmpasswordString!=null && !confirmpasswordString.isEmpty() && confirmpasswordString.length()>0){
+                            if(newpasswordString.equals(confirmpasswordString)){
+                                changePassword(oldpasswordString,newpasswordString,confirmpasswordString);
+                            }else{
+                                Toast.makeText(getContext(), "New passwords don't match", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(getContext(), "Please confirm password", Toast.LENGTH_SHORT).show();
 
+                        }
+                    }else{
+                        Toast.makeText(getContext(), "Please enter new password", Toast.LENGTH_SHORT).show();
+
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Please enter old password", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
         ArrayAdapter aa = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, status);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -385,6 +418,36 @@ public class UserProfileFragment extends Fragment implements
                 Toast.makeText(getContext(), "onfailure" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void changePassword(String oldpassword,String newpassword,String confirmpassword){
+        HashMap<String, String> map=new HashMap<>();
+        map.put("oldpwd",oldpassword);
+        map.put("newpwd",newpassword);
+        map.put("Confirm_pwd",confirmpassword);
+        GetDataService service= RetrofitClientInstance.APISetup(getActivity()).create(GetDataService.class);
+        Call<UserPasswordChangeResponse> call=service.postPasswordChange(map);
+        Toast.makeText(getContext(), "password change 1", Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<UserPasswordChangeResponse>() {
+            @Override
+            public void onResponse(Call<UserPasswordChangeResponse> call, Response<UserPasswordChangeResponse> response) {
+                Toast.makeText(getContext(),  "response"+response, Toast.LENGTH_SHORT).show();
+                System.out.println("RESPONSE="+response);
+                if(response!=null && response.body()!=null ){
+                    Toast.makeText(getContext(),  response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserPasswordChangeResponse> call, Throwable t) {
+                System.out.println("Failure:"+t.getMessage());
+                Toast.makeText(getContext(), "Failure: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
     }
 
 }

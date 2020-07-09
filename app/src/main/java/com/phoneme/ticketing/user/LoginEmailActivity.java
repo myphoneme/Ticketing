@@ -67,20 +67,22 @@ public class LoginEmailActivity extends AppCompatActivity {
         call.enqueue(new Callback<OTPVerifactionResponse>() {
             @Override
             public void onResponse(Call<OTPVerifactionResponse> call, Response<OTPVerifactionResponse> response) {
+                Toast.makeText(getApplicationContext(),"first="+response.body().getMessage(), Toast.LENGTH_LONG).show();
+
                 if(response.isSuccessful() && response.body()!=null) {
-                    if( response.body().isOtpVerified() && response.body().getJwttoken()!=null && !response.body().getJwttoken().isEmpty() && response.body().getJwttoken().length()>0){
-                        Toast.makeText(getApplicationContext(),"Otp matches.You're logged in"+response.body().getJwttoken(), Toast.LENGTH_LONG).show();
+                    if( response.body().getPasswordverified() && response.body().getJwttoken()!=null && !response.body().getJwttoken().isEmpty() && response.body().getJwttoken().length()>0){
+                        Toast.makeText(getApplicationContext(),"Password matches.You're logged in2", Toast.LENGTH_LONG).show();
                         setDatainSharedPreferences(response.body().getJwttoken());
                         ActivityStart();
                     }else{
-                        Toast.makeText(getApplicationContext(),"Password doesn't match", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<OTPVerifactionResponse> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(),"Error:"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

@@ -29,6 +29,7 @@ import com.phoneme.ticketing.ui.user.network.UserAddPostResponse;
 import com.phoneme.ticketing.ui.user.network.UserEditGetResponse;
 import com.phoneme.ticketing.ui.user.network.UserEditResponse;
 import com.phoneme.ticketing.ui.user.network.UserListResponse;
+import com.phoneme.ticketing.ui.user.network.UserPasswordChangeResponse;
 import com.phoneme.ticketing.user.network.FCMTokenUploadResponse;
 import com.phoneme.ticketing.user.network.OTPVerifactionResponse;
 import com.phoneme.ticketing.user.network.PhonePostResponse;
@@ -200,6 +201,10 @@ public interface GetDataService {
     @FormUrlEncoded
     @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/otpverification")
     Call<OTPVerifactionResponse> postOTP(@FieldMap Map<String, String> otpData);
+
+    @FormUrlEncoded
+    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/passwordchange")
+    Call<UserPasswordChangeResponse> postPasswordChange(@FieldMap Map<String, String> pwdData);
 
     @FormUrlEncoded
     @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/login/index")

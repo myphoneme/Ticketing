@@ -10,6 +10,12 @@ public class OTPVerifactionResponse {
     @SerializedName("jwttoken")
     private String jwttoken;
 
+    @SerializedName("message")
+    private String message;
+
+    @SerializedName("passwordverified")
+    private Boolean passwordverified;
+
     @SerializedName("result")
     private UserModel user;
 
@@ -20,7 +26,15 @@ public class OTPVerifactionResponse {
         return this.otpverified;
     }
 
+    public Boolean getPasswordverified(){
+        return this.passwordverified;
+    }
+
     public UserModel getUser(){
         return this.user;
+    }
+
+    public String getMessage(){
+        return this.message;
     }
 }

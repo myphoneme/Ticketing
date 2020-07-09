@@ -424,6 +424,132 @@
     </androidx.cardview.widget.CardView>
 
 
+    <androidx.cardview.widget.CardView
+        android:visibility="visible"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:padding="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Password"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/old_password_text"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Password:" />
+
+                <EditText
+                    android:layout_below="@+id/old_password_text"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/edit_bg"
+                    android:hint="Enter current Password"
+                    android:id="@+id/current_password"
+                    android:paddingLeft="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/new_password_text"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Password:" />
+
+                <EditText
+                    android:layout_below="@+id/new_password_text"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/edit_bg"
+                    android:id="@+id/new_password"
+                    android:hint="New password"
+                    android:paddingLeft="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/confirm_password_text"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm Password:" />
+
+                <EditText
+                    android:layout_below="@+id/confirm_password_text"
+                    android:background="@drawable/edit_bg"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/confirm_password"
+                    android:paddingLeft="5dp"
+                    android:hint="Confirm password"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                     />
+            </RelativeLayout>
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/email_text"-->
+<!--                    android:layout_alignParentLeft="true"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Email" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_alignParentLeft="true"-->
+<!--                    android:background="@color/light_white"-->
+<!--                    android:id="@+id/email"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_below="@+id/email_text"-->
+<!--                    android:text="enta@entra.com" />-->
+<!--            </RelativeLayout>-->
+
+            <Button
+                android:id="@+id/change_password"
+                android:background="@drawable/button_bg_rounded_corners"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/text_white"
+                android:layout_margin="5dp"
+                android:text="Change password"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 

@@ -50,26 +50,6 @@ public class RetrofitClientInstance {
         }
         return retrofit;
     }
-    /*
-    public static Retrofit getRetrofitInstance2() {
-        /*
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(new Interceptor() {
-            @Override public Response intercept(Interceptor.Chain chain) throws IOException {
-                Request request = chain.request().newBuilder().addHeader("Authorization", "value").build();
-                return chain.proceed(request);
-            }
-        });
-        OkHttpClient client = httpClient.build();*/
-//        if (retrofit == null) {
-//            retrofit = new retrofit2.Retrofit.Builder()
-//                    .baseUrl(BASE_URL)
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build();
-//        }
-//        return retrofit;
-//    }*/
-
     public static Retrofit getRetrofitInstance(Context context) {
         final UserAuth userAuth=new UserAuth(context);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

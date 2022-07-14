@@ -53,186 +53,186 @@ import retrofit2.http.Query;
 
 public interface GetDataService {
     // https://phoneme.in/android/napolean
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/dashboard/index1")
+    @GET(BuildConfig.MIDDLE_URL +"dashboard/index1")
     Call<DashboardApi> getDashboardData();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/dashboard/index")
+    @GET(BuildConfig.MIDDLE_URL +"dashboard/index")
     Call<DashboardMainResponse> getDashboardMainData();
 
-//    @GET("/android/napolean/ticketingapici/index.php/ticket/ticket") //without authorization. It is working
+//    @GET("/android/napolean/ticketingapici/ticket/ticket") //without authorization. It is working
 //    Call<TicketResponse> getTickets();
 
-//    @GET("/android/napolean/ticketingapici/index.php/ticket/index")
+//    @GET("/android/napolean/ticketingapici/ticket/index")
 //    Call<TicketResponse> getTickets();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/index")
+    @GET(BuildConfig.MIDDLE_URL +"ticket/index")
     Call<TicketResponse> getTickets();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/index1")
+    @GET(BuildConfig.MIDDLE_URL +"ticket/index1")
     Call<TicketResponse> getMyTickets();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/company/")
+    @GET(BuildConfig.MIDDLE_URL +"company/")
     Call<List<CompanyModel>> getCompanies();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/company/edit")
+    @GET(BuildConfig.MIDDLE_URL +"company/edit")
     Call<CompanyEditGetResponse> getCompanyData(@Query("id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php//ticket/view1")
+    @GET(BuildConfig.MIDDLE_URL +"ticket/view1")
     Call<TicketSingleResponse> getTicketView1(@Query("id") String id);
 
-//    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/")//This one original. Nnot to be used for a while
+//    @GET(BuildConfig.MIDDLE_URL +"productivity/")//This one original. Nnot to be used for a while
 //    Call<TechsupportDashboardResponse> getProductivity();//because of biru changes
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/index2")//This one original not to be used for a while
+    @GET(BuildConfig.MIDDLE_URL +"productivity/index2")//This one original not to be used for a while
     Call<TechsupportDashboardResponse> getProductivity();//because of biru changes
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/index4")//This one original not to be used for a while
+    @GET(BuildConfig.MIDDLE_URL +"productivity/index4")//This one original not to be used for a while
     Call<TechsupportDashboardResponseCheck> getProductivityCheck();//because of biru changes
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/")
+    @GET(BuildConfig.MIDDLE_URL +"productivity/")
     Call<TechsupportDashboardResponse> getUserProductivity(@Query("uid") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/index2")//Befor biru changes it was /index or just /
+    @GET(BuildConfig.MIDDLE_URL +"productivity/index2")//Befor biru changes it was /index or just /
     Call<TechsupportDashboardResponseList> getUserProductivityList(@Query("uid") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/productivity/index3")//Befor biru changes it was /index or just /
+    @GET(BuildConfig.MIDDLE_URL +"productivity/index3")//Befor biru changes it was /index or just /
     Call<TechsupportDashboardResponseList> getUserProductivityListWithStatus(@Query("uid") String id,@Query("solved") String status);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/")
+    @GET(BuildConfig.MIDDLE_URL +"user/")
     Call<UserListResponse> getUserList();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/getGCMAppString")
+    @GET(BuildConfig.MIDDLE_URL +"user/getGCMAppString")
     Call<String> getGCMMasterDataForaUser(@Query("gcm_master_id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/edit")
+    @GET(BuildConfig.MIDDLE_URL +"user/edit")
     Call<UserEditGetResponse> getUserData(@Query("id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/edit")
+    @GET(BuildConfig.MIDDLE_URL +"ticket/edit")
     Call<TicketEditResponse> getTicketEdit(@Query("id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/view")
+    @GET(BuildConfig.MIDDLE_URL +"ticket/view")
     Call<TicketGetViewResponse> getTicketView(@Query("id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+    @GET(BuildConfig.MIDDLE_URL +"ticket/create")
     Call<TicketCreatGetResponse> getTicketCreate();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/")
+    @GET(BuildConfig.MIDDLE_URL +"project/")
     Call<ProjectListResponse> getProjectList();
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/edit")
+    @GET(BuildConfig.MIDDLE_URL +"project/edit")
     Call<ProjectEditGetResponse> getProjectEdit(@Query("id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/listoftickets")
+    @GET(BuildConfig.MIDDLE_URL +"project/listoftickets")
     Call<TicketResponse> getTicketsForaGivenProject(@Query("id") String id);
 
-    @GET("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
+    @GET(BuildConfig.MIDDLE_URL +"project/add")
     Call<ProjectAddGetResponse> getDataForProjectAdd();
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/view")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/view")
     Call<TicketPostViewResponse> postTicketView(@FieldMap Map<String, String> postTicketData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
+    @POST(BuildConfig.MIDDLE_URL +"project/add")
     Call<ProjectAddPostResponse> postProjectAdd(@FieldMap Map<String, String> projectData, @Field("allocated_users[]") List<String> items);
 
     //Added feb 20 2020 post biru changes
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
+    @POST(BuildConfig.MIDDLE_URL +"project/add")
     Call<ProjectAddPostResponse> postProjectAddWithOutImage(@PartMap() Map<String, RequestBody> partMap,@Query("allocated_users[]") List<String> user_id);
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/add")
+    @POST(BuildConfig.MIDDLE_URL +"project/add")
     Call<ProjectAddPostResponse> postProjectAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Query("allocated_users[]") List<String> user_id);
 
 //    @FormUrlEncoded
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/editpost")
+//    @POST(BuildConfig.MIDDLE_URL +"project/editpost")
 //    Call<ProjectEditPostResponse> postCompanyEdit(@FieldMap Map<String, String> proejectData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/editpost")
+    @POST(BuildConfig.MIDDLE_URL +"project/editpost")
     Call<ProjectEditPostResponse> postCompanyEdit2(@FieldMap Map<String, String> projectData, @FieldMap Map<String, List<String>> map2);
 
 //    @FormUrlEncoded //commented on dec26 2019
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/editpost")
+//    @POST(BuildConfig.MIDDLE_URL +"project/editpost")
 //    Call<ProjectEditPostResponse> postCompanyEdit(@FieldMap Map<String,String> projectData,@Field("allocated_users[]") List<String> items);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/project/edit")
+    @POST(BuildConfig.MIDDLE_URL +"project/edit")
     Call<ProjectEditPostResponse> postCompanyEdit(@FieldMap Map<String, String> projectData, @Field("allocated_users[]") List<String> items);
 
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/company/create")
+    @POST(BuildConfig.MIDDLE_URL +"company/create")
     Call<CompanyCreatePostResponse> postCompanyCreate(@Field("Company_name") String name, @Field("status") int status);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/company/edit")
+    @POST(BuildConfig.MIDDLE_URL +"company/edit")
     Call<CompanyEditPostResponse> postCompanyEditFinal(@Field("id") String id, @Field("Company_name") String name, @Field("status") int status);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/create")
     Call<TicketCreatePostResponse> postTicketAdd(@FieldMap Map<String, String> ticketData);
 
     //Biru user allocated
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/create")
     Call<TicketCreatePostResponse> postTicketAddWithUser(@FieldMap Map<String, String> ticketData,@Field("check_user[]") List<String> chkusrs);
 
 //    @FormUrlEncoded
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+//    @POST(BuildConfig.MIDDLE_URL +"ticket/create")
 //    Call<TicketCreatePostResponse> postTicketAddWithImage(@FieldMap Map<String, String> ticketData);
 
 //    @Multipart
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+//    @POST(BuildConfig.MIDDLE_URL +"ticket/create")
 //    Call<TicketCreatePostResponse> postTicketAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Query("check_user[]") ArrayList<String> user_id);
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/create")
     Call<TicketCreatePostResponse> postTicketAddWithOutImage(@PartMap() Map<String, RequestBody> partMap,@Part("check_user[]") ArrayList<Integer> user_id);
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/create")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/create")
     Call<TicketCreatePostResponse> postTicketAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap,@Part("check_user[]") ArrayList<Integer> user_id);
 
 
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/otpverification")
+    @POST(BuildConfig.MIDDLE_URL +"user/otpverification")
     Call<OTPVerifactionResponse> postOTP(@FieldMap Map<String, String> otpData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/passwordchange")
+    @POST(BuildConfig.MIDDLE_URL +"user/passwordchange")
     Call<UserPasswordChangeResponse> postPasswordChange(@FieldMap Map<String, String> pwdData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/login/index")
+    @POST(BuildConfig.MIDDLE_URL +"login/index")
     Call<OTPVerifactionResponse> postLoginPassword(@FieldMap Map<String, String> otpData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/postphoneforlogin")
+    @POST(BuildConfig.MIDDLE_URL +"user/postphoneforlogin")
     Call<PhonePostResponse> postPhone(@FieldMap Map<String, String> phone);
 
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/financeGCM")
+    @POST(BuildConfig.MIDDLE_URL +"user/financeGCM")
     Call<FCMTokenUploadResponse> postFCMToken(@FieldMap Map<String, String> userData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/financeGCM")
+    @POST(BuildConfig.MIDDLE_URL +"user/financeGCM")
     Call<String> postCompletUserData(@FieldMap Map<String, String> userData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/postUpdateUserDataTable")
+    @POST(BuildConfig.MIDDLE_URL +"user/postUpdateUserDataTable")
     Call<String> postUpdateUserDataTable(@FieldMap Map<String, String> userData);
 
     @FormUrlEncoded
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/updateGCMMasterTable")
+    @POST(BuildConfig.MIDDLE_URL +"user/updateGCMMasterTable")
     Call<String> postUpdateGCMTable(@FieldMap Map<String, String> userData);
 
     //commented on dec 26 2019
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/editpost")
+//    @POST(BuildConfig.MIDDLE_URL +"ticket/editpost")
 //    @FormUrlEncoded
 //    Call<TicketEditPostResponse> postTicketEdit(@Field("ticket_title") String name,
 //                                                @Field("ticket_desc") String description,
@@ -242,7 +242,7 @@ public interface GetDataService {
 //                                                @Field("last_updated_by") int lastupdatedby);
 
     //Added on dec26 2019
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/edit")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/edit")
     @FormUrlEncoded
     Call<TicketEditPostResponse> postTicketEdit(@Field("ticket_title") String name,
                                                 @Field("ticket_desc") String description,
@@ -252,17 +252,17 @@ public interface GetDataService {
                                                 @Field("last_updated_by") int lastupdatedby);
 
     //Added on dec26 2019
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/edit")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/edit")
     @FormUrlEncoded
     Call<TicketEditPostResponse> postTicketEditMap(@FieldMap Map<String, String> ticketEditData);
 
     //Added on feb 14 2020
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/ticket/edit")
+    @POST(BuildConfig.MIDDLE_URL +"ticket/edit")
     @FormUrlEncoded
     Call<TicketEditPostResponse> postTicketEditMapUser(@FieldMap Map<String, String> ticketEditData,@Field("check_user[]") List<String> chkusrs);
 
 
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/posteditwithoutimage")
+    @POST(BuildConfig.MIDDLE_URL +"user/posteditwithoutimage")
     @FormUrlEncoded
     Call<UserEditResponse> postUserdata2(@Field("name") String name,
                                          @Field("mobilenum") String mobilenum,
@@ -271,32 +271,32 @@ public interface GetDataService {
                                          @Field("email") String email);
 
 
-    //This '/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/profile' to be used instead of     @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/posteditwithoutimage")
+    //This '/android/napolean"+ BuildConfig.MIDDLE_URL +"user/profile' to be used instead of     @POST(BuildConfig.MIDDLE_URL +"user/posteditwithoutimage")
 //    @Multipart
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/profile")
+//    @POST(BuildConfig.MIDDLE_URL +"user/profile")
 //    @FormUrlEncoded
 //    Call<UserEditResponse> postUserdataWithImage(@Part MultipartBody.Part file,@Part Map<String, RequestBody> userData);
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/profile")
+    @POST(BuildConfig.MIDDLE_URL +"user/profile")
     Call<UserEditResponse> postUserdataWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
 
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/profile")
+    @POST(BuildConfig.MIDDLE_URL +"user/profile")
     Call<UserEditResponse> postUserdataWithoutImage(@PartMap() Map<String, RequestBody> userData);
 
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/add")
+    @POST(BuildConfig.MIDDLE_URL +"user/add")
     Call<UserAddPostResponse> postUserAddWithImage(@Part MultipartBody.Part file, @PartMap() Map<String, RequestBody> partMap);
 
 //    @Multipart
-//    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/profile")
+//    @POST(BuildConfig.MIDDLE_URL +"user/profile")
 //    Call< UserAddPostResponse> postUserAddWithoutImage(@PartMap() Map<String,RequestBody> userData);
 
     @Multipart
-    @POST("/android/napolean"+ BuildConfig.MIDDLE_URL +"index.php/user/add")
+    @POST(BuildConfig.MIDDLE_URL +"user/add")
     Call<UserAddPostResponse> postUserAddWithoutImage(@PartMap() Map<String, RequestBody> userData);
 
 

@@ -67,7 +67,7 @@ public class LoginEmailActivity extends AppCompatActivity {
         call.enqueue(new Callback<OTPVerifactionResponse>() {
             @Override
             public void onResponse(Call<OTPVerifactionResponse> call, Response<OTPVerifactionResponse> response) {
-                Toast.makeText(getApplicationContext(),"first="+response.body().getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"first="+response.body().toString(), Toast.LENGTH_LONG).show();
 
                 if(response.isSuccessful() && response.body()!=null) {
                     if( response.body().getPasswordverified() && response.body().getJwttoken()!=null && !response.body().getJwttoken().isEmpty() && response.body().getJwttoken().length()>0){

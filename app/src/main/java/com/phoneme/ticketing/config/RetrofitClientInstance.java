@@ -36,8 +36,8 @@ public class RetrofitClientInstance {
     //old link http://phoneme.in/anujitbhu/napolean/ticketingapicidebug/index.php/user/otpverification?phone=9971791175&otp=73581
     //private static final String BASE_URL = "http://phoneme.in/anujitbhu/napolean/ticketingapici/index.php/";
     private static final String BASE_URL_old = "https://phoneme.in/";//with http yash phone was giving error
-    //private static final String BASE_URL = "http://support.phoneme.in/";//with http yash phone was giving error
-    private static final String BASE_URL ="http://myphoneme.com/";
+    private static final String BASE_URL = "http://support.phoneme.in/";//with http yash phone was giving error
+    //private static final String BASE_URL ="http://myphoneme.com/";
 
     //private static final String BASE_URL=BuildConfig.SERVER_URL;
     private static final String BASE_URL_INFRA_MONIORING="https://www.phoneme.in/anujitbhu/ticketing/";

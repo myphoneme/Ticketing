@@ -361,6 +361,8 @@ public class UserProfileFragment extends Fragment implements
         try {
             // When an Image is picked
             if (requestCode == 0 && resultCode == getActivity().RESULT_OK && null != data) {
+                Toast.makeText(getContext(), "Image selected", Toast.LENGTH_LONG).show();
+
                 System.out.println("imageselectedra1");
                 Uri selectedImage = data.getData();
                 System.out.println("imageselectedra2");
@@ -383,7 +385,7 @@ public class UserProfileFragment extends Fragment implements
                 //uploadFile(selectedImage, "My Image");
             }
         } catch (Exception e) {
-            //Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Something went wrong"+e.getMessage(), Toast.LENGTH_LONG).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

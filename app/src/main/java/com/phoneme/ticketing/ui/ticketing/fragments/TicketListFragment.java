@@ -86,7 +86,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 
     private RelativeLayout progressbarlayout;
     private int positionForDownload;
-    private String userid=null;
+    private String userid = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -106,10 +106,10 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        try{
+        try {
             userid = getArguments().getString("user_id");
-        }catch(Exception e){
-            userid=null;
+        } catch (Exception e) {
+            userid = null;
         }
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_ticket_main);
@@ -158,7 +158,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                 }
             });
             myTickets.setVisibility(View.GONE);
-        }else if(userAuth.getRole().equals("3")){
+        } else if (userAuth.getRole().equals("3")) {
             ticketAdd.setVisibility(View.VISIBLE);
             //to be uncommented for post notification
             ticketAdd.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +169,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     navController.navigate(R.id.nav_ticket_add);
                 }
             });
-        } else if(userAuth.getRole().equals("0")){
+        } else if (userAuth.getRole().equals("0")) {
             ticketAdd.setVisibility(View.VISIBLE);
             //to be uncommented for post notification
             ticketAdd.setOnClickListener(new View.OnClickListener() {
@@ -180,58 +180,64 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     navController.navigate(R.id.nav_ticket_add);
                 }
             });
-        }
-
-        else {
+        } else {
             ticketAdd.setVisibility(View.GONE);
             //myTickets.setVisibility(View.GONE);
         }
         ticketNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ticketNumbersort) {
-                    TicketNumberCompare ticketNumberCompare = new TicketNumberCompare();
-                    Collections.sort(ticketModelList, ticketNumberCompare);
-                    adapter.notifyDataSetChanged();
-                    ticketNumbersort = false;
-                } else {
-                    TicketNumberCompare ticketNumberCompare = new TicketNumberCompare();
-                    Collections.sort(ticketModelList, Collections.reverseOrder(ticketNumberCompare));
-                    adapter.notifyDataSetChanged();
-                    ticketNumbersort = true;
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+                    if (ticketNumbersort) {
+                        TicketNumberCompare ticketNumberCompare = new TicketNumberCompare();
+                        Collections.sort(ticketModelList, ticketNumberCompare);
+                        adapter.notifyDataSetChanged();
+                        ticketNumbersort = false;
+                    } else {
+                        TicketNumberCompare ticketNumberCompare = new TicketNumberCompare();
+                        Collections.sort(ticketModelList, Collections.reverseOrder(ticketNumberCompare));
+                        adapter.notifyDataSetChanged();
+                        ticketNumbersort = true;
+                    }
                 }
             }
         });
         ticketTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ticketTitlesort) {
-                    TicketTitleCompare ticketTitleCompare = new TicketTitleCompare();
-                    Collections.sort(ticketModelList, ticketTitleCompare);
-                    adapter.notifyDataSetChanged();
-                    ticketTitlesort = false;
-                } else {
-                    TicketTitleCompare ticketTitleCompare = new TicketTitleCompare();
-                    Collections.sort(ticketModelList, Collections.reverseOrder(ticketTitleCompare));
-                    adapter.notifyDataSetChanged();
-                    ticketTitlesort = true;
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+
+                    if (ticketTitlesort) {
+                        TicketTitleCompare ticketTitleCompare = new TicketTitleCompare();
+                        Collections.sort(ticketModelList, ticketTitleCompare);
+                        adapter.notifyDataSetChanged();
+                        ticketTitlesort = false;
+                    } else {
+                        TicketTitleCompare ticketTitleCompare = new TicketTitleCompare();
+                        Collections.sort(ticketModelList, Collections.reverseOrder(ticketTitleCompare));
+                        adapter.notifyDataSetChanged();
+                        ticketTitlesort = true;
+                    }
                 }
+
             }
         });
         project.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
 
-                if (projectNamesort) {
-                    ProjectNameCompare projectNameCompare = new ProjectNameCompare();
-                    Collections.sort(ticketModelList, projectNameCompare);
-                    adapter.notifyDataSetChanged();
-                    projectNamesort = false;
-                } else {
-                    ProjectNameCompare projectNameCompare = new ProjectNameCompare();
-                    Collections.sort(ticketModelList, Collections.reverseOrder(projectNameCompare));
-                    adapter.notifyDataSetChanged();
-                    projectNamesort = true;
+                    if (projectNamesort) {
+                        ProjectNameCompare projectNameCompare = new ProjectNameCompare();
+                        Collections.sort(ticketModelList, projectNameCompare);
+                        adapter.notifyDataSetChanged();
+                        projectNamesort = false;
+                    } else {
+                        ProjectNameCompare projectNameCompare = new ProjectNameCompare();
+                        Collections.sort(ticketModelList, Collections.reverseOrder(projectNameCompare));
+                        adapter.notifyDataSetChanged();
+                        projectNamesort = true;
+                    }
                 }
             }
         });
@@ -239,6 +245,8 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         ticketDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+
                 if (ticketDescriptionsort) {
                     TicketDescriptionCompare ticketDescriptionCompare = new TicketDescriptionCompare();
                     Collections.sort(ticketModelList, ticketDescriptionCompare);
@@ -251,12 +259,16 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     ticketDescriptionsort = true;
                 }
             }
+            }
+
         });
 
         ticketStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ticketStatussort) {
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+
+                    if (ticketStatussort) {
                     TicketStatusCompare ticketStatusCompare = new TicketStatusCompare();
                     Collections.sort(ticketModelList, ticketStatusCompare);
                     adapter.notifyDataSetChanged();
@@ -267,6 +279,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     adapter.notifyDataSetChanged();
                     ticketStatussort = true;
                 }
+            }
             }
         });
 
@@ -290,7 +303,9 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
             @Override
             public void onClick(View view) {
                 TicketCreatedByCompare ticketCreatedByCompare = new TicketCreatedByCompare();
-                if (ticketCreatedBysort) {
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+
+                    if (ticketCreatedBysort) {
                     Collections.sort(ticketModelList, ticketCreatedByCompare);
                     adapter.notifyDataSetChanged();
                     ticketCreatedBysort = false;
@@ -301,13 +316,16 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
 
                 }
             }
+            }
         });
 
         ticketImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TicketImageCompare ticketImageCompare = new TicketImageCompare();
-                if (ticketImagesort) {
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+
+                    if (ticketImagesort) {
                     Collections.sort(ticketModelList, ticketImageCompare);
                     adapter.notifyDataSetChanged();
                     ticketImagesort = false;
@@ -317,19 +335,23 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     ticketImagesort = true;
                 }
             }
+            }
         });
         ticketImageType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TicketImageTypeCompare ticketImageTypeCompare = new TicketImageTypeCompare();
-                if (ticketImageTypesort) {
-                    Collections.sort(ticketModelList, ticketImageTypeCompare);
-                    adapter.notifyDataSetChanged();
-                    ticketImageTypesort = false;
-                } else {
-                    Collections.sort(ticketModelList, Collections.reverseOrder(ticketImageTypeCompare));
-                    adapter.notifyDataSetChanged();
-                    ticketImageTypesort = true;
+                if (ticketModelList != null && !ticketModelList.isEmpty() && ticketModelList.size() > 1) {
+
+                    if (ticketImageTypesort) {
+                        Collections.sort(ticketModelList, ticketImageTypeCompare);
+                        adapter.notifyDataSetChanged();
+                        ticketImageTypesort = false;
+                    } else {
+                        Collections.sort(ticketModelList, Collections.reverseOrder(ticketImageTypeCompare));
+                        adapter.notifyDataSetChanged();
+                        ticketImageTypesort = true;
+                    }
                 }
             }
         });
@@ -339,9 +361,9 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                 getMyTicketData();
             }
         });
-        if(userid==null) {
+        if (userid == null) {
             getTicketData();
-        }else{
+        } else {
             getMyTicketData();
         }
     }
@@ -375,9 +397,9 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
         call.enqueue(new Callback<TicketResponse>() {
             @Override
             public void onResponse(Call<TicketResponse> call, Response<TicketResponse> response) {
-                Toast.makeText(getContext(), "getMyTicketData1a=" , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "getMyTicketData1a=", Toast.LENGTH_LONG).show();
                 if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "getMyTicketData2=" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "getMyTicketData2=", Toast.LENGTH_LONG).show();
 
                     System.out.println("Response successfull ra\n" + response.body().getListOfTickets());
                     ticketModelList.clear();
@@ -387,7 +409,7 @@ public class TicketListFragment extends Fragment implements TicketListAdapterNew
                     setRecyclerView(ticketModelList);
                     //adapter.notifyDataSetChanged();
 
-                }else{
+                } else {
                     progressbarlayout.setVisibility(View.GONE);
                 }
             }

@@ -578,24 +578,24 @@ public class MainActivity extends AppCompatActivity {
         if (listofTickets != null && !listofTickets.isEmpty() && listofTickets.size() > 0) {
             TicketCreatedTimeCompare ticketCreatedtimeCompare = new TicketCreatedTimeCompare();
             Collections.sort(listofTickets, Collections.reverseOrder(ticketCreatedtimeCompare));
-            Toast.makeText(getApplicationContext(), "Analyze size=" + listofTickets.size(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Analyze size=" + listofTickets.size(), Toast.LENGTH_LONG).show();
             for (int i = 0; i < listofTickets.size(); i++) {
                 if (listofTickets.get(i).getStatus().equalsIgnoreCase("1")) {
                     //Toast.makeText(getApplicationContext(), "time="+getTime_ago(listofTickets.get(i).getCreated_at()), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getApplicationContext(), "timedays=" + getDays(listofTickets.get(i).getCreated_at()), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "timedays=" + getDays(listofTickets.get(i).getCreated_at()), Toast.LENGTH_LONG).show();
                     int dayspassed = Integer.parseInt(getDays(listofTickets.get(i).getCreated_at()));
                     if (listofTickets.get(i).getPriority().equalsIgnoreCase("low")) {
-                        Toast.makeText(getApplicationContext(), "priority=low", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "priority=low", Toast.LENGTH_LONG).show();
                         if (dayspassed > 3) {
                             //showNotification(dayspassed-3,listofTickets.get(i));
                         }
                     } else if (listofTickets.get(i).getPriority().equalsIgnoreCase("medium")) {
-                        Toast.makeText(getApplicationContext(), "priority=medium", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "priority=medium", Toast.LENGTH_LONG).show();
                         if (dayspassed > 5) {
                             //showNotification(dayspassed-5,listofTickets.get(i));
                         }
                     } else if (listofTickets.get(i).getPriority().equalsIgnoreCase("high")) {
-                        Toast.makeText(getApplicationContext(), "priority=high", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "priority=high", Toast.LENGTH_LONG).show();
                         if (dayspassed > 7) {
                             //showNotification(dayspassed-7,listofTickets.get(i));
                         }

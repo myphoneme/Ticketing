@@ -113,6 +113,8 @@ public class UserProfileFragment extends Fragment implements
             userimage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Toast.makeText(getContext(), "Image clicked", Toast.LENGTH_LONG).show();
+
                     Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(galleryIntent, 0);
@@ -319,11 +321,14 @@ public class UserProfileFragment extends Fragment implements
             call= service.postUserdataWithoutImage(map);
         }
         Toast.makeText(getContext(),"After call", Toast.LENGTH_SHORT).show();
-
+        System.out.println("map value= "+map.toString());
         call.enqueue(new Callback<UserEditResponse>() {
             @Override
             public void onResponse(Call<UserEditResponse> call, Response<UserEditResponse> response) {
-                Toast.makeText(getContext(),"Update Successfull new token"+response.body().getJwttoken(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"Update Successfull new token"+response.toString(), Toast.LENGTH_SHORT).show();
+                //System.out.println("image update response "+response.toString());
+                //Toast.makeText(getContext(),"Update Successfull new image"+response.body().getImage(), Toast.LENGTH_SHORT).show();
+
                 UserAuth auth=new UserAuth(getContext());
                 auth.setJwtToken(response.body().getJwttoken());
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -365,6 +370,7 @@ public class UserProfileFragment extends Fragment implements
 
                 System.out.println("imageselectedra1");
                 Uri selectedImage = data.getData();
+                Toast.makeText(getContext(), "Image selected 2"+selectedImage.toString(), Toast.LENGTH_LONG).show();
                 System.out.println("imageselectedra2");
 
                 ImageRequest request = ImageRequestBuilder.newBuilderWithSource(selectedImage)
@@ -382,6 +388,8 @@ public class UserProfileFragment extends Fragment implements
 
                 imagePath=getRealPathFromURI(selectedImage);
                 System.out.println("imageselectedra5");
+                Toast.makeText(getContext(), "Image selected 5 "+imagePath, Toast.LENGTH_LONG).show();
+
                 //uploadFile(selectedImage, "My Image");
             }
         } catch (Exception e) {

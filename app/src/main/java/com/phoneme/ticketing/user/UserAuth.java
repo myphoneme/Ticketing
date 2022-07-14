@@ -160,7 +160,7 @@ public class UserAuth {
             //Toast.makeText(mcontext,"getGCMMASTERId2abc "+utd.getGcmmasterid(), Toast.LENGTH_LONG).show();
             //return ""+utd.getGcmmasterid();
             if(utd.getGcmmasterid()==null){
-                Toast.makeText(mcontext,"getGCMMASTERId2zzzz null ", Toast.LENGTH_LONG).show();
+                //Toast.makeText(mcontext,"getGCMMASTERId2zzzz null ", Toast.LENGTH_LONG).show();
             }else{
                 //Toast.makeText(mcontext,"getGCMMASTERId2zzzz NOT null ", Toast.LENGTH_LONG).show();
             }
